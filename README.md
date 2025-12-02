@@ -14,3 +14,35 @@ To get started you will need to have the correct version of Ruby running on your
 ## Commands
 
 `jekyll serve`: To start the server and host the project locally.
+
+## Markdown
+
+This Jekyll install supports an enhanced markdown syntax where by HTML wrappers can be added using the dot4 identifier (::).
+
+Example:
+
+```
+::+s.added-class#added-id
+::
+1. This is in a section.
+And if I put text here, there's a break.
+
+::
+2. This is also in a section.
+::/s
+```
+
+Renders as:
+
+```
+<section id="added-id" class="added-class">
+  <div>
+    1. This is in a section.
+    And if I put text here, there's a break.
+  </div>
+  <div>
+    2. This is also in a section.
+  </div>
+</section>
+```
+
