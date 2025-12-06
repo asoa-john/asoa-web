@@ -14,8 +14,8 @@ The content is managed through Markdown and JSON files stored in your GitHub rep
 
 ## Requirements
 
-- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), pnpm installed for local development.
-- A [TinaCMS](https://app.tina.io) account for live editing.
+- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/)
+- pnpm installed for local development: `npm install -g pnpm`
 
 ## Local Development
 
@@ -23,7 +23,6 @@ Install the project's dependencies:
 
 > [!NOTE]  
 > [Do you know the best package manager for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node/) Using the right package manager can greatly enhance your development workflow. We recommend using pnpm for its speed and efficient handling of dependencies. Learn more about why pnpm might be the best choice for your projects by checking out this rule from SSW.
-
 
 ```
 pnpm install
@@ -46,7 +45,7 @@ pnpm dev
 
 ### GitHub Pages
 
-This starter can be deployed to GitHub Pages. A GitHub Actions workflow is included that handles the build and deployment process. 
+This starter can be deployed to GitHub Pages. A GitHub Actions workflow is included that handles the build and deployment process.
 
 To deploy to GitHub Pages:
 
@@ -55,6 +54,7 @@ To deploy to GitHub Pages:
 
 > [!NOTE]
 > When deploying to GitHub Pages, you'll need to update your secrets in Settings | Secrets and variables | Actions to include:
+>
 > - `NEXT_PUBLIC_TINA_CLIENT_ID`
 > - `TINA_TOKEN`
 >
@@ -106,7 +106,6 @@ These are rebuilt when your `tina` config changes.
 
 Licensed under the [Apache 2.0 license](./LICENSE).
 
-
 # Repository cleaned of LFS content
-# Repository cleaned of LFS content - Wed Sep 17 15:00:42 AEST 2025
 
+# Repository cleaned of LFS content - Wed Sep 17 15:00:42 AEST 2025
