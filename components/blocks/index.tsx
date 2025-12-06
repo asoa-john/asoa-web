@@ -1,6 +1,7 @@
 import { tinaField } from "tinacms/dist/react";
 import { Page, PageBlocks } from "../../tina/__generated__/types";
-import { Hero } from "./hero";
+import { Home } from "../hard-coded-home/index";
+import { Hero } from "./hero-with-video";
 import { Content } from "./content";
 import { Features } from "./features";
 import { Testimonial } from "./testimonial";
@@ -26,6 +27,8 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
 
 const Block = (block: PageBlocks) => {
   switch (block.__typename) {
+    case "PageBlocksHome":
+      return <Home data={block} />;
     case "PageBlocksVideo":
       return <Video data={block} />;
     case "PageBlocksHero":

@@ -1,5 +1,6 @@
 import type { Collection } from "tinacms";
-import { heroBlockSchema } from "@/components/blocks/hero";
+import { homeBlockSchema } from "@/components/hard-coded-home/index";
+import { heroBlockSchema } from "@/components/blocks/hero-with-video";
 import { contentBlockSchema } from "@/components/blocks/content";
 import { testimonialBlockSchema } from "@/components/blocks/testimonial";
 import { featureBlockSchema } from "@/components/blocks/features";
@@ -32,6 +33,7 @@ const Page: Collection = {
         visualSelector: true,
       },
       templates: [
+        homeBlockSchema,
         heroBlockSchema,
         calloutBlockSchema,
         featureBlockSchema,
