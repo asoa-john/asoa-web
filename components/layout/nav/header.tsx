@@ -20,22 +20,31 @@ export const Header = () => {
         <div className="mx-auto max-w-6xl px-6 transition-all duration-300">
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full items-center justify-between gap-12">
-              <Link
-                href="/"
-                aria-label="home"
-                className="flex items-center space-x-2"
-              >
-                <Icon
-                  parentColor={header.color!}
-                  data={{
-                    name: header.icon!.name,
-                    color: header.icon!.color,
-                    style: header.icon!.style,
-                    size: "xl",
-                  }}
-                />{" "}
-                <span className="w-48">{header.name}</span>
-              </Link>
+              <div className="organization flex gap-4">
+                <Link
+                  href="/"
+                  aria-label="home"
+                  className="flex items-center space-x-2"
+                >
+                  <Icon
+                    parentColor={header.color!}
+                    data={{
+                      name: header.icon!.name,
+                      color: header.icon!.color,
+                      style: header.icon!.style,
+                      size: "xl",
+                    }}
+                  />{" "}
+                </Link>
+                <div className="w-[150px]">
+                  <p className="font-serif text-base leading-none pb-2">
+                    Applied Scholastics Online Academy
+                  </p>
+                  <p className="font-normal leading-none text-xs">
+                    {header.name}
+                  </p>
+                </div>
+              </div>
 
               <button
                 onClick={() => setMenuState(!menuState)}
