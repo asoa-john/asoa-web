@@ -34,7 +34,7 @@ export const Header = () => {
                     size: "xl",
                   }}
                 />{" "}
-                <span>{header.name}</span>
+                <span className="w-48">{header.name}</span>
               </Link>
 
               <button
@@ -47,7 +47,7 @@ export const Header = () => {
               </button>
 
               <div className="hidden lg:block">
-                <ul className="flex gap-8 text-sm">
+                <ul className="flex items-center gap-8 text-sm">
                   {header.nav!.map((item, index) => (
                     <li key={index}>
                       <Link
@@ -71,7 +71,9 @@ export const Header = () => {
                     <li key={index}>
                       <Link
                         href={item!.href!}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        className={`${
+                          item!.css !== null ? item!.css + " " : ""
+                        }text-muted-foreground hover:text-accent-foreground block duration-150`}
                       >
                         <span>{item!.label}</span>
                       </Link>

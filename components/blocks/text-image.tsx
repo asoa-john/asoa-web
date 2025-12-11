@@ -31,10 +31,9 @@ export const TextImage = ({ data }: { data: PageBlocksTextImage }) => {
           {/* Right Content */}
           <div className="w-full lg:w-[46%] flex flex-col gap-3 text-center lg:text-left">
             <h2
-              className="font-normal text-black leading-16"
+              className="font-cursive text-black leading-16"
               style={{
                 fontSize: "64px",
-                fontFamily: "Oooh Baby",
               }}
             >
               For the Parent.
@@ -43,10 +42,9 @@ export const TextImage = ({ data }: { data: PageBlocksTextImage }) => {
             </h2>
 
             <h3
-              className="font-normal leading-8 w-full"
+              className="font-serif leading-8 w-full"
               style={{
                 fontSize: "32px",
-                fontFamily: "DM Serif Text",
                 background: "linear-gradient(158deg,#a757b1 0%, #00d9d2 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
