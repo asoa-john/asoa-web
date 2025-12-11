@@ -1,12 +1,12 @@
 {
   "header": {
     "icon": {
-      "name": "Tina",
-      "color": "orange",
+      "name": "Asoa",
+      "color": "black",
       "style": "float"
     },
-    "name": "Tina Starter",
-    "color": "default",
+    "name": "Applied Scholastics Online Academy",
+    "color": "primary",
     "nav": [
       {
         "href": "/",
@@ -19,6 +19,11 @@
       {
         "href": "/posts",
         "label": "Blog"
+      },
+      {
+        "href": "tina-starter",
+        "label": "Tina",
+        "css": "button"
       }
     ]
   },

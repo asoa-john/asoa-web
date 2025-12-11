@@ -102,10 +102,33 @@ To get help with any TinaCMS challenges you may have:
 A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
 These are rebuilt when your `tina` config changes.
 
+### Blocks
+
+The easiest way to create new components for this repo is to copy an existing component and modify it.
+
+- Duplicate the most similar block, they are located in: `components/blocks`
+- Modify with thoughtful names. Be sure to use proper typescript types and include all necessary imports, props, states, etc.
+- Update the `Block` array in: `components/blocks/index.tsx`
+- Update the `templates` array in: `tina/collection/page.ts`
+- Finally, update your new block with a thumbnail image.
+
+### Troubleshooting
+
+**ERROR**
+When load TinaCMS backend, it says "Looks like there's nothing to edit on this page.".
+**TRY**
+Wait a few seconds. It's probably still loading.
+
+**ERROR**
+ou created a block or something and you fixed all the errors in your IDE, but there is still an error.
+**TRY**
+It's possible that Typescript needs to be restarted. Abort the current session and run `pnpm dev` again.
+
+**ERROR**
+`Error: Tina Dev server is already in use. Datalayer server is busy on port 9000`
+**TRY**
+Kill 9000 (MacOS command: `lsof -ti:3000 | xargs kill -9`). If that fails, restart your computer.
+
 ## LICENSE
 
 Licensed under the [Apache 2.0 license](./LICENSE).
-
-# Repository cleaned of LFS content
-
-# Repository cleaned of LFS content - Wed Sep 17 15:00:42 AEST 2025

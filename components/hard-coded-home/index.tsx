@@ -9,11 +9,9 @@ import { sectionBlockSchemaField } from "../layout/section";
 import type { Transition } from "motion/react";
 
 import HeroSection from "./HeroSection";
-import AboutSection from "./AboutSection";
 import WhyChooseSection from "./WhyChooseSection";
 import VideoSection from "./VideoSection";
 import TestimonialsSection from "./TestimonialsSection";
-import GoalsSection from "./GoalsSection";
 import PhotoCollageSection from "./PhotoCollageSection";
 import FAQSection from "./FAQSection";
 import Footer from "./Footer";
@@ -21,12 +19,9 @@ import Footer from "./Footer";
 export const Home = ({ data }: { data: PageBlocksHome }) => {
   return (
     <>
-      <HeroSection />
-      <AboutSection />
       <WhyChooseSection />
       <VideoSection />
       <TestimonialsSection />
-      <GoalsSection />
       <PhotoCollageSection />
       <FAQSection />
       <Footer />

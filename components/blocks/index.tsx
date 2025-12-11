@@ -1,6 +1,8 @@
 import { tinaField } from "tinacms/dist/react";
 import { Page, PageBlocks } from "../../tina/__generated__/types";
 import { Home } from "../hard-coded-home/index";
+import { HomeHero } from "./home-hero";
+import { TextImage } from "./text-image";
 import { Hero } from "./hero-with-video";
 import { Content } from "./content";
 import { Features } from "./features";
@@ -29,6 +31,10 @@ const Block = (block: PageBlocks) => {
   switch (block.__typename) {
     case "PageBlocksHome":
       return <Home data={block} />;
+    case "PageBlocksHomeHero":
+      return <HomeHero data={block} />;
+    case "PageBlocksTextImage":
+      return <TextImage data={block} />;
     case "PageBlocksVideo":
       return <Video data={block} />;
     case "PageBlocksHero":

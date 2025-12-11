@@ -1,4 +1,12 @@
 import React from "react";
+import Link from "next/link";
+import type { Template } from "tinacms";
+import { tinaField } from "tinacms/dist/react";
+import { PageBlocksHome } from "@/tina/__generated__/types";
+import { ArrowRight } from "lucide-react";
+import { AnimatedGroup } from "../motion-primitives/animated-group";
+import { sectionBlockSchemaField } from "../layout/section";
+import type { Transition } from "motion/react";
 
 const WhyChooseSection = () => {
   return (

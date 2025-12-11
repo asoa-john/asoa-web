@@ -44,6 +44,7 @@ const Global: Collection = {
             defaultItem: {
               href: "home",
               label: "Home",
+              css: "",
             },
           },
           fields: [
@@ -56,6 +57,11 @@ const Global: Collection = {
               type: "string",
               label: "Label",
               name: "label",
+            },
+            {
+              type: "string",
+              label: "CSS Classes",
+              name: "css",
             },
           ],
         },
@@ -73,7 +79,7 @@ const Global: Collection = {
           list: true,
           ui: {
             itemProps: (item) => {
-              return { label: item?.icon?.name || 'undefined' };
+              return { label: item?.icon?.name || "undefined" };
             },
           },
           fields: [

@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import Link from "next/link";
+import type { Template } from "tinacms";
+import { tinaField } from "tinacms/dist/react";
+import { PageBlocksHome } from "@/tina/__generated__/types";
+import { ArrowRight } from "lucide-react";
+import { AnimatedGroup } from "../motion-primitives/animated-group";
+import { sectionBlockSchemaField } from "../layout/section";
+import type { Transition } from "motion/react";
+
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
@@ -15,7 +24,7 @@ const HeroSection = () => {
 
   return (
     <section className="w-full bg-white relative">
-      <div className="w-full max-w-[1200px] mx-auto">
+      <div className="w-full mx-auto">
         {/* Header */}
         <header className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
           {/* Logo Section */}
@@ -114,7 +123,7 @@ const HeroSection = () => {
           <nav
             className={`${
               menuOpen ? "block" : "hidden"
-            } lg:hidden absolute top-full left-0 w-full bg-white shadow-lg z-50`}
+            } lg:hidden top-full left-0 w-full bg-white shadow-lg z-50`}
           >
             <div className="px-4 py-2 space-y-2">
               {menuItems?.map((item, index) => (
@@ -144,12 +153,9 @@ const HeroSection = () => {
         </header>
 
         {/* Hero Content */}
-        <div
-          className="relative w-full"
-          style={{ height: "1870px", maxHeight: "1870px" }}
-        >
+        <div className="relative w-full">
           <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            className="w-full h-full bg-cover bg-center"
             style={{
               background:
                 "linear-gradient(156deg,#a758b27f 0%, #00dad27f 100%)",
