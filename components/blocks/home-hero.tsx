@@ -19,15 +19,15 @@ import type { Transition } from "motion/react";
 
 export const HomeHero = ({ data }: { data: PageBlocksHomeHero }) => {
   return (
-    <section className="w-full bg-white py-12 md:py-20">
+    <section className="home-hero w-full bg-white bg-cover bg-center bg-no-repeat relative z-[1] py-12 md:py-20">
       <div className="w-full max-w-[1200px] mx-auto px-8 sm:px-12 md:px-14">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12">
           {/* Left Image */}
           <div className="w-full lg:w-[46%] shrink-0">
             <img
-              src="../public/uploads/posts/img_image.jpg"
+              src="/uploads/girl-mom-homework.webp"
               alt="Applied Scholastics Online Academy"
-              className="w-full h-auto max-w-[420px] mx-auto lg:mx-0"
+              className="w-full h-auto max-w-[420px] mx-auto lg:mx-0 shadow-xl"
             />
           </div>
 

@@ -14,6 +14,7 @@ import {
 } from "../magicui/script-copy-btn";
 import type { Transition } from "motion/react";
 
+//@ts-ignore
 export const TextImage = ({ data }: { data: PageBlocksTextImage }) => {
   return (
     <section className="w-full bg-white py-12 md:py-20">
@@ -22,7 +23,7 @@ export const TextImage = ({ data }: { data: PageBlocksTextImage }) => {
           {/* Left Image */}
           <div className="w-full lg:w-[46%] shrink-0">
             <img
-              src="../public/uploads/posts/img_image.jpg"
+              src={data.img}
               alt="Applied Scholastics Online Academy"
               className="w-full h-auto max-w-[420px] mx-auto lg:mx-0"
             />
@@ -74,12 +75,24 @@ export const textImageBlockSchema: Template = {
   ui: {
     previewSrc: "/blocks/text-image.png",
     defaultItem: {
+      img: "",
+      alt: "",
       url: "https://tina.io/editorial-workflow",
       body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla feugiat orci sed dictum fermentum. Sed tristique interdum odio, quis tincidunt est finibus non. Integer at ante vel nunc ultrices auctor sit amet fringilla mauris. Nam eu ipsum metus. Maecenas condimentum vel tellus quis rhoncus. Sed consectetur nisi lacus, at tincidunt elit mollis ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci felis, viverra non lobortis vel, auctor eget ligula.",
     },
   },
   fields: [
     sectionBlockSchemaField as any,
+    {
+      type: "image",
+      label: "Image",
+      name: "img",
+    },
+    {
+      type: "string",
+      label: "Alt Text",
+      name: "alt",
+    },
     {
       type: "rich-text",
       label: "Body",

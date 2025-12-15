@@ -1,4 +1,5 @@
 import type { Collection } from "tinacms";
+import { useTina } from "tinacms/dist/react";
 import { homeBlockSchema } from "@/components/hard-coded-home/index";
 import { homeHeroBlockSchema } from "@/components/blocks/home-hero";
 import { textImageBlockSchema } from "@/components/blocks/text-image";

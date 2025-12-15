@@ -156,13 +156,13 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* .font-dmserif {
-    font-family: var(--font-family-dmserif);
-  }
-  .font-ooohbaby {
-    font-family: var(--font-family-ooohbaby);
-  } */
   .button {
     @apply cursor-pointer rounded border-2 px-5 py-2 text-sm font-semibold;
   }
+}
+
+.home-hero {
+  background: url('/uploads/home-hero-still.jpg');
+  background-position: center;
+  background-size: cover;
 }
