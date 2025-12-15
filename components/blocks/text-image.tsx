@@ -23,8 +23,8 @@ export const TextImage = ({ data }: { data: PageBlocksTextImage }) => {
           {/* Left Image */}
           <div className="w-full lg:w-[46%] shrink-0">
             <img
-              src={data.img}
-              alt="Applied Scholastics Online Academy"
+              src={data.img || "/placeholder.webp"}
+              alt={data.alt || ""}
               className="w-full h-auto max-w-[420px] mx-auto lg:mx-0"
             />
           </div>
@@ -75,7 +75,7 @@ export const textImageBlockSchema: Template = {
   ui: {
     previewSrc: "/blocks/text-image.png",
     defaultItem: {
-      img: "",
+      img: "/placeholder.webp",
       alt: "",
       url: "https://tina.io/editorial-workflow",
       body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla feugiat orci sed dictum fermentum. Sed tristique interdum odio, quis tincidunt est finibus non. Integer at ante vel nunc ultrices auctor sit amet fringilla mauris. Nam eu ipsum metus. Maecenas condimentum vel tellus quis rhoncus. Sed consectetur nisi lacus, at tincidunt elit mollis ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci felis, viverra non lobortis vel, auctor eget ligula.",
