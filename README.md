@@ -1,134 +1,93 @@
-# Tina Starter 🦙
+This is a [Tina CMS](https://tina.io/) starter project.
 
-![tina-nextjs-starter-demo](https://user-images.githubusercontent.com/103008/130587027-995ccc45-a852-4f90-b658-13e8e0517339.gif)
+# Astro + TinaCMS Starter Kit: Blog
 
-This Next.js starter is powered by [TinaCMS](https://app.tina.io) for you and your team to visually live edit the structured content of your website. ✨
-
-The content is managed through Markdown and JSON files stored in your GitHub repository, and queried through Tina GraphQL API.
-
-### Features
-
-- [Tina Headless CMS](https://app.tina.io) for authentication, content modeling, visual editing and team management.
-- [Vercel](https://vercel.com) deployment to visually edit your site from the `/admin` route.
-- Local development workflow from the filesystem with a local GraqhQL server.
-
-## Requirements
-
-- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/)
-- pnpm installed for local development: `npm install -g pnpm`
-
-## Local Development
-
-Install the project's dependencies:
-
-> [!NOTE]  
-> [Do you know the best package manager for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node/) Using the right package manager can greatly enhance your development workflow. We recommend using pnpm for its speed and efficient handling of dependencies. Learn more about why pnpm might be the best choice for your projects by checking out this rule from SSW.
-
-```
-pnpm install
+```sh
+npx create-tina-app@latest --template tina-astro-starter
 ```
 
-Run the project locally:
+And start editing with TinaCMS at `/admin`! 
 
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+
+Features:
+
+- ✅ Markdown & MDX support + TinaCMS Markdown Component
+- ✅ TinaCMS Collections (Pages, Blogs, Config)
+- ✅ Visual Editing using Custom Loaders and Client Directives (requires React)
+- ✅ 100/100 Lighthouse performance
+- ✅ View transitions are enabled 
+- ✅ Minimal styling (make it your own!)
+- ✅ SEO-friendly with canonical URLs and OpenGraph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+
+
+## 🚀 Project Structure
+
+Inside of your project, you'll see the following folders and files:
+
+```text
+├── README.md
+├── astro-tina-directive/
+├── astro.config.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── public/
+├── src
+│   ├── components
+│   ├── content
+│   ├── content.config.ts
+│   ├── layouts
+│   ├── pages
+│   └── styles
+├── tina
+│   ├── collections
+│   ├── components
+│   ├── config.ts
+│   ├── pages
+│   └── tina-lock.json
+└── tsconfig.json
 ```
-pnpm dev
-```
 
-### Local URLs
+Each page is exposed as a route based on its file name which are generated from the content under `src/content/` (excluding the `config` folder). 
 
-- http://localhost:3000 : browse the website
-- http://localhost:3000/admin : connect to Tina Cloud and go in edit mode
-- http://localhost:3000/exit-admin : log out of Tina Cloud
-- http://localhost:4001/altair/ : GraphQL playground to test queries and browse the API documentation
+To enable Visual Editing with TinaCMS we have had to use React components and a new `client:tina` Directive. Which is the code located under `astro-tina-directive`. 
 
-## Deployment
+Under the `tina/` folder we have, `collections/` which holds our TinaCMS schema definitions. Under `components/` we have a custom Icon Component that is used within the TinaCMS UI. Under `pages/` we have the "wrappers" that make the Visual Editing work, using the `useTina` hook. 
 
-### GitHub Pages
+The `pages/index.astro` is the "Home" page - This is a special case and has been setup to look for the `content/page/home.mdx` file. 
 
-This starter can be deployed to GitHub Pages. A GitHub Actions workflow is included that handles the build and deployment process.
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-To deploy to GitHub Pages:
-
-1. In your repository settings, ensure GitHub Pages is enabled and set to deploy from the `gh-pages` branch
-2. Push changes to your main branch - the workflow will automatically build and deploy the site
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
 > [!NOTE]
-> When deploying to GitHub Pages, you'll need to update your secrets in Settings | Secrets and variables | Actions to include:
->
-> - `NEXT_PUBLIC_TINA_CLIENT_ID`
-> - `TINA_TOKEN`
->
-> You get these from your TinaCloud project - [read the docs](https://tina.io/docs/tina-cloud/deployment-options/github-pages)
+> To use `getCollection()` we need to add a schema in `content.config.ts` with a custom loader that uses the correct TinaCMS Collection.
 
-> [!IMPORTANT]
-> GitHub Pages does not support server side code, so this will run as a static site. If you don't want to deploy to GitHub pages, just delete `.github/workflows/build-and-deploy.yml`
 
-### Building the Starter Locally (Using the hosted content API)
+Any static assets, like images, can be placed in the `public/` directory.
 
-Replace the `.env.example`, with `.env`
+## 🧞 Commands
 
-```
-NEXT_PUBLIC_TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
-TINA_TOKEN=<get this from the project you create at app.tina.io>
-NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
-```
+All commands are run from the root of the project, from a terminal:
 
-Build the project:
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-```bash
-pnpm build
-```
+## 👀 Want to learn more?
 
-## Getting Help
+Check out the [TinaCMS documentation](https://tina.io/docs) and the [Astro documentation](https://docs.astro.build) or jump into our [TinaCMS Discord server](https://discord.gg/cG2UNREu).
 
-To get help with any TinaCMS challenges you may have:
+## Credit
 
-- Visit the [documentation](https://tina.io/docs/) to learn about Tina.
-- [Join our Discord](https://discord.gg/zumN63Ybpf) to share feedback.
-- Visit the [community forum](https://community.tinacms.org/) to ask questions.
-- Get support through the chat widget on the TinaCMS Dashboard
-- [Email us](mailto:support@tina.io) to schedule a call with our team and share more about your context and what you're trying to achieve.
-- [Search or open an issue](https://github.com/tinacms/tinacms/issues) if something is not working.
-- Reach out on Twitter at [@tina_cms](https://twitter.com/tina_cms).
-
-## Development tips
-
-### Visual Studio Code GraphQL extension
-
-[Install the GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) to benefit from type auto-completion.
-
-### Typescript
-
-A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
-These are rebuilt when your `tina` config changes.
-
-### Blocks
-
-The easiest way to create new components for this repo is to copy an existing component and modify it.
-
-- Duplicate the most similar block, they are located in: `components/blocks`
-- Modify with thoughtful names. Be sure to use proper typescript types and include all necessary imports, props, states, etc.
-- Update the `Block` array in: `components/blocks/index.tsx`
-- Update the `templates` array in: `tina/collection/page.ts`
-- Finally, update your new block with a thumbnail image.
-
-### Troubleshooting
-
-**ERROR**
-When load TinaCMS backend, it says "Looks like there's nothing to edit on this page.".
-**TRY**
-Wait a few seconds. It's probably still loading.
-
-**ERROR**
-ou created a block or something and you fixed all the errors in your IDE, but there is still an error.
-**TRY**
-It's possible that Typescript needs to be restarted. Abort the current session and run `pnpm dev` again.
-
-**ERROR**
-`Error: Tina Dev server is already in use. Datalayer server is busy on port 9000`
-**TRY**
-Kill 9000 (MacOS command: `lsof -ti:3000 | xargs kill -9`). If that fails, restart your computer.
-
-## LICENSE
-
-Licensed under the [Apache 2.0 license](./LICENSE).
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
