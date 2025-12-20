@@ -62,11 +62,11 @@ const iconColorClass: {
     regular: "text-black",
     circle: "bg-black dark:bg-white text-blue-50",
   },
-  violet: {
+  purple: {
     regular: "text-[#A758B2]",
     circle: "bg-[#A758B2] dark:bg-[#00DAD2] text-teal-50",
   },
-  purple: {
+  violet: {
     regular: "text-[#7D78BA]",
     circle: "bg-[#7D78BA] dark:bg-[#2AB9CA] text-green-50",
   },

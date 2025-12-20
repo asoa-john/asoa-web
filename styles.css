@@ -105,7 +105,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   /* Custom */
-  --violet: #a758b2;
+  --purple: #a758b2;
   --aqua: #00dad2;
 }
 
@@ -162,7 +162,7 @@
 }
 
 .home-hero {
-  background: url('/uploads/home-hero-still.jpg');
+  background: url("/uploads/home-hero-still.jpg");
   background-position: center;
   background-size: cover;
 }

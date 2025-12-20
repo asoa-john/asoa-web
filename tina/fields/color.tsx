@@ -29,8 +29,8 @@ export const colorOptions = [
 export const ColorPickerInput = wrapFieldsWithMeta(({ input }) => {
   const inputClasses = {
     black: "bg-black",
-    violet: "bg-[#A758B2]",
-    purple: "bg-[#7D78BA]",
+    purple: "bg-[#A758B2]",
+    violet: "bg-[#7D78BA]",
     blue: "bg-[#5499C2]",
     cyan: "bg-[#2AB9CA]",
     auqua: "bg-[#00DAD2]",

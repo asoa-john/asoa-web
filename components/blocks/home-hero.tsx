@@ -55,7 +55,7 @@ export const HomeHero = ({ data }: { data: PageBlocksHomeHero }) => {
             >
               {data.text2}
             </p>
-            <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <div className="mt-12 flex flex-wrap justify-center lg:justify-start gap-4">
               {data.actions &&
                 data.actions.map((action) => (
                   <div

@@ -1,12 +1,17 @@
-import React, { ReactNode } from 'react';
-import { cn } from '../../lib/utils';
+import React, { ReactNode } from "react";
+import { cn } from "../../lib/utils";
 
 interface SectionProps extends React.HTMLProps<HTMLElement> {
   background?: string;
   children: ReactNode;
 }
 
-export const Section: React.FC<SectionProps> = ({ className, children, background, ...props }) => {
+export const Section: React.FC<SectionProps> = ({
+  className,
+  children,
+  background,
+  ...props
+}) => {
   return (
     <div className={background || "bg-default"}>
       <section
@@ -22,7 +27,7 @@ export const Section: React.FC<SectionProps> = ({ className, children, backgroun
 export const tailwindBackgroundOptions = [
   { label: "Default", value: "bg-default" },
   { label: "White", value: "bg-white/80" },
-  { label: "Gray", value: "bg-gray-50/80" },
+  { label: "Gradient", value: "bg-gradient-to-br from-[#A758B2] to-[#00DAD2]" },
   { label: "Zinc", value: "bg-zinc-50" },
   { label: "Black", value: "bg-black/80" },
   { label: "Red", value: "bg-red-50/80" },

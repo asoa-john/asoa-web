@@ -25,7 +25,7 @@ export const TextImage = ({ data }: { data: PageBlocksTextImage }) => {
             <img
               src={data.img || "/placeholder.webp"}
               alt={data.alt || ""}
-              className="w-full h-auto max-w-[420px] mx-auto lg:mx-0"
+              className="w-full h-auto max-w-[420px] mx-auto lg:mx-0 object-cover"
             />
           </div>
 
