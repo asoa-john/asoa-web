@@ -30,6 +30,10 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().nullish(),
+    heroImageAlt: z.string().optional(),
+    author: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    body: z.any(),
   }),
 });
 
@@ -57,8 +61,10 @@ const page = defineCollection({
       path: z.string(),
       relativePath: z.string(),
     }),
-    seoTitle: z.string(),
-    body: z.any(),
+    title: z.string(),
+    description: z.string().optional(),
+    blocks: z.array(z.any()).optional(), // Blocks for page builder
   }),
-})
+});
+
 export const collections = { blog, page };

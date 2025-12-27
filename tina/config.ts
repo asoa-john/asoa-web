@@ -1,39 +1,439 @@
 import { defineConfig } from "tinacms";
-import { BlogCollection } from "./collections/blog";
-import { GlobalConfigCollection } from "./collections/global-config";
-import { PageCollection } from "./collections/page";
 
-// Your hosting provider likely exposes this as an environment variable
-const branch =
-  process.env.GITHUB_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
-
+// Your TinaCMS schema configuration
 export default defineConfig({
-  branch,
-
-  // Get this from tina.io
-  clientId: process.env.PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
+  branch: process.env.TINA_BRANCH || "main",
+  clientId: process.env.TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
     publicFolder: "public",
   },
+
   media: {
     tina: {
-      mediaRoot: "",
+      mediaRoot: "uploads",
       publicFolder: "public",
     },
   },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
+
   schema: {
     collections: [
-      BlogCollection,
-      PageCollection,
-      GlobalConfigCollection,
+      // PAGES COLLECTION - With nested block-based editing
+      {
+        name: "page",
+        label: "Pages",
+        path: "src/content/page",
+        format: "mdx",
+        ui: {
+          router: ({ document }) => {
+            if (document._sys.filename === "home") {
+              return `/`;
+            }
+            return `/${document._sys.filename}`;
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Meta Description",
+          },
+          {
+            type: "object",
+            list: true,
+            name: "blocks",
+            label: "Page Sections",
+            ui: {
+              visualSelector: true,
+            },
+            templates: [
+              // Hero Block
+              {
+                name: "hero",
+                label: "Hero Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                  },
+                  {
+                    type: "string",
+                    name: "tagline",
+                    label: "Tagline",
+                    ui: {
+                      component: "textarea",
+                    },
+                  },
+                  {
+                    type: "image",
+                    name: "image",
+                    label: "Hero Image",
+                  },
+                  {
+                    type: "string",
+                    name: "imageAlt",
+                    label: "Image Alt Text",
+                  },
+                  {
+                    type: "object",
+                    name: "cta",
+                    label: "Call to Action",
+                    fields: [
+                      {
+                        type: "string",
+                        name: "text",
+                        label: "Button Text",
+                      },
+                      {
+                        type: "string",
+                        name: "url",
+                        label: "Button URL",
+                      },
+                    ],
+                  },
+                ],
+              },
+              // Content Block
+              {
+                name: "content",
+                label: "Content Block",
+                fields: [
+                  {
+                    type: "rich-text",
+                    name: "body",
+                    label: "Content",
+                    isBody: true,
+                  },
+                ],
+              },
+              // Two Column Block
+              {
+                name: "twoColumn",
+                label: "Two Column Layout",
+                fields: [
+                  {
+                    type: "rich-text",
+                    name: "leftColumn",
+                    label: "Left Column",
+                  },
+                  {
+                    type: "rich-text",
+                    name: "rightColumn",
+                    label: "Right Column",
+                  },
+                ],
+              },
+              // Image Gallery Block
+              {
+                name: "gallery",
+                label: "Image Gallery",
+                fields: [
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Gallery Heading",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "images",
+                    label: "Images",
+                    fields: [
+                      {
+                        type: "image",
+                        name: "src",
+                        label: "Image",
+                      },
+                      {
+                        type: "string",
+                        name: "alt",
+                        label: "Alt Text",
+                      },
+                      {
+                        type: "string",
+                        name: "caption",
+                        label: "Caption",
+                      },
+                    ],
+                  },
+                ],
+              },
+              // Features Block
+              {
+                name: "features",
+                label: "Features Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Section Heading",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "items",
+                    label: "Feature Items",
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Feature Title",
+                      },
+                      {
+                        type: "string",
+                        name: "description",
+                        label: "Description",
+                        ui: {
+                          component: "textarea",
+                        },
+                      },
+                      {
+                        type: "image",
+                        name: "icon",
+                        label: "Icon/Image",
+                      },
+                    ],
+                  },
+                ],
+              },
+              // Testimonial Block
+              {
+                name: "testimonial",
+                label: "Testimonial",
+                fields: [
+                  {
+                    type: "string",
+                    name: "quote",
+                    label: "Quote",
+                    ui: {
+                      component: "textarea",
+                    },
+                  },
+                  {
+                    type: "string",
+                    name: "author",
+                    label: "Author Name",
+                  },
+                  {
+                    type: "string",
+                    name: "role",
+                    label: "Author Role/Title",
+                  },
+                  {
+                    type: "image",
+                    name: "photo",
+                    label: "Author Photo",
+                  },
+                ],
+              },
+              // Call to Action Block
+              {
+                name: "cta",
+                label: "Call to Action",
+                fields: [
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Heading",
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    ui: {
+                      component: "textarea",
+                    },
+                  },
+                  {
+                    type: "string",
+                    name: "buttonText",
+                    label: "Button Text",
+                  },
+                  {
+                    type: "string",
+                    name: "buttonUrl",
+                    label: "Button URL",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+
+      // BLOG COLLECTION - With hero image
+      {
+        name: "blog",
+        label: "Blog Posts",
+        path: "src/content/blog",
+        format: "mdx",
+        ui: {
+          router: ({ document }) => {
+            return `/blog/${document._sys.filename}`;
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "datetime",
+            name: "pubDate",
+            label: "Publication Date",
+            required: true,
+          },
+          {
+            type: "image",
+            name: "heroImage",
+            label: "Hero Image",
+          },
+          {
+            type: "string",
+            name: "heroImageAlt",
+            label: "Hero Image Alt Text",
+          },
+          {
+            type: "string",
+            name: "author",
+            label: "Author",
+          },
+          {
+            type: "string",
+            list: true,
+            name: "tags",
+            label: "Tags",
+            ui: {
+              component: "tags",
+            },
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Blog Post Body",
+            isBody: true,
+            templates: [
+              // You can add custom MDX components here
+              {
+                name: "ImageWithCaption",
+                label: "Image with Caption",
+                fields: [
+                  {
+                    type: "image",
+                    name: "src",
+                    label: "Image",
+                  },
+                  {
+                    type: "string",
+                    name: "alt",
+                    label: "Alt Text",
+                  },
+                  {
+                    type: "string",
+                    name: "caption",
+                    label: "Caption",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+
+      // CONFIG COLLECTION - For site-wide settings
+      {
+        name: "config",
+        label: "Site Configuration",
+        path: "src/content/config",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "siteTitle",
+            label: "Site Title",
+          },
+          {
+            type: "string",
+            name: "siteDescription",
+            label: "Site Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "object",
+            name: "navigation",
+            label: "Navigation",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+              },
+              {
+                type: "string",
+                name: "url",
+                label: "URL",
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "social",
+            label: "Social Media Links",
+            fields: [
+              {
+                type: "string",
+                name: "twitter",
+                label: "Twitter/X URL",
+              },
+              {
+                type: "string",
+                name: "facebook",
+                label: "Facebook URL",
+              },
+              {
+                type: "string",
+                name: "instagram",
+                label: "Instagram URL",
+              },
+              {
+                type: "string",
+                name: "github",
+                label: "GitHub URL",
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
 });
