@@ -42,5 +42,26 @@ blocks:
       - src: /uploads/blog-placeholder-3.jpg
         alt: magenta
     _template: gallery
+  - name: Collage
+    backgroundColor: gray
+    content:
+      - heading: Collage
+        images:
+          - src: /uploads/blog-placeholder-2.jpg
+            alt: blue
+          - src: /uploads/blog-placeholder-4.jpg
+            alt: yellow
+          - src: /uploads/blog-placeholder-3.jpg
+            alt: red
+        _template: gallery
+      - body: |
+          Content in section
+        _template: content
+      - heading: Register Now
+        description: Click the button below to register
+        buttonText: Register Now
+        buttonUrl: '#'
+        _template: cta
+    _template: section
 ---
 

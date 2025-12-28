@@ -60,6 +60,15 @@ export default defineConfig({
               {
                 name: "hero",
                 label: "Hero Section",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.headline
+                        ? `Hero: ${item.headline}`
+                        : "Hero Section",
+                    };
+                  },
+                },
                 fields: [
                   {
                     type: "string",
@@ -137,6 +146,15 @@ export default defineConfig({
               {
                 name: "gallery",
                 label: "Image Gallery",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading
+                        ? `Gallery: ${item.heading}`
+                        : "Image Gallery",
+                    };
+                  },
+                },
                 fields: [
                   {
                     type: "string",
@@ -172,6 +190,15 @@ export default defineConfig({
               {
                 name: "features",
                 label: "Features Section",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading
+                        ? `Features: ${item.heading}`
+                        : "Features Section",
+                    };
+                  },
+                },
                 fields: [
                   {
                     type: "string",
@@ -210,6 +237,15 @@ export default defineConfig({
               {
                 name: "testimonial",
                 label: "Testimonial",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.author
+                        ? `Testimonial: ${item.author}`
+                        : "Testimonial",
+                    };
+                  },
+                },
                 fields: [
                   {
                     type: "string",
@@ -240,6 +276,15 @@ export default defineConfig({
               {
                 name: "cta",
                 label: "Call to Action",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading
+                        ? `CTA: ${item.heading}`
+                        : "Call to Action",
+                    };
+                  },
+                },
                 fields: [
                   {
                     type: "string",
@@ -270,7 +315,21 @@ export default defineConfig({
               {
                 name: "section",
                 label: "Section Container",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.name ? `Section: ${item.name}` : "Section",
+                    };
+                  },
+                },
                 fields: [
+                  {
+                    type: "string",
+                    name: "name",
+                    label: "Section Name (for organization)",
+                    description:
+                      "This name is only visible in the editor to help you organize sections",
+                  },
                   {
                     type: "string",
                     name: "backgroundColor",
