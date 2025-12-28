@@ -1,5 +1,67 @@
 import { defineConfig } from "tinacms";
 
+// Helper: Block styling fields
+const blockStylingFields = {
+  type: "string",
+  name: "className",
+  label: "CSS Classes",
+  description: "CSS classes applied to this block",
+};
+
+// Helper: Section styling fields that every block can use
+const sectionStylingFields = {
+  type: "object",
+  name: "section",
+  label: "Section Styling",
+  fields: [
+    {
+      type: "boolean",
+      name: "groupWithNext",
+      label: "Group with Next Block",
+      description:
+        "Wrap this block with the following block(s) in a section container",
+    },
+    {
+      type: "string",
+      name: "groupClassName",
+      label: "Group CSS Classes",
+      description:
+        "CSS classes for the group wrapper (only used if this is the first block in a group)",
+    },
+    {
+      type: "string",
+      name: "backgroundColor",
+      label: "Background Color",
+      options: [
+        "",
+        "white",
+        "gray",
+        "light-gray",
+        "dark",
+        "primary",
+        "secondary",
+      ],
+    },
+    {
+      type: "image",
+      name: "backgroundImage",
+      label: "Background Image",
+    },
+    {
+      type: "string",
+      name: "paddingSize",
+      label: "Padding Size",
+      options: ["", "none", "small", "medium", "large", "xlarge"],
+    },
+    {
+      type: "string",
+      name: "maxWidth",
+      label: "Max Width",
+      options: ["", "narrow", "medium", "wide", "full"],
+    },
+  ],
+};
+
 // Your TinaCMS schema configuration
 export default defineConfig({
   branch: process.env.TINA_BRANCH || "main",
@@ -20,7 +82,7 @@ export default defineConfig({
 
   schema: {
     collections: [
-      // PAGES COLLECTION - With nested block-based editing
+      // PAGES COLLECTION - With block-based editing
       {
         name: "page",
         label: "Pages",
@@ -110,6 +172,8 @@ export default defineConfig({
                       },
                     ],
                   },
+                  blockStylingFields,
+                  sectionStylingFields,
                 ],
               },
               // Content Block
@@ -123,6 +187,8 @@ export default defineConfig({
                     label: "Content",
                     isBody: true,
                   },
+                  blockStylingFields,
+                  sectionStylingFields,
                 ],
               },
               // Two Column Block
@@ -140,6 +206,8 @@ export default defineConfig({
                     name: "rightColumn",
                     label: "Right Column",
                   },
+                  blockStylingFields,
+                  sectionStylingFields,
                 ],
               },
               // Image Gallery Block
@@ -184,6 +252,8 @@ export default defineConfig({
                       },
                     ],
                   },
+                  blockStylingFields,
+                  sectionStylingFields,
                 ],
               },
               // Features Block
@@ -231,6 +301,8 @@ export default defineConfig({
                       },
                     ],
                   },
+                  blockStylingFields,
+                  sectionStylingFields,
                 ],
               },
               // Testimonial Block
@@ -270,6 +342,8 @@ export default defineConfig({
                     name: "photo",
                     label: "Author Photo",
                   },
+                  blockStylingFields,
+                  sectionStylingFields,
                 ],
               },
               // Call to Action Block
@@ -309,260 +383,8 @@ export default defineConfig({
                     name: "buttonUrl",
                     label: "Button URL",
                   },
-                ],
-              },
-              // Section Container Block (can contain other blocks)
-              {
-                name: "section",
-                label: "Section Container",
-                ui: {
-                  itemProps: (item) => {
-                    return {
-                      label: item?.name ? `Section: ${item.name}` : "Section",
-                    };
-                  },
-                },
-                fields: [
-                  {
-                    type: "string",
-                    name: "name",
-                    label: "Section Name (for organization)",
-                    description:
-                      "This name is only visible in the editor to help you organize sections",
-                  },
-                  {
-                    type: "string",
-                    name: "backgroundColor",
-                    label: "Background Color",
-                    options: ["white", "gray", "dark", "primary"],
-                  },
-                  {
-                    type: "string",
-                    name: "paddingSize",
-                    label: "Padding Size",
-                    options: ["small", "medium", "large"],
-                  },
-                  {
-                    type: "string",
-                    name: "maxWidth",
-                    label: "Max Width",
-                    options: ["narrow", "medium", "wide", "full"],
-                  },
-                  {
-                    type: "object",
-                    list: true,
-                    name: "content",
-                    label: "Section Content",
-                    ui: {
-                      visualSelector: true,
-                    },
-                    templates: [
-                      // Reference the same block templates, but exclude "section" to prevent nesting sections
-                      {
-                        name: "hero",
-                        label: "Hero Section",
-                        fields: [
-                          {
-                            type: "string",
-                            name: "headline",
-                            label: "Headline",
-                          },
-                          {
-                            type: "string",
-                            name: "tagline",
-                            label: "Tagline",
-                            ui: {
-                              component: "textarea",
-                            },
-                          },
-                          {
-                            type: "image",
-                            name: "image",
-                            label: "Hero Image",
-                          },
-                          {
-                            type: "string",
-                            name: "imageAlt",
-                            label: "Image Alt Text",
-                          },
-                          {
-                            type: "object",
-                            name: "cta",
-                            label: "Call to Action",
-                            fields: [
-                              {
-                                type: "string",
-                                name: "text",
-                                label: "Button Text",
-                              },
-                              {
-                                type: "string",
-                                name: "url",
-                                label: "Button URL",
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                      {
-                        name: "content",
-                        label: "Content Block",
-                        fields: [
-                          {
-                            type: "rich-text",
-                            name: "body",
-                            label: "Content",
-                            isBody: true,
-                          },
-                        ],
-                      },
-                      {
-                        name: "twoColumn",
-                        label: "Two Column Layout",
-                        fields: [
-                          {
-                            type: "rich-text",
-                            name: "leftColumn",
-                            label: "Left Column",
-                          },
-                          {
-                            type: "rich-text",
-                            name: "rightColumn",
-                            label: "Right Column",
-                          },
-                        ],
-                      },
-                      {
-                        name: "gallery",
-                        label: "Image Gallery",
-                        fields: [
-                          {
-                            type: "string",
-                            name: "heading",
-                            label: "Gallery Heading",
-                          },
-                          {
-                            type: "object",
-                            list: true,
-                            name: "images",
-                            label: "Images",
-                            fields: [
-                              {
-                                type: "image",
-                                name: "src",
-                                label: "Image",
-                              },
-                              {
-                                type: "string",
-                                name: "alt",
-                                label: "Alt Text",
-                              },
-                              {
-                                type: "string",
-                                name: "caption",
-                                label: "Caption",
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                      {
-                        name: "features",
-                        label: "Features Section",
-                        fields: [
-                          {
-                            type: "string",
-                            name: "heading",
-                            label: "Section Heading",
-                          },
-                          {
-                            type: "object",
-                            list: true,
-                            name: "items",
-                            label: "Feature Items",
-                            fields: [
-                              {
-                                type: "string",
-                                name: "title",
-                                label: "Feature Title",
-                              },
-                              {
-                                type: "string",
-                                name: "description",
-                                label: "Description",
-                                ui: {
-                                  component: "textarea",
-                                },
-                              },
-                              {
-                                type: "image",
-                                name: "icon",
-                                label: "Icon/Image",
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                      {
-                        name: "testimonial",
-                        label: "Testimonial",
-                        fields: [
-                          {
-                            type: "string",
-                            name: "quote",
-                            label: "Quote",
-                            ui: {
-                              component: "textarea",
-                            },
-                          },
-                          {
-                            type: "string",
-                            name: "author",
-                            label: "Author Name",
-                          },
-                          {
-                            type: "string",
-                            name: "role",
-                            label: "Author Role/Title",
-                          },
-                          {
-                            type: "image",
-                            name: "photo",
-                            label: "Author Photo",
-                          },
-                        ],
-                      },
-                      {
-                        name: "cta",
-                        label: "Call to Action",
-                        fields: [
-                          {
-                            type: "string",
-                            name: "heading",
-                            label: "Heading",
-                          },
-                          {
-                            type: "string",
-                            name: "description",
-                            label: "Description",
-                            ui: {
-                              component: "textarea",
-                            },
-                          },
-                          {
-                            type: "string",
-                            name: "buttonText",
-                            label: "Button Text",
-                          },
-                          {
-                            type: "string",
-                            name: "buttonUrl",
-                            label: "Button URL",
-                          },
-                        ],
-                      },
-                    ],
-                  },
+                  blockStylingFields,
+                  sectionStylingFields,
                 ],
               },
             ],
@@ -633,7 +455,6 @@ export default defineConfig({
             label: "Blog Post Body",
             isBody: true,
             templates: [
-              // You can add custom MDX components here
               {
                 name: "ImageWithCaption",
                 label: "Image with Caption",
