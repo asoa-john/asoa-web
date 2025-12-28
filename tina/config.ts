@@ -266,6 +266,246 @@ export default defineConfig({
                   },
                 ],
               },
+              // Section Container Block (can contain other blocks)
+              {
+                name: "section",
+                label: "Section Container",
+                fields: [
+                  {
+                    type: "string",
+                    name: "backgroundColor",
+                    label: "Background Color",
+                    options: ["white", "gray", "dark", "primary"],
+                  },
+                  {
+                    type: "string",
+                    name: "paddingSize",
+                    label: "Padding Size",
+                    options: ["small", "medium", "large"],
+                  },
+                  {
+                    type: "string",
+                    name: "maxWidth",
+                    label: "Max Width",
+                    options: ["narrow", "medium", "wide", "full"],
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "content",
+                    label: "Section Content",
+                    ui: {
+                      visualSelector: true,
+                    },
+                    templates: [
+                      // Reference the same block templates, but exclude "section" to prevent nesting sections
+                      {
+                        name: "hero",
+                        label: "Hero Section",
+                        fields: [
+                          {
+                            type: "string",
+                            name: "headline",
+                            label: "Headline",
+                          },
+                          {
+                            type: "string",
+                            name: "tagline",
+                            label: "Tagline",
+                            ui: {
+                              component: "textarea",
+                            },
+                          },
+                          {
+                            type: "image",
+                            name: "image",
+                            label: "Hero Image",
+                          },
+                          {
+                            type: "string",
+                            name: "imageAlt",
+                            label: "Image Alt Text",
+                          },
+                          {
+                            type: "object",
+                            name: "cta",
+                            label: "Call to Action",
+                            fields: [
+                              {
+                                type: "string",
+                                name: "text",
+                                label: "Button Text",
+                              },
+                              {
+                                type: "string",
+                                name: "url",
+                                label: "Button URL",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        name: "content",
+                        label: "Content Block",
+                        fields: [
+                          {
+                            type: "rich-text",
+                            name: "body",
+                            label: "Content",
+                            isBody: true,
+                          },
+                        ],
+                      },
+                      {
+                        name: "twoColumn",
+                        label: "Two Column Layout",
+                        fields: [
+                          {
+                            type: "rich-text",
+                            name: "leftColumn",
+                            label: "Left Column",
+                          },
+                          {
+                            type: "rich-text",
+                            name: "rightColumn",
+                            label: "Right Column",
+                          },
+                        ],
+                      },
+                      {
+                        name: "gallery",
+                        label: "Image Gallery",
+                        fields: [
+                          {
+                            type: "string",
+                            name: "heading",
+                            label: "Gallery Heading",
+                          },
+                          {
+                            type: "object",
+                            list: true,
+                            name: "images",
+                            label: "Images",
+                            fields: [
+                              {
+                                type: "image",
+                                name: "src",
+                                label: "Image",
+                              },
+                              {
+                                type: "string",
+                                name: "alt",
+                                label: "Alt Text",
+                              },
+                              {
+                                type: "string",
+                                name: "caption",
+                                label: "Caption",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        name: "features",
+                        label: "Features Section",
+                        fields: [
+                          {
+                            type: "string",
+                            name: "heading",
+                            label: "Section Heading",
+                          },
+                          {
+                            type: "object",
+                            list: true,
+                            name: "items",
+                            label: "Feature Items",
+                            fields: [
+                              {
+                                type: "string",
+                                name: "title",
+                                label: "Feature Title",
+                              },
+                              {
+                                type: "string",
+                                name: "description",
+                                label: "Description",
+                                ui: {
+                                  component: "textarea",
+                                },
+                              },
+                              {
+                                type: "image",
+                                name: "icon",
+                                label: "Icon/Image",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        name: "testimonial",
+                        label: "Testimonial",
+                        fields: [
+                          {
+                            type: "string",
+                            name: "quote",
+                            label: "Quote",
+                            ui: {
+                              component: "textarea",
+                            },
+                          },
+                          {
+                            type: "string",
+                            name: "author",
+                            label: "Author Name",
+                          },
+                          {
+                            type: "string",
+                            name: "role",
+                            label: "Author Role/Title",
+                          },
+                          {
+                            type: "image",
+                            name: "photo",
+                            label: "Author Photo",
+                          },
+                        ],
+                      },
+                      {
+                        name: "cta",
+                        label: "Call to Action",
+                        fields: [
+                          {
+                            type: "string",
+                            name: "heading",
+                            label: "Heading",
+                          },
+                          {
+                            type: "string",
+                            name: "description",
+                            label: "Description",
+                            ui: {
+                              component: "textarea",
+                            },
+                          },
+                          {
+                            type: "string",
+                            name: "buttonText",
+                            label: "Button Text",
+                          },
+                          {
+                            type: "string",
+                            name: "buttonUrl",
+                            label: "Button URL",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
           },
         ],
