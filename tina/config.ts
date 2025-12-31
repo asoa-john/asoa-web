@@ -49,6 +49,18 @@ const sectionStylingFields = {
     },
     {
       type: "string",
+      name: "backgroundVideoUrl",
+      label: "Background Video URL",
+      description:
+        "URL to video file (MP4 recommended). Will autoplay muted in background.",
+    },
+    {
+      type: "boolean",
+      name: "videoLoop",
+      label: "Loop Video",
+    },
+    {
+      type: "string",
       name: "paddingSize",
       label: "Padding Size",
       options: ["", "none", "small", "medium", "large", "xlarge"],
@@ -77,6 +89,7 @@ export default defineConfig({
     tina: {
       mediaRoot: "uploads",
       publicFolder: "public",
+      static: false,
     },
   },
 

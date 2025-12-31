@@ -154,6 +154,25 @@ const TinaPage = (props: Props) => {
             style={styles}
             data-tina-field={tinaField(firstBlock, "section")}
           >
+            {section.backgroundVideoUrl && (
+              <video
+                autoPlay
+                muted
+                playsInline
+                loop={section.videoLoop !== false}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  zIndex: -1,
+                }}
+              >
+                <source src={section.backgroundVideoUrl} type="video/mp4" />
+              </video>
+            )}
             {group.map((block, blockIndex) =>
               renderBlock(block, `${groupIndex}-${blockIndex}`, true)
             )}
