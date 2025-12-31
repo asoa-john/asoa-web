@@ -4,18 +4,18 @@ description: Welcome to our site
 blocks:
   - headline: Hero Headline
     tagline: Hero Tagline
+    image: /uploads/girl-mom-homework.webp
     cta:
       text: Hero Call to Action
       url: '#'
     section:
       groupWithNext: true
-      className: test
       backgroundColor: dark
+      backgroundImage: /uploads/home-hero-still.jpg
     _template: hero
   - body: |
       This is a block you can add content to.
-    section:
-      className: more classes for the content area
+    section: {}
     _template: content
   - leftColumn: |
       One column.
@@ -48,5 +48,6 @@ blocks:
       - src: /uploads/blog-placeholder-3.jpg
         alt: magenta
     _template: gallery
+  - _template: hero
 ---
 

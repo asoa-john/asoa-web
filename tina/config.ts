@@ -387,6 +387,41 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
+              // Custom HTML Block
+              {
+                name: "customHtml",
+                label: "Custom HTML",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.label
+                        ? `HTML: ${item.label}`
+                        : "Custom HTML",
+                    };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "label",
+                    label: "Label (for organization)",
+                    description:
+                      "Give this HTML block a name to identify it in the editor",
+                  },
+                  {
+                    type: "string",
+                    name: "html",
+                    label: "HTML Code",
+                    ui: {
+                      component: "textarea",
+                    },
+                    description:
+                      "⚠️ Use with caution. This will render raw HTML on your page.",
+                  },
+                  blockStylingFields,
+                  sectionStylingFields,
+                ],
+              },
             ],
           },
         ],
