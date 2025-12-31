@@ -1,8 +1,13 @@
 import { tinaField, useTina } from "tinacms/dist/react";
 import type { PageQuery, PageQueryVariables } from "../__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import HeroBlock from "../components/blocks/HeroBlock";
 import ContentBlock from "../components/blocks/ContentBlock";
+import TwoColumnBlock from "../components/blocks/TwoColumnBlock";
+import GalleryBlock from "../components/blocks/GalleryBlock";
 import FeaturesBlock from "../components/blocks/FeaturesBlock";
+import TestimonialBlock from "../components/blocks/TestimonialBlock";
+import CtaBlock from "../components/blocks/CtaBlock";
 
 type Props = {
   variables: PageQueryVariables;
@@ -33,42 +38,9 @@ function groupBlocks(blocks: any[]) {
 
 // Helper function to render a single block
 function renderBlock(block: any, index: number, isGrouped = false) {
-  // Build block className
-  const blockClassName = block.className || "";
-
-  // Use <section> for ungrouped blocks, <div> for grouped blocks
-  const BlockTag = isGrouped ? "div" : "section";
-
   // Hero Block
   if (block.__typename === "PageBlocksHero") {
-    return (
-      <BlockTag
-        key={index}
-        className={`hero ${blockClassName}`}
-        data-tina-field={tinaField(block)}
-      >
-        <h1 data-tina-field={tinaField(block, "headline")}>{block.headline}</h1>
-        {block.tagline && (
-          <p data-tina-field={tinaField(block, "tagline")}>{block.tagline}</p>
-        )}
-        {block.image && (
-          <img
-            src={block.image}
-            alt={block.imageAlt || ""}
-            data-tina-field={tinaField(block, "image")}
-          />
-        )}
-        {block.cta && (
-          <a
-            href={block.cta.url}
-            className="button"
-            data-tina-field={tinaField(block.cta, "text")}
-          >
-            {block.cta.text}
-          </a>
-        )}
-      </BlockTag>
-    );
+    return <HeroBlock block={block} blockKey={index} isGrouped={isGrouped} />;
   }
 
   // Content Block
@@ -81,41 +53,14 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   // Two Column Block
   if (block.__typename === "PageBlocksTwoColumn") {
     return (
-      <BlockTag key={index} className={`two-column ${blockClassName}`}>
-        <div data-tina-field={tinaField(block, "leftColumn")}>
-          <TinaMarkdown content={block.leftColumn} />
-        </div>
-        <div data-tina-field={tinaField(block, "rightColumn")}>
-          <TinaMarkdown content={block.rightColumn} />
-        </div>
-      </BlockTag>
+      <TwoColumnBlock block={block} blockKey={index} isGrouped={isGrouped} />
     );
   }
 
   // Gallery Block
   if (block.__typename === "PageBlocksGallery") {
     return (
-      <BlockTag key={index} className={`gallery ${blockClassName}`}>
-        {block.heading && (
-          <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
-        )}
-        <div className="gallery-grid">
-          {block.images?.map((img: any, imgIndex: number) => (
-            <figure key={imgIndex}>
-              <img
-                src={img.src}
-                alt={img.alt || ""}
-                data-tina-field={tinaField(img, "src")}
-              />
-              {img.caption && (
-                <figcaption data-tina-field={tinaField(img, "caption")}>
-                  {img.caption}
-                </figcaption>
-              )}
-            </figure>
-          ))}
-        </div>
-      </BlockTag>
+      <GalleryBlock block={block} blockKey={index} isGrouped={isGrouped} />
     );
   }
 
@@ -129,50 +74,17 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   // Testimonial Block
   if (block.__typename === "PageBlocksTestimonial") {
     return (
-      <BlockTag key={index} className={`testimonial ${blockClassName}`}>
-        <blockquote data-tina-field={tinaField(block, "quote")}>
-          "{block.quote}"
-        </blockquote>
-        <div className="author">
-          {block.photo && <img src={block.photo} alt={block.author} />}
-          <div>
-            <cite data-tina-field={tinaField(block, "author")}>
-              {block.author}
-            </cite>
-            {block.role && (
-              <p data-tina-field={tinaField(block, "role")}>{block.role}</p>
-            )}
-          </div>
-        </div>
-      </BlockTag>
+      <TestimonialBlock block={block} blockKey={index} isGrouped={isGrouped} />
     );
   }
 
   // CTA Block
   if (block.__typename === "PageBlocksCta") {
-    return (
-      <BlockTag key={index} className={`cta ${blockClassName}`}>
-        <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
-        {block.description && (
-          <p data-tina-field={tinaField(block, "description")}>
-            {block.description}
-          </p>
-        )}
-        <a
-          href={block.buttonUrl}
-          className="button"
-          data-tina-field={tinaField(block, "buttonText")}
-        >
-          {block.buttonText}
-        </a>
-      </BlockTag>
-    );
+    return <CtaBlock block={block} blockKey={index} isGrouped={isGrouped} />;
   }
 
   // Fallback for unknown block types
-  return (
-    <BlockTag key={index}>Unknown block type: {block.__typename}</BlockTag>
-  );
+  return <div key={index}>Unknown block type: {block.__typename}</div>;
 }
 
 const TinaPage = (props: Props) => {
