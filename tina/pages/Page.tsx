@@ -41,53 +41,97 @@ function groupBlocks(blocks: any[]) {
 function renderBlock(block: any, index: number, isGrouped = false) {
   // Hero Block
   if (block.__typename === "PageBlocksHero") {
-    return <HeroBlock block={block} blockKey={index} isGrouped={isGrouped} />;
+    return (
+      <HeroBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
+    );
   }
 
   // Content Block
   if (block.__typename === "PageBlocksContent") {
     return (
-      <ContentBlock block={block} blockKey={index} isGrouped={isGrouped} />
+      <ContentBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
     );
   }
 
   // Two Column Block
   if (block.__typename === "PageBlocksTwoColumn") {
     return (
-      <TwoColumnBlock block={block} blockKey={index} isGrouped={isGrouped} />
+      <TwoColumnBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
     );
   }
 
   // Gallery Block
   if (block.__typename === "PageBlocksGallery") {
     return (
-      <GalleryBlock block={block} blockKey={index} isGrouped={isGrouped} />
+      <GalleryBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
     );
   }
 
   // Features Block
   if (block.__typename === "PageBlocksFeatures") {
     return (
-      <FeaturesBlock block={block} blockKey={index} isGrouped={isGrouped} />
+      <FeaturesBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
     );
   }
 
   // Testimonial Block
   if (block.__typename === "PageBlocksTestimonial") {
     return (
-      <TestimonialBlock block={block} blockKey={index} isGrouped={isGrouped} />
+      <TestimonialBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
     );
   }
 
   // CTA Block
   if (block.__typename === "PageBlocksCta") {
-    return <CtaBlock block={block} blockKey={index} isGrouped={isGrouped} />;
+    return (
+      <CtaBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
+    );
   }
 
   // Custom HTML Block
   if (block.__typename === "PageBlocksCustomHtml") {
     return (
-      <CustomHtmlBlock block={block} blockKey={index} isGrouped={isGrouped} />
+      <CustomHtmlBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
     );
   }
 

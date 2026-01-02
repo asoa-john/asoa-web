@@ -16,7 +16,7 @@ export default function TwoColumnBlock({
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag key={blockKey} className={`two-column ${blockClassName}`}>
+    <BlockTag className={`two-column ${blockClassName}`}>
       <div data-tina-field={tinaField(block, "leftColumn")}>
         <TinaMarkdown content={block.leftColumn} />
       </div>

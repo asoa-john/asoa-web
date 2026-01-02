@@ -17,6 +17,7 @@ export default function GalleryBlock({
   // Helper to get alt text with filename fallback
   const getAltText = (img: any) => {
     if (img.alt) return img.alt;
+    if (!img.src) return ""; // Handle null/undefined src
     // Extract filename from path without extension
     const filename =
       img.src
@@ -38,20 +39,20 @@ export default function GalleryBlock({
       {block.heading && (
         <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
       )}
-      <div className="gallery-grid">
+      <div
+        className="gallery-grid"
+        data-tina-field={tinaField(block, "images")}
+      >
         {block.images?.map((img: any, imgIndex: number) => (
           <figure key={imgIndex}>
-            <img
-              src={img.src}
-              alt={getAltText(img)}
-              style={{ objectPosition: getObjectPosition(img) }}
-              data-tina-field={tinaField(img, "src")}
-            />
-            {img.caption && (
-              <figcaption data-tina-field={tinaField(img, "caption")}>
-                {img.caption}
-              </figcaption>
+            {img.src && (
+              <img
+                src={img.src}
+                alt={getAltText(img)}
+                style={{ objectPosition: getObjectPosition(img) }}
+              />
             )}
+            {img.caption && <figcaption>{img.caption}</figcaption>}
           </figure>
         ))}
       </div>
