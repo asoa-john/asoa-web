@@ -16,7 +16,7 @@
     0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
   --font-sans: Arial, system-ui, sans-serif;
   --font-serif: "DM Serif Text", Georgia, serif;
-  --font-cursive: "Oooh Baby", cursive;
+  --font-cursive: "Oooh Baby", Zapfino, cursive;
   --purple: #a758b2;
   --aqua: #00dad2;
   font-family: Arial, system-ui, sans-serif;
@@ -41,6 +41,72 @@
   src: url("/fonts/OoohBaby-Regular.woff2") format("woff2");
   font-family: "Oooh Baby";
   font-display: swap;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  line-height: 1.1;
+  font-family: var(--font-serif);
+}
+.font-serif {
+  font-family: var(--font-serif);
+}
+.font-cursive {
+  font-family: var(--font-cursive);
+}
+.text-white {
+  color: #fff;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: ;
+}
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
+}
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
 }
 /* .button {
     @apply cursor-pointer rounded border-2 px-5 py-2 text-sm font-semibold;
@@ -79,4 +145,79 @@ body {
 }
 .social-links a:hover {
   color: rgb(var(--gray-dark));
+}
+
+/*   S E C T I O N   S T Y L I N G
+ *   =============================
+ */
+
+section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+section > *:not(.background-video) {
+  max-width: 800px;
+}
+.section-wrapper {
+  position: relative;
+}
+.section-wrapper video {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/*   G A L L E R Y
+ *   ==============
+ */
+
+.gallery figure {
+  margin: 0;
+}
+
+.gallery-text {
+  display: flex;
+}
+.gallery-text .gallery {
+  flex-basis: 50%;
+}
+
+/*   S L I D E S H O W
+ *   =================
+ */
+
+/* Hide all slides */
+.gallery.slideshow .gallery-grid figure {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Show only the current slide */
+.gallery.slideshow .gallery-grid figure.current {
+  opacity: 1;
+}
+
+/* Optional: Make slideshow images fill the container */
+.gallery.slideshow .gallery-grid {
+  position: relative;
+  width: 100%;
+  height: 400px; /* or whatever height you want */
+}
+
+.gallery.slideshow .gallery-grid figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery.slideshow .gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -244,6 +244,27 @@ export default defineConfig({
                     label: "Gallery Heading",
                   },
                   {
+                    type: "boolean",
+                    name: "slideshow",
+                    label: "Enable Slideshow",
+                    description:
+                      "Turn this gallery into an auto-playing slideshow",
+                  },
+                  {
+                    type: "number",
+                    name: "slideDuration",
+                    label: "Slide Duration (seconds)",
+                    description:
+                      "How long each slide displays (only applies if slideshow is enabled)",
+                    ui: {
+                      component: "number",
+                      step: 1,
+                      parse: (val) => Number(val),
+                      format: (val) =>
+                        val === null || val === undefined ? 5 : val,
+                    },
+                  },
+                  {
                     type: "object",
                     list: true,
                     name: "images",

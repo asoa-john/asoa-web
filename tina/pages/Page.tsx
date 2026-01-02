@@ -208,19 +208,11 @@ const TinaPage = (props: Props) => {
             >
               {section.backgroundVideoUrl && (
                 <video
+                  className="background-video"
                   autoPlay
                   muted
                   playsInline
                   loop={section.videoLoop !== false}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    zIndex: -1,
-                  }}
                 >
                   <source src={section.backgroundVideoUrl} type="video/mp4" />
                 </video>
@@ -261,19 +253,11 @@ const TinaPage = (props: Props) => {
           >
             {section.backgroundVideoUrl && (
               <video
+                className="background-video"
                 autoPlay
                 muted
                 playsInline
                 loop={section.videoLoop !== false}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  zIndex: -1,
-                }}
               >
                 <source src={section.backgroundVideoUrl} type="video/mp4" />
               </video>
