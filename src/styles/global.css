@@ -42,6 +42,11 @@
   font-family: "Oooh Baby";
   font-display: swap;
 }
+body {
+  margin: auto;
+  padding: 0;
+  font-family: var(--font-sans);
+}
 h1,
 h2,
 h3,
@@ -119,10 +124,6 @@ h6 {
 /* .button {
     @apply cursor-pointer rounded border-2 px-5 py-2 text-sm font-semibold;
   } */
-body {
-  margin: auto;
-  padding: 0;
-}
 .sr-only {
   position: absolute !important;
   margin: 0;
@@ -160,8 +161,7 @@ body {
  */
 
 section {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding: 100px;
 }
 section > *:not(.background-video) {
   max-width: 800px;
@@ -189,6 +189,7 @@ section > *:not(.background-video) {
 
 .gallery-text {
   display: flex;
+  gap: 50px;
 }
 .gallery-text .gallery {
   flex-basis: 50%;
