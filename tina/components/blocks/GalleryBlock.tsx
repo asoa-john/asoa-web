@@ -14,6 +14,25 @@ export default function GalleryBlock({
   const blockClassName = block.className || "";
   const BlockTag = isGrouped ? "div" : "section";
 
+  // Helper to get alt text with filename fallback
+  const getAltText = (img: any) => {
+    if (img.alt) return img.alt;
+    // Extract filename from path without extension
+    const filename =
+      img.src
+        .split("/")
+        .pop()
+        ?.replace(/\.[^/.]+$/, "") || "";
+    return filename.replace(/-|_/g, " "); // Replace dashes/underscores with spaces
+  };
+
+  // Helper to get object-position value
+  const getObjectPosition = (img: any) => {
+    const x = img.focusX ?? 50;
+    const y = img.focusY ?? 50;
+    return `${x}% ${y}%`;
+  };
+
   return (
     <BlockTag key={blockKey} className={`gallery ${blockClassName}`}>
       {block.heading && (
@@ -24,7 +43,8 @@ export default function GalleryBlock({
           <figure key={imgIndex}>
             <img
               src={img.src}
-              alt={img.alt || ""}
+              alt={getAltText(img)}
+              style={{ objectPosition: getObjectPosition(img) }}
               data-tina-field={tinaField(img, "src")}
             />
             {img.caption && (

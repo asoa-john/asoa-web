@@ -120,9 +120,70 @@ const TinaPage = (props: Props) => {
   return (
     <main>
       {blockGroups.map((group, groupIndex) => {
-        // If group has only one block, render it as a <section>
+        // Single block - still apply section styling if it exists
         if (group.length === 1) {
-          return renderBlock(group[0], groupIndex, false);
+          const block = group[0];
+          const section = block.section || {};
+
+          // If no section styling is set, just render the block directly
+          const hasSectionStyling =
+            section.backgroundColor ||
+            section.backgroundImage ||
+            section.backgroundVideoUrl ||
+            section.paddingSize ||
+            section.maxWidth ||
+            section.groupClassName;
+
+          if (!hasSectionStyling) {
+            return renderBlock(block, groupIndex, false);
+          }
+
+          // Has section styling - wrap it
+          const classNames = ["section-wrapper"];
+          if (section.groupClassName) classNames.push(section.groupClassName);
+          if (section.backgroundColor)
+            classNames.push(`bg-${section.backgroundColor}`);
+          if (section.paddingSize)
+            classNames.push(`padding-${section.paddingSize}`);
+          if (section.maxWidth)
+            classNames.push(`max-width-${section.maxWidth}`);
+
+          const styles: React.CSSProperties = {};
+          if (section.backgroundImage) {
+            styles.backgroundImage = `url(${section.backgroundImage})`;
+            styles.backgroundSize = "cover";
+            styles.backgroundPosition = "center";
+          }
+
+          return (
+            <section
+              key={groupIndex}
+              className={classNames.join(" ")}
+              style={styles}
+              data-tina-field={tinaField(section)}
+            >
+              {section.backgroundVideoUrl && (
+                <video
+                  autoPlay
+                  muted
+                  playsInline
+                  loop={section.videoLoop !== false}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    zIndex: -1,
+                  }}
+                >
+                  <source src={section.backgroundVideoUrl} type="video/mp4" />
+                </video>
+              )}
+              {renderBlock(block, groupIndex, true)}
+            </section>
+          );
         }
 
         // Multiple blocks in group - wrap them in a section

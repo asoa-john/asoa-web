@@ -58,6 +58,7 @@ const sectionStylingFields = {
       type: "boolean",
       name: "videoLoop",
       label: "Loop Video",
+      description: "Loop the background video continuously",
     },
     {
       type: "string",
@@ -256,12 +257,42 @@ export default defineConfig({
                       {
                         type: "string",
                         name: "alt",
-                        label: "Alt Text",
+                        label: "Alt Text (optional)",
+                        description:
+                          "Describe the image for accessibility. If empty, filename will be used.",
                       },
                       {
                         type: "string",
                         name: "caption",
                         label: "Caption",
+                      },
+                      {
+                        type: "number",
+                        name: "focusX",
+                        label: "Focus Point X (%)",
+                        description:
+                          "Horizontal focus point (0-100%). Default is 50%.",
+                        ui: {
+                          component: "number",
+                          step: 1,
+                          parse: (val) => Number(val),
+                          format: (val) =>
+                            val === null || val === undefined ? 50 : val,
+                        },
+                      },
+                      {
+                        type: "number",
+                        name: "focusY",
+                        label: "Focus Point Y (%)",
+                        description:
+                          "Vertical focus point (0-100%). Default is 50%.",
+                        ui: {
+                          component: "number",
+                          step: 1,
+                          parse: (val) => Number(val),
+                          format: (val) =>
+                            val === null || val === undefined ? 50 : val,
+                        },
                       },
                     ],
                   },
