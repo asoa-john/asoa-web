@@ -21,6 +21,28 @@ const today = new Date();
 		</div>
 	</footer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slideshows = document.querySelectorAll('.gallery.slideshow');
+    
+    slideshows.forEach((gallery) => {
+      const figures = gallery.querySelectorAll('.gallery-grid figure');
+      if (figures.length <= 1) return;
+      
+      const duration = parseInt(gallery.dataset.slideDuration || '5000');
+      let currentIndex = 0;
+      
+      figures[0].classList.add('current');
+      
+      setInterval(() => {
+        figures[currentIndex].classList.remove('current');
+        currentIndex = (currentIndex + 1) % figures.length;
+        figures[currentIndex].classList.add('current');
+      }, duration);
+    });
+  });
+</script>
+
 <style>
 
 	.copyright-footer {
