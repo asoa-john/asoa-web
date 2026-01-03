@@ -1,5 +1,5 @@
 import { tinaField } from "tinacms/dist/react";
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 type GalleryBlockProps = {
   block: any;
@@ -14,10 +14,24 @@ export default function GalleryBlock({
 }: GalleryBlockProps) {
   const blockClassName = block.className || "";
   const BlockTag = isGrouped ? "div" : "section";
-  const galleryRef = useRef<HTMLElement>(null);
 
   const isSlideshow = block.slideshow === true;
   const slideDuration = (block.slideDuration ?? 5) * 1000;
+
+  // Detect if we're in the Tina visual editor - check for Tina in window
+  const [isInEditor, setIsInEditor] = useState(false);
+
+  useEffect(() => {
+    // Check if TinaCMS is loaded (it adds window.tinacms or similar)
+    setIsInEditor(
+      typeof window !== "undefined" &&
+        (window.location.search.includes("tina") ||
+          document.querySelector("[data-tina-field]") !== null)
+    );
+  }, []);
+
+  // For editor controls only
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Helper to get alt text with filename fallback
   const getAltText = (img: any) => {
@@ -38,28 +52,21 @@ export default function GalleryBlock({
     return `${x}% ${y}%`;
   };
 
-  // Slideshow logic using vanilla JS (same as frontend)
-  useEffect(() => {
-    if (!isSlideshow || !galleryRef.current) return;
+  const handlePrevSlide = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentSlide((prev) => {
+      const length = block.images?.length || 1;
+      return (prev - 1 + length) % length;
+    });
+  };
 
-    const figures = galleryRef.current.querySelectorAll(".gallery-grid figure");
-    if (figures.length <= 1) return;
-
-    let currentIndex = 0;
-    figures[0].classList.add("current");
-
-    const timer = setInterval(() => {
-      figures[currentIndex].classList.remove("current");
-      currentIndex = (currentIndex + 1) % figures.length;
-      figures[currentIndex].classList.add("current");
-    }, slideDuration);
-
-    return () => clearInterval(timer);
-  }, [isSlideshow, block.images, slideDuration]);
+  const handleNextSlide = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentSlide((prev) => (prev + 1) % (block.images?.length || 1));
+  };
 
   return (
     <BlockTag
-      ref={galleryRef as any}
       key={blockKey}
       className={`gallery ${blockClassName} ${isSlideshow ? "slideshow" : ""}`}
       data-slide-duration={isSlideshow ? slideDuration : undefined}
@@ -67,22 +74,58 @@ export default function GalleryBlock({
       {block.heading && (
         <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
       )}
+
+      {/* Editor controls - ONLY in visual editor */}
+      {isInEditor && isSlideshow && block.images && block.images.length > 1 && (
+        <div className="slideshow-editor-controls">
+          <button
+            type="button"
+            onClick={handlePrevSlide}
+            className="slideshow-prev"
+          >
+            ← Previous
+          </button>
+          <span className="slideshow-counter">
+            {currentSlide + 1} / {block.images.length}
+          </span>
+          <button
+            type="button"
+            onClick={handleNextSlide}
+            className="slideshow-next"
+          >
+            Next →
+          </button>
+        </div>
+      )}
+
       <div
         className="gallery-grid"
         data-tina-field={tinaField(block, "images")}
       >
-        {block.images?.map((img: any, imgIndex: number) => (
-          <figure key={imgIndex}>
-            {img.src && (
-              <img
-                src={img.src}
-                alt={getAltText(img)}
-                style={{ objectPosition: getObjectPosition(img) }}
-              />
-            )}
-            {img.caption && <figcaption>{img.caption}</figcaption>}
-          </figure>
-        ))}
+        {block.images?.map((img: any, imgIndex: number) => {
+          // First slide should have 'current' class by default
+          // In editor, use currentSlide state; on frontend, first slide gets it for no-JS fallback
+          const shouldBeCurrent = isInEditor
+            ? isSlideshow && imgIndex === currentSlide
+            : imgIndex === 0;
+
+          return (
+            <figure
+              key={imgIndex}
+              className={shouldBeCurrent ? "current" : ""}
+              data-tina-field={tinaField(block.images[imgIndex])}
+            >
+              {img.src && (
+                <img
+                  src={img.src}
+                  alt={getAltText(img)}
+                  style={{ objectPosition: getObjectPosition(img) }}
+                />
+              )}
+              {img.caption && <figcaption>{img.caption}</figcaption>}
+            </figure>
+          );
+        })}
       </div>
     </BlockTag>
   );
