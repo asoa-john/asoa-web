@@ -21,6 +21,8 @@ const today = new Date();
 		</div>
 	</footer>
 
+<h1 class="text-8xl">TEST</h1>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const slideshows = document.querySelectorAll('.gallery.slideshow');
@@ -32,7 +34,7 @@ const today = new Date();
       const duration = parseInt(gallery.dataset.slideDuration || '5000');
       let currentIndex = 0;
       
-      figures[0].classList.add('current');
+      // First slide already has 'current' class from render
       
       setInterval(() => {
         figures[currentIndex].classList.remove('current');
