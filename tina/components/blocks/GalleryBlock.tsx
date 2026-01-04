@@ -51,10 +51,8 @@ export default function GalleryBlock({
         data-tina-field={tinaField(block, "images")}
       >
         {block.images?.map((img: any, imgIndex: number) => {
-          // Create unique key using image src to avoid duplicate key warnings
-          const uniqueKey = img.src
-            ? `${img.src}-${imgIndex}`
-            : `img-${blockKey}-${imgIndex}`;
+          // Create unique key that includes blockKey to avoid duplicates across galleries
+          const uniqueKey = `gallery-${blockKey}-${imgIndex}`;
 
           return (
             <figure
