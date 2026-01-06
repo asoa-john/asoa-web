@@ -86,6 +86,11 @@ export default defineConfig({
     publicFolder: "public",
   },
 
+  // Add custom admin styles
+  admin: {
+    css: "/tina-admin.css", // Path relative to public folder
+  },
+
   media: {
     tina: {
       mediaRoot: "uploads",

@@ -36,5 +36,9 @@
     }
   ],
   "siteTitle": "Applied Scholastics Online Academy",
-  "siteDescription": "Accredited K-12 Online Private School"
+  "siteDescription": "Accredited K-12 Online Private School",
+  "social": {
+    "facebook": "https://www.facebook.com/appliedscholasticsonlineacademy",
+    "instagram": "https://www.instagram.com/apsonlineacademy/"
+  }
 }
