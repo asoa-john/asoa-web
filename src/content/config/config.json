@@ -1,0 +1,40 @@
+{
+  "seo": {
+    "title": "Applied Scholastics Online Academy",
+    "description": "Accredited K-12 Online Private School",
+    "siteOwner": "Applied Scholastics Online Academy"
+  },
+  "nav": [
+    {
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "title": "Blog",
+      "link": "/blog"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    }
+  ],
+  "contactLinks": [
+    {
+      "title": "Twitter",
+      "link": "https://x.com/tinacms",
+      "icon": "TbBrandTwitter"
+    },
+    {
+      "title": "Docs",
+      "link": "https://tina.io/docs",
+      "icon": "TbBook2"
+    },
+    {
+      "title": "GitHub",
+      "link": "https://github.com/tinacms/tinacms",
+      "icon": "TbBrandGithub"
+    }
+  ],
+  "siteTitle": "Applied Scholastics Online Academy",
+  "siteDescription": "Accredited K-12 Online Private School"
+}

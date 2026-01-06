@@ -1,0 +1,144 @@
+---
+import config from "../content/config/config.json";
+import IconLink from "./react/IconLink";
+const today = new Date();
+---
+<div class="footer">
+	<div class="footer-banner-content"><img src="/favicon.svg" alt="Tina CMS Llama Logo" /><a href="https://tina.io" target="_blank" rel="noopener noreferrer">Powered by TinaCMS</a>
+	</div>
+</div>
+	<footer class="copyright-footer">
+		&copy; {today.getFullYear()}
+		{config.seo.siteOwner}. All rights reserved.
+		<div class="social-links">
+			{
+				config?.contactLinks?.map((link) => {
+					return (
+						<IconLink {...link} />
+					);
+				})
+			}
+		</div>
+	</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slideshows = document.querySelectorAll('.gallery.slideshow');
+    
+    slideshows.forEach((gallery) => {
+      const figures = gallery.querySelectorAll('.gallery-grid figure');
+      if (figures.length <= 1) return;
+      
+      const duration = parseInt(gallery.dataset.slideDuration || '5000');
+      let currentIndex = 0;
+      
+      // First slide already has 'current' class from render
+      
+      setInterval(() => {
+        figures[currentIndex].classList.remove('current');
+        currentIndex = (currentIndex + 1) % figures.length;
+        figures[currentIndex].classList.add('current');
+      }, duration);
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slidetexts = document.querySelectorAll('.slidetext');
+    slidetexts.forEach((span) => {
+      let revealIndex = 0;
+      const words = span.innerText.split(',');
+      span.innerText = '';
+      words.forEach((str,index) => {
+        const word = document.createElement('span');
+        word.classList.add('slidetext-word');
+				if(index == 0){
+          word.classList.add('reveal');
+        }
+        word.innerText = str.trimStart();
+        span.append(word);
+      });
+      const slidetextWords = span.querySelectorAll('.slidetext-word');
+
+      setInterval(() => {
+        slidetextWords[revealIndex].classList.remove('reveal');
+        revealIndex = (revealIndex + 1) % slidetextWords.length;
+        slidetextWords[revealIndex].classList.add('reveal');
+      }, '3500');
+    });
+  });
+</script>
+
+<style>
+
+	.copyright-footer {
+		padding: 2em 1em 2em 1em;
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		color: rgb(var(--gray));
+		text-align: center;
+	}
+
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+		margin-top: 1em;
+	}
+
+	.social-links a {
+		text-decoration: none;
+		color: rgb(var(--gray));
+	}
+
+	.social-links a:hover {
+		color: rgb(var(--gray-dark));
+	}
+
+	.footer {
+		display: flex;
+		justify-content: center;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		background-image: linear-gradient(60deg, #000000 0%,  #EC4815 50%, #000000 100%);
+		padding: 1.5em 0;
+	}
+
+	.footer-banner-content {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		font-size: 1.2em;
+		position: relative;
+		z-index: 2;
+	}
+
+	.footer::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -50%;
+		width: 200%;
+		height: 100%;
+		background-image: linear-gradient(60deg, #1F1E24 25%,   #EC4815 50%, #1F1E24 75%);
+		transition: transform 1s ease-in-out;
+		z-index: 1;
+	}
+
+	.footer:has(.footer-banner-content a:hover)::before {
+		transform: scaleX(2);
+	}
+
+	.footer-banner-content img {
+		width: 30px;
+		height: auto;
+	}
+
+	.footer-banner-content a {
+		color: white;
+		text-decoration: none;
+		padding-top: 0.5em;
+		font-weight: bold;
+	}
+</style>
