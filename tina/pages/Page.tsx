@@ -9,6 +9,7 @@ import FeaturesBlock from "../components/blocks/FeaturesBlock";
 import TestimonialBlock from "../components/blocks/TestimonialBlock";
 import CtaBlock from "../components/blocks/CtaBlock";
 import CustomHtmlBlock from "../components/blocks/CustomHtmlBlock";
+import StyledTextBlock from "../components/blocks/StyledTextBlock";
 
 type Props = {
   variables: PageQueryVariables;
@@ -127,6 +128,17 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   if (block.__typename === "PageBlocksCustomHtml") {
     return (
       <CustomHtmlBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
+    );
+  }
+
+  if (block.__typename === "PageBlocksStyledText") {
+    return (
+      <StyledTextBlock
         key={index}
         block={block}
         blockKey={index}

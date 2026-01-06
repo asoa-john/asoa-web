@@ -487,6 +487,34 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
+              // StyledText
+              {
+                name: "styledText",
+                label: "Styled Text",
+                ui: {
+                  itemProps: (item) => {
+                    // Show first 50 chars in the list
+                    const preview =
+                      item?.text?.substring(0, 50) || "Styled Text";
+                    return { label: `Styled Text: ${preview}...` };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "text",
+                    label: "Styled Text",
+                    ui: {
+                      component: "textarea",
+                    },
+                    description:
+                      "Use [.class#id@tabindex]text[] syntax. Example: [#main.pb-8]Hello[] [.highlight]world[]",
+                    required: true,
+                  },
+                  blockStylingFields,
+                  sectionStylingFields,
+                ],
+              },
             ],
           },
         ],

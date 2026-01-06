@@ -2,7 +2,8 @@
 title: Home
 description: Welcome to our site
 blocks:
-  - slideshow: true
+  - heading: ''
+    slideshow: true
     slideDuration: 7
     images:
       - src: /uploads/girl-mom-homework.webp
@@ -27,21 +28,25 @@ blocks:
         https://res.cloudinary.com/duei2elta/video/upload/v1767314693/elegant-nature-loop-1_lhk8it.mp4
       videoLoop: true
     _template: gallery
-  - html: >-
-      <h1 class="font-serif text-4xl text-white pb-12">A learning program that
-      is:<br/><span class="slidetext font-cursive text-8xl">tailored, pleasant,
-      unhurried, casual</span></h1>
+  - label: H1 & Tagline
+    html: >-
+      <h1 class="font-serif text-4xl text-white pb-8">A learning program that
+      is: <span class="block slidetext font-cursive text-8xl pt-8">tailored,
+      pleasant, unhurried, casual</span></h1>
 
-      <div class="font-serif text-4xl text-white">Sound <span
-      class="font-cursive text-5xl">different?</span><br />
+      <div class="font-serif text-4xl text-white pb-8">
+        Sound <span class="font-cursive text-5xl">different?</span>
+      <span class="block pt-8">It is.</span>
 
-      It is.</div>
+      </div>
 
-      <div class="flex">
+      <div class="text-white pb-4">Learn more:</div>
 
-      <a class="button" href="/k-12">K–12</a>
+      <a class="button text-white" href="/k-12">K–12</a>
 
-      <a class="button" href="/highschool">Highschool</a></div>
+      <a class="button text-white" href="/highschool">Highschool</a>
+    section:
+      groupWithNext: true
     _template: customHtml
 ---
 

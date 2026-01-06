@@ -3,8 +3,8 @@ import config from "../content/config/config.json";
 import IconLink from "./react/IconLink";
 const today = new Date();
 ---
-<div class="tina-footer">
-	<div class="tina-banner-content"><img src="/llama.svg" alt="Tina CMS Llama Logo" /><a href="https://tina.io" target="_blank" rel="noopener noreferrer">Powered by TinaCMS</a>
+<div class="footer">
+	<div class="footer-banner-content"><img src="/favicon.svg" alt="Tina CMS Llama Logo" /><a href="https://tina.io" target="_blank" rel="noopener noreferrer">Powered by TinaCMS</a>
 	</div>
 </div>
 	<footer class="copyright-footer">
@@ -95,7 +95,7 @@ const today = new Date();
 		color: rgb(var(--gray-dark));
 	}
 
-	.tina-footer {
+	.footer {
 		display: flex;
 		justify-content: center;
 		position: relative;
@@ -105,7 +105,7 @@ const today = new Date();
 		padding: 1.5em 0;
 	}
 
-	.tina-banner-content {
+	.footer-banner-content {
 		display: flex;
 		align-items: center;
 		gap: 0.5em;
@@ -114,7 +114,7 @@ const today = new Date();
 		z-index: 2;
 	}
 
-	.tina-footer::before {
+	.footer::before {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -126,16 +126,16 @@ const today = new Date();
 		z-index: 1;
 	}
 
-	.tina-footer:has(.tina-banner-content a:hover)::before {
+	.footer:has(.footer-banner-content a:hover)::before {
 		transform: scaleX(2);
 	}
 
-	.tina-banner-content img {
+	.footer-banner-content img {
 		width: 30px;
 		height: auto;
 	}
 
-	.tina-banner-content a {
+	.footer-banner-content a {
 		color: white;
 		text-decoration: none;
 		padding-top: 0.5em;
