@@ -86,9 +86,27 @@ export default defineConfig({
     publicFolder: "public",
   },
 
-  // Add custom admin styles
-  admin: {
-    css: "/tina-admin.css", // Path relative to public folder
+  // Add custom styles via cmsCallback
+  cmsCallback: (cms) => {
+    // Inject custom styles when CMS loads
+    const style = document.createElement("style");
+    style.textContent = `
+      textarea[name*="html"],
+      textarea[name*="text"] {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace !important;
+        background: #1e1e1e !important;
+        color: #ddd !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+      
+      label[for*="html"],
+      label[for*="text"] {
+      }
+    `;
+    document.head.appendChild(style);
+
+    return cms;
   },
 
   media: {
