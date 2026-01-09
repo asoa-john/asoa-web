@@ -13,10 +13,10 @@ const today = new Date();
 		{config.seo.siteOwner}. All rights reserved.
 		<div class="social-links">
 			{
-				config?.contactLinks?.map((link) => {
+				config?.social?.map((url) => {
 					return (
-						<IconLink {...link} />
-					);
+						<IconLink {...url} />
+					); 
 				})
 			}
 		</div>

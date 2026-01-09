@@ -698,19 +698,19 @@ export default defineConfig({
             ui: {
               itemProps: (item) => {
                 return {
-                  label: item?.label || "Channel",
+                  label: item?.title || "Link",
                 };
               },
             },
             fields: [
               {
                 type: "string",
-                name: "label",
+                name: "title",
                 label: "Label",
               },
               {
                 type: "string",
-                name: "url",
+                name: "link",
                 label: "URL",
               },
               {
@@ -719,9 +719,9 @@ export default defineConfig({
                 label: "CSS Classes",
               },
               {
+                type: "string",
                 name: "icon",
                 label: "Icon",
-                type: "string",
                 ui: {
                   //@ts-ignore
                   component: IconComponent,
