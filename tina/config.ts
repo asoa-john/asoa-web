@@ -1,4 +1,5 @@
 import { defineConfig } from "tinacms";
+import IconComponent from "./components/IconComponent";
 
 // Helper: Block styling fields
 const blockStylingFields = {
@@ -84,6 +85,30 @@ export default defineConfig({
   build: {
     outputFolder: "admin",
     publicFolder: "public",
+  },
+
+  // Inject custom styles via cmsCallback when CMS loads
+  cmsCallback: (cms) => {
+    if (!document.getElementById("tina-custom-styles")) {
+      const style = document.createElement("style");
+      style.id = "tina-custom-styles";
+      style.textContent = `
+      textarea[name*="html"],
+      textarea[name*="text"] {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace !important;
+        background: #1e1e1e !important;
+        color: #ddd !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+      
+      label[for*="html"],
+      label[for*="text"] {
+      }
+    `;
+      document.head.appendChild(style);
+    }
+    return cms;
   },
 
   media: {
@@ -640,6 +665,13 @@ export default defineConfig({
             name: "navigation",
             label: "Navigation",
             list: true,
+            ui: {
+              itemProps: (item) => {
+                return {
+                  label: item?.label || "Navigation Item",
+                };
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -651,32 +683,49 @@ export default defineConfig({
                 name: "url",
                 label: "URL",
               },
+              {
+                type: "string",
+                name: "classes",
+                label: "CSS Classes",
+              },
             ],
           },
           {
             type: "object",
             name: "social",
             label: "Social Media Links",
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return {
+                  label: item?.title || "Link",
+                };
+              },
+            },
             fields: [
               {
                 type: "string",
-                name: "twitter",
-                label: "Twitter/X URL",
+                name: "title",
+                label: "Label",
               },
               {
                 type: "string",
-                name: "facebook",
-                label: "Facebook URL",
+                name: "link",
+                label: "URL",
               },
               {
                 type: "string",
-                name: "instagram",
-                label: "Instagram URL",
+                name: "classes",
+                label: "CSS Classes",
               },
               {
                 type: "string",
-                name: "github",
-                label: "GitHub URL",
+                name: "icon",
+                label: "Icon",
+                ui: {
+                  //@ts-ignore
+                  component: IconComponent,
+                },
               },
             ],
           },

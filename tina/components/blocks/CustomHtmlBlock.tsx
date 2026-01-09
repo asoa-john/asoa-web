@@ -20,6 +20,7 @@ export default function CustomHtmlBlock({
       className={`custom-html ${blockClassName}`}
       data-tina-field={tinaField(block, "html")}
       dangerouslySetInnerHTML={{ __html: block.html || "" }}
+      suppressHydrationWarning
     />
   );
 }
