@@ -312,15 +312,17 @@ section > *:not(.background-video) {
 /* Hide all slides */
 .gallery.slideshow .gallery-grid figure {
   opacity: 0;
-  filter: blur(100px);
-  transition: all 12s ease-in-out;
+  z-index: 0;
+  filter: blur(200px) brightness(150%);
+  transition: opacity 10s 2s ease-in-out, filter 12s ease-in-out;
 }
 
 /* Show only the current slide */
 .gallery.slideshow .gallery-grid figure.current {
   opacity: 1;
+  z-index: 1;
   filter: blur(0);
-  transition: all 3s ease-in-out;
+  transition: opacity 3s ease-in-out;
 }
 
 /* Optional: Make slideshow images fill the container */
