@@ -9,6 +9,7 @@ const today = new Date();
 </div>
 	<footer class="copyright-footer">
 		&copy; {today.getFullYear()}
+		{console.log(config)}
 		{config.seo.siteOwner}. All rights reserved.
 		<div class="social-links">
 			{
@@ -65,16 +66,15 @@ const today = new Date();
         slidetextWords[revealIndex].classList.remove('reveal');
         revealIndex = (revealIndex + 1) % slidetextWords.length;
         slidetextWords[revealIndex].classList.add('reveal');
-      }, '3500');
+      }, '3333');
     });
   });
 </script>
 
 <style>
-
 	.copyright-footer {
-		padding: 2em 1em 2em 1em;
 		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		padding: 2em 1em 2em 1em;
 		color: rgb(var(--gray));
 		text-align: center;
 	}
@@ -87,8 +87,8 @@ const today = new Date();
 	}
 
 	.social-links a {
-		text-decoration: none;
 		color: rgb(var(--gray));
+		text-decoration: none;
 	}
 
 	.social-links a:hover {
@@ -97,33 +97,33 @@ const today = new Date();
 
 	.footer {
 		display: flex;
-		justify-content: center;
 		position: relative;
-		width: 100%;
-		overflow: hidden;
+		justify-content: center;
 		background-image: linear-gradient(60deg, #000000 0%,  #EC4815 50%, #000000 100%);
 		padding: 1.5em 0;
+		width: 100%;
+		overflow: hidden;
 	}
 
 	.footer-banner-content {
 		display: flex;
+		position: relative;
 		align-items: center;
 		gap: 0.5em;
-		font-size: 1.2em;
-		position: relative;
 		z-index: 2;
+		font-size: 1.2em;
 	}
 
 	.footer::before {
-		content: '';
 		position: absolute;
 		top: 0;
 		left: -50%;
+		z-index: 1;
+		transition: transform 1s ease-in-out;
+		background-image: linear-gradient(60deg, #1F1E24 25%,   #EC4815 50%, #1F1E24 75%);
 		width: 200%;
 		height: 100%;
-		background-image: linear-gradient(60deg, #1F1E24 25%,   #EC4815 50%, #1F1E24 75%);
-		transition: transform 1s ease-in-out;
-		z-index: 1;
+		content: '';
 	}
 
 	.footer:has(.footer-banner-content a:hover)::before {
@@ -136,9 +136,9 @@ const today = new Date();
 	}
 
 	.footer-banner-content a {
-		color: white;
-		text-decoration: none;
 		padding-top: 0.5em;
+		color: white;
 		font-weight: bold;
+		text-decoration: none;
 	}
 </style>

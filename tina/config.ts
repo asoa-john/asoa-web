@@ -86,11 +86,12 @@ export default defineConfig({
     publicFolder: "public",
   },
 
-  // Add custom styles via cmsCallback
+  // Inject custom styles via cmsCallback when CMS loads
   cmsCallback: (cms) => {
-    // Inject custom styles when CMS loads
-    const style = document.createElement("style");
-    style.textContent = `
+    if (!document.getElementById("tina-custom-styles")) {
+      const style = document.createElement("style");
+      style.id = "tina-custom-styles";
+      style.textContent = `
       textarea[name*="html"],
       textarea[name*="text"] {
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace !important;
@@ -104,8 +105,8 @@ export default defineConfig({
       label[for*="text"] {
       }
     `;
-    document.head.appendChild(style);
-
+      document.head.appendChild(style);
+    }
     return cms;
   },
 
@@ -663,6 +664,13 @@ export default defineConfig({
             name: "navigation",
             label: "Navigation",
             list: true,
+            ui: {
+              itemProps: (item) => {
+                return {
+                  label: item?.label || "Navigation Item",
+                };
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -674,32 +682,40 @@ export default defineConfig({
                 name: "url",
                 label: "URL",
               },
+              {
+                type: "string",
+                name: "classes",
+                label: "CSS Classes",
+              },
             ],
           },
           {
             type: "object",
             name: "social",
             label: "Social Media Links",
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return {
+                  label: item?.label || "Channel",
+                };
+              },
+            },
             fields: [
               {
                 type: "string",
-                name: "twitter",
-                label: "Twitter/X URL",
+                name: "label",
+                label: "Label",
               },
               {
                 type: "string",
-                name: "facebook",
-                label: "Facebook URL",
+                name: "url",
+                label: "URL",
               },
               {
                 type: "string",
-                name: "instagram",
-                label: "Instagram URL",
-              },
-              {
-                type: "string",
-                name: "github",
-                label: "GitHub URL",
+                name: "classes",
+                label: "CSS Classes",
               },
             ],
           },
