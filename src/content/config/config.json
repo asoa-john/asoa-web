@@ -50,11 +50,13 @@
   "social": [
     {
       "label": "Facebook",
-      "url": "https://www.facebook.com/appliedscholasticsonlineacademy"
+      "url": "https://www.facebook.com/appliedscholasticsonlineacademy",
+      "icon": "TbBrandFacebook"
     },
     {
       "label": "Instagram",
-      "url": "https://www.instagram.com/apsonlineacademy/"
+      "url": "https://www.instagram.com/apsonlineacademy/",
+      "icon": "TbBrandInstagram"
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { defineConfig } from "tinacms";
+import IconComponent from "./components/IconComponent";
 
 // Helper: Block styling fields
 const blockStylingFields = {
@@ -716,6 +717,15 @@ export default defineConfig({
                 type: "string",
                 name: "classes",
                 label: "CSS Classes",
+              },
+              {
+                name: "icon",
+                label: "Icon",
+                type: "string",
+                ui: {
+                  //@ts-ignore
+                  component: IconComponent,
+                },
               },
             ],
           },
