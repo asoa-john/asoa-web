@@ -648,9 +648,19 @@ export default defineConfig({
         },
         fields: [
           {
+            type: "image",
+            name: "siteLogo",
+            label: "Site Logo",
+          },
+          {
             type: "string",
             name: "siteTitle",
             label: "Site Title",
+          },
+          {
+            type: "string",
+            name: "siteTagline",
+            label: "Site Tagline",
           },
           {
             type: "string",
@@ -668,19 +678,19 @@ export default defineConfig({
             ui: {
               itemProps: (item) => {
                 return {
-                  label: item?.label || "Navigation Item",
+                  label: item?.title || "Navigation Item",
                 };
               },
             },
             fields: [
               {
                 type: "string",
-                name: "label",
+                name: "title",
                 label: "Label",
               },
               {
                 type: "string",
-                name: "url",
+                name: "link",
                 label: "URL",
               },
               {

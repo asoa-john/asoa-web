@@ -196,6 +196,12 @@ const TinaPage = (props: Props) => {
 
           // Has section styling - wrap it
           const classNames = ["section-wrapper"];
+          if (
+            section.backgroundColor ||
+            section.backgroundImage ||
+            section.backgroundVideoUrl
+          )
+            classNames.push("has-background");
           if (section.groupClassName) classNames.push(section.groupClassName);
           if (section.backgroundColor)
             classNames.push(`bg-${section.backgroundColor}`);
@@ -241,6 +247,12 @@ const TinaPage = (props: Props) => {
 
         // Build group className using groupClassName from first block
         const classNames = ["section-wrapper"];
+        if (
+          section.backgroundColor ||
+          section.backgroundImage ||
+          section.backgroundVideoUrl
+        )
+          classNames.push("has-background");
         if (section.groupClassName) classNames.push(section.groupClassName);
         if (section.backgroundColor)
           classNames.push(`bg-${section.backgroundColor}`);

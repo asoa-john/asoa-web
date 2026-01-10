@@ -35,16 +35,44 @@
       "icon": "TbBrandGithub"
     }
   ],
+  "siteLogo": "/uploads/asoa.svg",
   "siteTitle": "Applied Scholastics Online Academy",
+  "siteTagline": "Accredited K-12 Online Private School",
   "siteDescription": "Accredited K-12 Online Private School",
   "navigation": [
     {
-      "label": "K–8th",
-      "url": "/k-8th"
+      "title": "Home",
+      "link": "/"
     },
     {
-      "label": "High School",
-      "url": "/high-school"
+      "title": "K–8th",
+      "link": "/k-8th",
+      "classes": "beans"
+    },
+    {
+      "title": "High School",
+      "link": "/high-school"
+    },
+    {
+      "title": "Bookstore",
+      "link": "https://store.apsonlineacademy.org"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    },
+    {
+      "title": "Blog",
+      "link": "/blog"
+    },
+    {
+      "title": "Contact",
+      "link": "/contact"
+    },
+    {
+      "title": "Reporting System",
+      "link": "https://elearning.appliedscholasticsonline.com/",
+      "classes": "button"
     }
   ],
   "social": [

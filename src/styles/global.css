@@ -18,7 +18,11 @@
   --font-serif: "DM Serif Text", Georgia, serif;
   --font-cursive: "Oooh Baby", Zapfino, cursive;
   --purple: #a758b2;
+  --violet: #7d78ba;
+  --blue: #5499c2;
+  --cyan: #2ab9ca;
   --aqua: #00dad2;
+  --button-padding: 0.75rem 1rem;
   font-family: Arial, system-ui, sans-serif;
 }
 @font-face {
@@ -215,18 +219,57 @@ h6 {
 /* .button {
     @apply cursor-pointer rounded border-2 px-5 py-2 text-sm font-semibold;
   } */
-.button {
-  display: inline-block;
-  cursor: pointer;
-  border-width: 2px;
-  border-style: solid;
-  border-color: currentColor;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  text-decoration: none;
-}
 .button + .button {
   margin-left: 1rem;
+}
+.has-background .button {
+  --color-1: white;
+  --color-2: white;
+}
+.button {
+  --border-width: 1px;
+  --border-radius: 8px;
+  --color-1: #a758b2;
+  --color-2: #2ab9ca;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--border-radius);
+  background: linear-gradient(to right, var(--color-1) 30%, var(--color-2)),
+    linear-gradient(to right, var(--color-1), var(--color-2) 70%);
+  background-position: var(--border-radius) 0, var(--border-radius) 100%;
+  background-size: calc(100% - var(--border-radius) - var(--border-radius))
+    var(--border-width);
+  background-repeat: no-repeat;
+  padding: var(--button-padding);
+  text-decoration: none;
+}
+
+.button:before,
+.button:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--border-radius);
+  content: "";
+}
+
+.button:before {
+  left: 0;
+  border: var(--border-width) solid var(--color-1);
+  border-right-color: transparent;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.button:after {
+  right: 0;
+  border: var(--border-width) solid var(--color-2);
+  border-left-color: transparent;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 .sr-only {
   position: absolute !important;
@@ -313,8 +356,8 @@ section > *:not(.background-video) {
 .gallery.slideshow .gallery-grid figure {
   opacity: 0;
   z-index: 0;
-  filter: blur(200px) brightness(150%);
-  transition: opacity 10s 2s ease-in-out, filter 12s ease-in-out;
+  filter: blur(100px) brightness(300%);
+  transition: opacity 4s 2s ease-in-out, filter 6s ease-in-out;
 }
 
 /* Show only the current slide */
@@ -365,4 +408,8 @@ section > *:not(.background-video) {
     grid-row: 1 / -1; /* Span all rows (stretches to match height) */
     grid-column: 1; /* First column */
   }
+}
+
+.nav-cushion {
+  margin-top: 100px;
 }
