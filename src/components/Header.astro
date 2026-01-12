@@ -57,7 +57,7 @@ import IconLink from "./react/IconLink";
 		justify-content: space-between;
 	}
 	.header-group {
-		color: black;
+		color: var(--black);
 		text-decoration: none;
 	}
 	.header-group-text h2 {
@@ -87,14 +87,18 @@ import IconLink from "./react/IconLink";
 		justify-content: space-between;
 		align-items: center;
 	}
-	.header-links a {
-		border-bottom: 4px solid transparent;
+	.header-links a:not(.button) {
 		padding: var(--button-padding);
 		color: var(--black);
+		text-decoration: none;
 	}
-	.header-links a.active {
-    background: -webkit-linear-gradient(318deg, var(--purple), var(--blue));
+	.header-links a:not(.button):focus,
+	.header-links a:not(.button):hover {
+    background: -webkit-linear-gradient(130deg, var(--color-4), var(--color-2));
 		-webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+	}
+	.header-links a.active:not(.button) {
+		opacity: 0.5;
 	}
 </style>

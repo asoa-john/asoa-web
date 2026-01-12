@@ -239,10 +239,6 @@ section a:not(.button):hover {
 .button + .button {
   margin-left: 1rem;
 }
-.has-background .button {
-  --color-1: white;
-  --color-5: white;
-}
 .button {
   --border-width: 1px;
   --border-radius: 8px;
@@ -258,7 +254,13 @@ section a:not(.button):hover {
     var(--border-width);
   background-repeat: no-repeat;
   padding: var(--button-padding);
+  color: var(--black);
   text-decoration: none;
+}
+.has-background .button {
+  --color-1: white;
+  --color-5: white;
+  color: white;
 }
 
 .button:before,
@@ -307,7 +309,7 @@ section a:not(.button):hover {
   margin-top: 1em;
 }
 .social-links a {
-  color: black;
+  color: var(--black);
   text-decoration: none;
 }
 .social-links a:hover {
