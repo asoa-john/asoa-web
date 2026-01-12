@@ -1,27 +1,53 @@
 ---
+import HeaderLink from "./HeaderLink.astro";
 import config from "../content/config/config.json";
 import IconLink from "./react/IconLink";
 const today = new Date();
 ---
-<div class="footer">
-	<div class="footer-banner-content">
-		<img src="/asoa.svg" alt="Applied Scholastics Online Academy" />
-	</div>
-</div>
-	<footer class="copyright-footer">
-		&copy; {today.getFullYear()}
-		{console.log(config)}
-		{config.seo.siteOwner}. All rights reserved.
-		<div class="social-links">
+<footer class="footer">
+	<div class="flex justify-between m-auto">
+		<div>
+			<a href="/" class="footer-group">
+				<img src=`${config.siteLogo}` 
+						alt=`${config.siteTitle} logo` 
+						width="72" 
+						height="72"
+						class="footer-group-logo" />
+				<div class="footer-group-text">
+					<h2>{config.siteTitle}</h2>
+					<h3>{config.siteTagline}</h3>
+				</div>
+			</a>
+			<div class="social-links">
+				{
+					config?.social?.map((url) => {
+						return (
+							<IconLink {...url} />
+						); 
+					})
+				}
+			</div>
+		</div>
+		<div class="footer-links">
 			{
-				config?.social?.map((url) => {
-					return (
-						<IconLink {...url} />
-					); 
-				})
+				config.navigation.map((nav) => (
+					<HeaderLink href={nav.link} className={nav.classes}>
+						{nav.title}
+					</HeaderLink>
+				))
 			}
 		</div>
-	</footer>
+	</div>
+	<section class="copyright-footer">
+		<div class="copyright">
+			&copy; {today.getFullYear()}
+			{config.seo.siteOwner}. All rights reserved.
+		</div>
+		<div class="credit">
+			Website by <a href="https://joerhoney.com">joerhoney.com</a>
+		</div>
+	</section>
+</footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -74,63 +100,82 @@ const today = new Date();
 
 <style>
 	.copyright-footer {
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		display: flex;
+		justify-content: space-between;
+		gap: 3rem;
+		margin: 0 auto;
 		padding: 2em 1em 2em 1em;
-		color: rgb(var(--gray));
-		text-align: center;
+		max-width: 1000px;
 	}
-
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-
-	.social-links a {
-		color: rgb(var(--gray));
-		text-decoration: none;
-	}
-
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
-
 	.footer {
-		display: flex;
 		position: relative;
-		justify-content: center;
-		padding: 1.5em 0;
-		width: 100%;
+		margin: 0;
+		padding: 3rem;
 		overflow: hidden;
 	}
-
-	.footer-banner-content {
-		display: flex;
-		position: relative;
-		align-items: center;
-		gap: 0.5em;
-		z-index: 2;
-		font-size: 1.2em;
-	}
-
-	.footer::before {
+	.footer:before {
 		position: absolute;
-		top: 0;
-		left: -50%;
-		z-index: 1;
-		transition: transform 1s ease-in-out;
-		width: 200%;
-		height: 100%;
-		content: '';
+		opacity: 0.25;
+		z-index: -1;
+		filter: blur(100px);
+		inset: -50px 0 0 0;
+		background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
+		content: "";
 	}
-
-	.footer:has(.footer-banner-content a:hover)::before {
-		transform: scaleX(2);
+	.footer > * {
+		width: 100%;
+		max-width: 1000px;
 	}
-
-	.footer-banner-content img {
-		width: 30px;
-		height: auto;
+	.footer-group {
+		display: flex;
+		align-items: stretch;
+		margin: 0;
+		padding: 0;
+	}
+	.footer-group-logo {
+		margin-right: 1.2rem;
+		width: 3rem;
+		height: 4.3rem;
+	}
+	.footer-group-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.footer-group {
+		color: black;
+		text-decoration: none;
+	}
+	.footer-group-text h2 {
+		width: 145px;
+		line-height: 1.1;
+		font-family: var(--font-serif);
+	}
+	.footer-group-text h3 {
+		width: 7rem;
+		font-size: 0.7rem;
+		font-family: var(--font-sans);
+	}
+	h3 {
+		margin: 0;
+		font-size: 0.8rem;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1rem;
+	}
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	.footer-links a {
+		border-bottom: 4px solid transparent;
+		padding: var(--button-padding);
+		color: var(--black);
+	}
+	.footer-links a.active {
+    background: -webkit-linear-gradient(318deg, var(--color-1), var(--color-4));
+		-webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 	}
 </style>

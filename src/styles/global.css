@@ -7,7 +7,7 @@
 :root {
   --accent: #2337ff;
   --accent-dark: #000d8a;
-  --black: 15, 18, 25;
+  --black: #000000;
   --gray: 96, 115, 159;
   --gray-light: 229, 233, 240;
   --gray-dark: 34, 41, 57;
@@ -17,11 +17,11 @@
   --font-sans: Arial, system-ui, sans-serif;
   --font-serif: "DM Serif Text", Georgia, serif;
   --font-cursive: "Oooh Baby", Zapfino, cursive;
-  --purple: #a758b2;
-  --violet: #7d78ba;
-  --blue: #5499c2;
-  --cyan: #2ab9ca;
-  --aqua: #00dad2;
+  --color-1: #a758b2;
+  --color-2: #7d78ba;
+  --color-3: #5499c2;
+  --color-4: #2ab9ca;
+  --color-5: #00dad2;
   --button-padding: 0.75rem 1rem;
   font-family: Arial, system-ui, sans-serif;
 }
@@ -216,6 +216,23 @@ h6 {
 .flex {
   display: flex;
 }
+.justify-between {
+  justify-content: space-between;
+}
+.m-auto {
+  margin: auto;
+}
+section a:not(.button) {
+  background: -webkit-linear-gradient(130deg, var(--color-4), var(--color-2));
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  -webkit-background-clip: text;
+}
+section a:not(.button):hover {
+  background: -webkit-linear-gradient(130deg, var(--color-5), var(--color-1));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
 /* .button {
     @apply cursor-pointer rounded border-2 px-5 py-2 text-sm font-semibold;
   } */
@@ -224,20 +241,18 @@ h6 {
 }
 .has-background .button {
   --color-1: white;
-  --color-2: white;
+  --color-5: white;
 }
 .button {
   --border-width: 1px;
   --border-radius: 8px;
-  --color-1: #a758b2;
-  --color-2: #2ab9ca;
   display: inline-block;
   position: relative;
   cursor: pointer;
   border: none;
   border-radius: var(--border-radius);
-  background: linear-gradient(to right, var(--color-1) 30%, var(--color-2)),
-    linear-gradient(to right, var(--color-1), var(--color-2) 70%);
+  background: linear-gradient(to right, var(--color-1) 30%, var(--color-5)),
+    linear-gradient(to right, var(--color-1), var(--color-5) 70%);
   background-position: var(--border-radius) 0, var(--border-radius) 100%;
   background-size: calc(100% - var(--border-radius) - var(--border-radius))
     var(--border-width);
@@ -255,7 +270,6 @@ h6 {
   width: var(--border-radius);
   content: "";
 }
-
 .button:before {
   left: 0;
   border: var(--border-width) solid var(--color-1);
@@ -263,10 +277,9 @@ h6 {
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
 }
-
 .button:after {
   right: 0;
-  border: var(--border-width) solid var(--color-2);
+  border: var(--border-width) solid var(--color-5);
   border-left-color: transparent;
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
@@ -288,19 +301,17 @@ h6 {
   /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
 }
-
 .social-links {
   display: flex;
-  justify-content: center;
   gap: 1em;
   margin-top: 1em;
 }
 .social-links a {
-  color: rgb(var(--gray));
+  color: black;
   text-decoration: none;
 }
 .social-links a:hover {
-  color: rgb(var(--gray-dark));
+  color: var(--color-3);
 }
 
 /*   S E C T I O N   S T Y L I N G
@@ -393,6 +404,17 @@ section > *:not(.background-video) {
  *   =====================================
  */
 
+.gallery-text {
+  position: relative;
+}
+.gallery-text:before {
+  position: absolute;
+  z-index: -1;
+  filter: blur(100px);
+  inset: -50px 0 0 0;
+  background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
+  content: "";
+}
 @media (min-width: 768px) {
   .gallery-text {
     display: grid;

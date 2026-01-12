@@ -79,8 +79,8 @@ const sectionStylingFields = {
 // Your TinaCMS schema configuration
 export default defineConfig({
   branch: process.env.TINA_BRANCH || "main",
-  clientId: process.env.TINA_CLIENT_ID,
-  token: process.env.TINA_TOKEN,
+  clientId: process.env.TINA_CLIENT_ID || "local",
+  token: process.env.TINA_TOKEN || "local",
 
   build: {
     outputFolder: "admin",
