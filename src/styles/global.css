@@ -46,6 +46,9 @@
   font-family: "Oooh Baby";
   font-display: swap;
 }
+* {
+  min-width: 0;
+}
 body {
   margin: auto;
   padding: 0;
