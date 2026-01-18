@@ -2,13 +2,13 @@ import { tinaField, useTina } from "tinacms/dist/react";
 import type { PageQuery, PageQueryVariables } from "../__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import HeroBlock from "../components/blocks/HeroBlock";
-import ContentBlock from "../components/blocks/ContentBlock";
-import TwoColumnBlock from "../components/blocks/TwoColumnBlock";
+import TextBlock from "../components/blocks/TextBlock";
+import TextImageBlock from "../components/blocks/TextImageBlock";
 import GalleryBlock from "../components/blocks/GalleryBlock";
 import FeaturesBlock from "../components/blocks/FeaturesBlock";
-import TestimonialBlock from "../components/blocks/TestimonialBlock";
+import QuoteBlock from "../components/blocks/QuoteBlock";
 import CtaBlock from "../components/blocks/CtaBlock";
-import CustomHtmlBlock from "../components/blocks/CustomHtmlBlock";
+import HtmlBlock from "../components/blocks/HtmlBlock";
 import StyledTextBlock from "../components/blocks/StyledTextBlock";
 
 type Props = {
@@ -55,7 +55,7 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   // Content Block
   if (block.__typename === "PageBlocksContent") {
     return (
-      <ContentBlock
+      <TextBlock
         key={index}
         block={block}
         blockKey={index}
@@ -65,9 +65,9 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   }
 
   // Two Column Block
-  if (block.__typename === "PageBlocksTwoColumn") {
+  if (block.__typename === "PageBlocksTextImage") {
     return (
-      <TwoColumnBlock
+      <TextImageBlock
         key={index}
         block={block}
         blockKey={index}
@@ -100,10 +100,10 @@ function renderBlock(block: any, index: number, isGrouped = false) {
     );
   }
 
-  // Testimonial Block
-  if (block.__typename === "PageBlocksTestimonial") {
+  // Quote Block
+  if (block.__typename === "PageBlocksQuote") {
     return (
-      <TestimonialBlock
+      <QuoteBlock
         key={index}
         block={block}
         blockKey={index}
@@ -125,9 +125,9 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   }
 
   // Custom HTML Block
-  if (block.__typename === "PageBlocksCustomHtml") {
+  if (block.__typename === "PageBlocksHtml") {
     return (
-      <CustomHtmlBlock
+      <HtmlBlock
         key={index}
         block={block}
         blockKey={index}

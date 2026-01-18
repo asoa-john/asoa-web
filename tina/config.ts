@@ -160,13 +160,11 @@ export default defineConfig({
               // Hero Block
               {
                 name: "hero",
-                label: "Hero Section",
+                label: "Hero",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.headline
-                        ? `Hero: ${item.headline}`
-                        : "Hero Section",
+                      label: item?.headline ? `Hero: ${item.headline}` : "Hero",
                     };
                   },
                 },
@@ -215,35 +213,110 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
-              // Content Block
+              // Text Block
               {
-                name: "content",
-                label: "Content Block",
+                name: "text",
+                label: "Text",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.headline ? `Text: ${item.headline}` : "Text",
+                    };
+                  },
+                },
                 fields: [
+                  {
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Heading",
+                  },
                   {
                     type: "rich-text",
                     name: "body",
                     label: "Content",
                     isBody: true,
                   },
+                  {
+                    type: "object",
+                    name: "cta",
+                    label: "Call to Action",
+                    fields: [
+                      {
+                        type: "string",
+                        name: "text",
+                        label: "Button Text",
+                      },
+                      {
+                        type: "string",
+                        name: "url",
+                        label: "Button URL",
+                      },
+                    ],
+                  },
                   blockStylingFields,
                   sectionStylingFields,
                 ],
               },
-              // Two Column Block
+              // Text/Image Block
               {
-                name: "twoColumn",
-                label: "Two Column Layout",
+                name: "textImage",
+                label: "Text/Image",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.headline
+                        ? `Text/Image: ${item.headline}`
+                        : "Text/Image",
+                    };
+                  },
+                },
                 fields: [
                   {
-                    type: "rich-text",
-                    name: "leftColumn",
-                    label: "Left Column",
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Heading",
+                  },
+                  {
+                    type: "image",
+                    name: "image",
+                    label: "Hero Image",
+                  },
+                  {
+                    type: "string",
+                    name: "imageAlt",
+                    label: "Image Alt Text",
                   },
                   {
                     type: "rich-text",
                     name: "rightColumn",
                     label: "Right Column",
+                  },
+                  {
+                    type: "object",
+                    name: "cta",
+                    label: "Call to Action",
+                    fields: [
+                      {
+                        type: "string",
+                        name: "text",
+                        label: "Button Text",
+                      },
+                      {
+                        type: "string",
+                        name: "url",
+                        label: "Button URL",
+                      },
+                    ],
                   },
                   blockStylingFields,
                   sectionStylingFields,
@@ -252,13 +325,13 @@ export default defineConfig({
               // Image Gallery Block
               {
                 name: "gallery",
-                label: "Image Gallery",
+                label: "Gallery",
                 ui: {
                   itemProps: (item) => {
                     return {
                       label: item?.heading
                         ? `Gallery: ${item.heading}`
-                        : "Image Gallery",
+                        : "Gallery",
                     };
                   },
                 },
@@ -266,7 +339,7 @@ export default defineConfig({
                   {
                     type: "string",
                     name: "heading",
-                    label: "Gallery Heading",
+                    label: "Heading",
                   },
                   {
                     type: "boolean",
@@ -349,13 +422,13 @@ export default defineConfig({
               // Features Block
               {
                 name: "features",
-                label: "Features Section",
+                label: "Features",
                 ui: {
                   itemProps: (item) => {
                     return {
                       label: item?.heading
                         ? `Features: ${item.heading}`
-                        : "Features Section",
+                        : "Features",
                     };
                   },
                 },
@@ -395,16 +468,14 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
-              // Testimonial Block
+              // Quote Block
               {
-                name: "testimonial",
-                label: "Testimonial",
+                name: "quote",
+                label: "Quote",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.author
-                        ? `Testimonial: ${item.author}`
-                        : "Testimonial",
+                      label: item?.author ? `Quote: ${item.author}` : "Quote",
                     };
                   },
                 },
@@ -473,13 +544,30 @@ export default defineConfig({
                     name: "buttonUrl",
                     label: "Button URL",
                   },
+                  {
+                    type: "object",
+                    name: "cta",
+                    label: "Call to Action",
+                    fields: [
+                      {
+                        type: "string",
+                        name: "text",
+                        label: "Button Text",
+                      },
+                      {
+                        type: "string",
+                        name: "url",
+                        label: "Button URL",
+                      },
+                    ],
+                  },
                   blockStylingFields,
                   sectionStylingFields,
                 ],
               },
               // Custom HTML Block
               {
-                name: "customHtml",
+                name: "html",
                 label: "Custom HTML",
                 ui: {
                   itemProps: (item) => {

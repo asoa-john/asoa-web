@@ -1,16 +1,16 @@
 import { tinaField } from "tinacms/dist/react";
 
-type CustomHtmlBlockProps = {
+type HtmlBlockProps = {
   block: any;
   blockKey: string | number;
   isGrouped?: boolean;
 };
 
-export default function CustomHtmlBlock({
+export default function HtmlBlock({
   block,
   blockKey,
   isGrouped = false,
-}: CustomHtmlBlockProps) {
+}: HtmlBlockProps) {
   const blockClassName = block.className || "";
   const BlockTag = isGrouped ? "div" : "section";
 

@@ -1,26 +1,26 @@
 import { tinaField } from "tinacms/dist/react";
 
-type TestimonialBlockProps = {
+type QuoteBlockProps = {
   block: any;
   blockKey: string | number;
   isGrouped?: boolean;
 };
 
-export default function TestimonialBlock({
+export default function QuoteBlock({
   block,
   blockKey,
   isGrouped = false,
-}: TestimonialBlockProps) {
+}: QuoteBlockProps) {
   const blockClassName = block.className || "";
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag key={blockKey} className={`testimonial ${blockClassName}`}>
+    <BlockTag key={blockKey} className={`quote ${blockClassName}`}>
       <blockquote data-tina-field={tinaField(block, "quote")}>
         "{block.quote}"
       </blockquote>
       <div className="author">
-        {block.photo && <img src={block.photo} alt={block.author} />}
+        {/* {block.photo && <img src={block.photo} alt={block.author} />} */}
         <div>
           <cite data-tina-field={tinaField(block, "author")}>
             {block.author}

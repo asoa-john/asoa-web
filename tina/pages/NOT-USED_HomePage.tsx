@@ -1,7 +1,7 @@
 import { tinaField, useTina } from "tinacms/dist/react";
 import type { PageQuery, PageQueryVariables } from "../__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import ContentBlock from "../components/blocks/ContentBlock";
+import TextBlock from "../components/blocks/TextBlock";
 import FeaturesBlock from "../components/blocks/FeaturesBlock";
 
 type Props = {
@@ -73,13 +73,11 @@ function renderBlock(block: any, index: number, isGrouped = false) {
 
   // Content Block
   if (block.__typename === "PageBlocksContent") {
-    return (
-      <ContentBlock block={block} blockKey={index} isGrouped={isGrouped} />
-    );
+    return <TextBlock block={block} blockKey={index} isGrouped={isGrouped} />;
   }
 
   // Two Column Block
-  if (block.__typename === "PageBlocksTwoColumn") {
+  if (block.__typename === "PageBlocksTextImage") {
     return (
       <BlockTag key={index} className={`two-column ${blockClassName}`}>
         <div data-tina-field={tinaField(block, "leftColumn")}>
@@ -126,8 +124,8 @@ function renderBlock(block: any, index: number, isGrouped = false) {
     );
   }
 
-  // Testimonial Block
-  if (block.__typename === "PageBlocksTestimonial") {
+  // Quote Block
+  if (block.__typename === "PageBlocksQuote") {
     return (
       <BlockTag key={index} className={`testimonial ${blockClassName}`}>
         <blockquote data-tina-field={tinaField(block, "quote")}>
