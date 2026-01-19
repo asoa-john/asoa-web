@@ -228,9 +228,10 @@ const TinaPage = (props: Props) => {
                 <video
                   className="background-video"
                   autoPlay
+                  loop={section.videoLoop !== false}
                   muted
                   playsInline
-                  loop={section.videoLoop !== false}
+                  preload="metadata"
                 >
                   <source src={section.backgroundVideoUrl} type="video/mp4" />
                 </video>
