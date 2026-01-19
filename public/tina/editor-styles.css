@@ -1,0 +1,14 @@
+/* tina/editor-styles.css */
+textarea[name*="html"],
+textarea[name*="text"] {
+  background: #1e1e1e !important;
+  color: #ddd !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", monospace !important;
+}
+
+label[for*="html"],
+label[for*="text"] {
+  /* your label styles */
+}

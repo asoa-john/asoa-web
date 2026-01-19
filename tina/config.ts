@@ -1,5 +1,6 @@
 import { defineConfig } from "tinacms";
 import IconComponent from "./components/IconComponent";
+import { PiCoinsBold } from "react-icons/pi";
 
 // Helper: Block styling fields
 const blockStylingFields = {
@@ -87,26 +88,13 @@ export default defineConfig({
     publicFolder: "public",
   },
 
-  // Inject custom styles via cmsCallback when CMS loads
   cmsCallback: (cms) => {
-    if (!document.getElementById("tina-custom-styles")) {
-      const style = document.createElement("style");
-      style.id = "tina-custom-styles";
-      style.textContent = `
-      textarea[name*="html"],
-      textarea[name*="text"] {
-        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace !important;
-        background: #1e1e1e !important;
-        color: #ddd !important;
-        font-size: 14px !important;
-        line-height: 1.6 !important;
-      }
-      
-      label[for*="html"],
-      label[for*="text"] {
-      }
-    `;
-      document.head.appendChild(style);
+    if (!document.getElementById("tina-custom-styles-link")) {
+      const link = document.createElement("link");
+      link.id = "tina-custom-styles-link";
+      link.rel = "stylesheet";
+      link.href = "/tina/editor-styles.css"; // file in your public folder
+      document.head.appendChild(link);
     }
     return cms;
   },
