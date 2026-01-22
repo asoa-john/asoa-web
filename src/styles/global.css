@@ -231,6 +231,7 @@ p {
 }
 
 section {
+  box-sizing: border-box;
   --padding: 100px;
   padding: var(--padding);
 }
@@ -562,4 +563,66 @@ section > *:not(.background-video) {
   font-size: 3rem;
   font-family: var(--font-cursive);
   text-align: center;
+}
+
+/*   C T A
+ *   =====
+ */
+
+.cta {
+  position: relative;
+}
+.cta h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-family: var(--font-serif);
+}
+
+/*   L A Y O U T S
+ *   =============
+ */
+
+section.contain {
+  margin: 0 auto;
+  padding-right: var(--padding);
+  padding-left: var(--padding);
+  max-width: 1200px;
+}
+section.contain.max-width-narrow {
+  max-width: 600px;
+}
+section.contain.max-width-medium {
+  max-width: 900px;
+}
+section.contain.max-width-wide {
+  max-width: 1200px;
+}
+section.contain.max-width-full {
+  max-width: 100%;
+}
+.half-left {
+  display: block;
+  margin: 0 auto 0 0;
+  width: 50%;
+}
+.half-right {
+  display: block;
+  margin: 0 0 0 auto;
+  width: 50%;
+}
+
+/*   E F F E C T S
+ *   =============
+ */
+
+.under-glow {
+  position: relative;
+}
+.under-glow:before {
+  position: absolute;
+  z-index: -1;
+  filter: blur(100px);
+  inset: 0;
+  background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
+  content: "";
 }
