@@ -52,8 +52,8 @@ function renderBlock(block: any, index: number, isGrouped = false) {
     );
   }
 
-  // Content Block
-  if (block.__typename === "PageBlocksContent") {
+  // Text Block
+  if (block.__typename === "PageBlocksText") {
     return (
       <TextBlock
         key={index}

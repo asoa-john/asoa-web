@@ -18,7 +18,7 @@ export default function TextBlock({
   return (
     <BlockTag
       key={blockKey}
-      className={`content ${blockClassName}`}
+      className={`text-single ${blockClassName}`}
       data-tina-field={tinaField(block, "body")}
     >
       {block.brow && (
