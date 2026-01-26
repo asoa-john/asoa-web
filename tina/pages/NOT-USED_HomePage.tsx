@@ -83,8 +83,8 @@ function renderBlock(block: any, index: number, isGrouped = false) {
         <div data-tina-field={tinaField(block, "leftColumn")}>
           <TinaMarkdown content={block.leftColumn} />
         </div>
-        <div data-tina-field={tinaField(block, "rightColumn")}>
-          <TinaMarkdown content={block.rightColumn} />
+        <div data-tina-field={tinaField(block, "body")}>
+          <TinaMarkdown content={block.body} />
         </div>
       </BlockTag>
     );

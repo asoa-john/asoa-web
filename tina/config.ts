@@ -286,7 +286,7 @@ export default defineConfig({
                   },
                   {
                     type: "rich-text",
-                    name: "rightColumn",
+                    name: "body",
                     label: "Right Column",
                   },
                   {

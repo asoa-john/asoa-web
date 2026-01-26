@@ -27,7 +27,9 @@ export default function TextBlock({
       {block.heading && (
         <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
       )}
-      <TinaMarkdown content={block.body} />
+      <div data-tina-field={tinaField(block, "body")}>
+        <TinaMarkdown content={block.body} />
+      </div>
       {block.cta && (
         <a
           href={block.cta.url}

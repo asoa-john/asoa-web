@@ -42,7 +42,9 @@ export default function TextImageBlock({
               {block.heading}
             </h2>
           )}
-          <TinaMarkdown content={block.rightColumn} />
+          <div data-tina-field={tinaField(block, "body")}>
+            <TinaMarkdown content={block.body} />
+          </div>
           {block.cta && (
             <a
               href={block.cta.url}

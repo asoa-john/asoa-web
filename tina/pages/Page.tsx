@@ -213,8 +213,6 @@ const TinaPage = (props: Props) => {
           const styles: React.CSSProperties = {};
           if (section.backgroundImage) {
             styles.backgroundImage = `url(${section.backgroundImage})`;
-            styles.backgroundSize = "cover";
-            styles.backgroundPosition = "center";
           }
 
           return (

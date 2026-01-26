@@ -21,7 +21,7 @@ export default function FeaturesBlock({
       {block.heading && (
         <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
       )}
-      <div className="features-grid">
+      <div className="feature-items">
         {block.items?.map((item: any, itemIndex: number) => (
           <div key={itemIndex} className="feature-item">
             {item.icon && (
