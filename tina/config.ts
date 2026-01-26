@@ -438,17 +438,25 @@ export default defineConfig({
                         label: "Feature Title",
                       },
                       {
-                        type: "string",
-                        name: "description",
-                        label: "Description",
-                        ui: {
-                          component: "textarea",
-                        },
-                      },
-                      {
                         type: "image",
                         name: "icon",
                         label: "Icon/Image",
+                      },
+                      {
+                        type: "rich-text",
+                        name: "richText",
+                        label: "Rich Text",
+                        isBody: true,
+                      },
+                      {
+                        type: "string",
+                        name: "styledText",
+                        label: "Styled Text",
+                        ui: {
+                          component: "textarea",
+                        },
+                        description:
+                          "Use [.class#id@tabindex]text[] syntax. Example: [#main.pb-8]Hello[] [.highlight]world[]",
                       },
                     ],
                   },
