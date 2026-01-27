@@ -75,6 +75,37 @@
       "classes": "button"
     }
   ],
+  "footerLinks": [
+    {
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "title": "Bookstore",
+      "link": "https://store.apsonlineacademy.org"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    },
+    {
+      "title": "Blog",
+      "link": "/blog"
+    },
+    {
+      "title": "Contact",
+      "link": "/contact"
+    },
+    {
+      "title": "Trademark Information",
+      "link": "/trademark"
+    },
+    {
+      "title": "Sign In",
+      "link": "https://elearning.appliedscholasticsonline.com/",
+      "classes": "button"
+    }
+  ],
   "social": [
     {
       "title": "Facebook",

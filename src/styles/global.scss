@@ -654,18 +654,58 @@ section > *:not(.background-video) {
  *   =====
  */
 
-.faq-items details {
-  summary {
-    font-weight: bold;
-  }
-  &:not(:first-of-type) {
-    margin-top: 2rem;
-  }
+.faq h3 {
+  text-align: center;
 }
 .faq h2 {
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  font-family: var(--font-serif);
+  text-align: center;
+}
+.faq-items details {
+  --speed: 1s;
+  --curve: cubic-bezier(0, 0, 1, 1);
+  display: grid;
+  grid: max-content 0fr / auto;
+  summary {
+    position: relative;
+    cursor: pointer;
+    margin-top: 2rem;
+    outline: none;
+    font-weight: bold;
+    font-weight: bold;
+    &::marker {
+      content: "";
+    }
+    &::before {
+      display: block;
+      position: absolute;
+      top: -0.26em;
+      left: -1em;
+      transition: transform var(--speed) cubic-bezier(0, 0, 0, 1);
+      padding: 0.46em 0 0.59em;
+      content: "\2295";
+      font-weight: 400;
+      font-size: 2em;
+      line-height: 0;
+      font-family: Arial;
+      letter-spacing: 0.02222em;
+    }
+  }
+  &[open] {
+    .faq-answer {
+      animation: expand var(--speed) cubic-bezier(0, 0, 1, 1);
+    }
+    summary::before {
+      transform: rotate(135deg);
+    }
+  }
+}
+@keyframes expand {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /*   L A Y O U T S

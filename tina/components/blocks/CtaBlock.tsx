@@ -34,13 +34,15 @@ export default function CtaBlock({
           {block.description}
         </p>
       )}
-      <a
-        href={block.buttonUrl}
-        className="button"
-        data-tina-field={tinaField(block, "buttonText")}
-      >
-        {block.buttonText}
-      </a>
+      {block.buttons?.map((button: any, buttonIndex: number) => (
+        <a
+          href={button.link}
+          className={`button ${button.classes}`}
+          data-tina-field={tinaField(button, "title")}
+        >
+          {button.title}
+        </a>
+      ))}
     </BlockTag>
   );
 }

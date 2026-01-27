@@ -148,11 +148,11 @@ export default defineConfig({
               // Hero Block
               {
                 name: "hero",
-                label: "Hero",
+                label: "⊑⊒  Hero",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.headline ? `Hero: ${item.headline}` : "Hero",
+                      label: item?.headline ? `⊑⊒  ${item.headline}` : "⊑⊒",
                     };
                   },
                 },
@@ -204,11 +204,11 @@ export default defineConfig({
               // Text Block
               {
                 name: "text",
-                label: "Text",
+                label: "☰   Text",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.headline ? `Text: ${item.headline}` : "Text",
+                      label: item?.heading ? `☰   ${item.heading}` : `☰`,
                     };
                   },
                 },
@@ -231,18 +231,31 @@ export default defineConfig({
                   },
                   {
                     type: "object",
-                    name: "cta",
-                    label: "Call to Action",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
                     fields: [
                       {
                         type: "string",
-                        name: "text",
-                        label: "Button Text",
+                        name: "title",
+                        label: "Label",
                       },
                       {
                         type: "string",
-                        name: "url",
-                        label: "Button URL",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
                       },
                     ],
                   },
@@ -253,13 +266,11 @@ export default defineConfig({
               // Text/Image Block
               {
                 name: "textImage",
-                label: "Text/Image",
+                label: "☐☰  Text/Image",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.headline
-                        ? `Text/Image: ${item.headline}`
-                        : "Text/Image",
+                      label: item?.heading ? `☐☰  ${item.heading}` : `☐☰`,
                     };
                   },
                 },
@@ -277,7 +288,7 @@ export default defineConfig({
                   {
                     type: "image",
                     name: "image",
-                    label: "Hero Image",
+                    label: "Image",
                   },
                   {
                     type: "string",
@@ -291,18 +302,31 @@ export default defineConfig({
                   },
                   {
                     type: "object",
-                    name: "cta",
-                    label: "Call to Action",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
                     fields: [
                       {
                         type: "string",
-                        name: "text",
-                        label: "Button Text",
+                        name: "title",
+                        label: "Label",
                       },
                       {
                         type: "string",
-                        name: "url",
-                        label: "Button URL",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
                       },
                     ],
                   },
@@ -313,13 +337,11 @@ export default defineConfig({
               // Image Gallery Block
               {
                 name: "gallery",
-                label: "Gallery",
+                label: "❏❏  Gallery",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.heading
-                        ? `Gallery: ${item.heading}`
-                        : "Gallery",
+                      label: item?.heading ? `❏❏  ${item.heading}` : "❏❏",
                     };
                   },
                 },
@@ -410,13 +432,11 @@ export default defineConfig({
               // Features Block
               {
                 name: "features",
-                label: "Features",
+                label: "⊟⊟  Features",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.heading
-                        ? `Features: ${item.heading}`
-                        : "Features",
+                      label: item?.heading ? `⊟⊟  ${item.heading}` : "⊟⊟",
                     };
                   },
                 },
@@ -472,11 +492,11 @@ export default defineConfig({
               // Quote Block
               {
                 name: "quote",
-                label: "Quote",
+                label: "“”   Quote",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.author ? `Quote: ${item.author}` : "Quote",
+                      label: item?.author ? `“”   ${item.author}` : "“”",
                     };
                   },
                 },
@@ -511,13 +531,11 @@ export default defineConfig({
               // Call to Action Block
               {
                 name: "cta",
-                label: "Call to Action",
+                label: "☎!   Call to Action",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.heading
-                        ? `CTA: ${item.heading}`
-                        : "Call to Action",
+                      label: item?.heading ? `☎!   ${item.heading}` : "☎!",
                     };
                   },
                 },
@@ -541,29 +559,32 @@ export default defineConfig({
                     },
                   },
                   {
-                    type: "string",
-                    name: "buttonText",
-                    label: "Button Text",
-                  },
-                  {
-                    type: "string",
-                    name: "buttonUrl",
-                    label: "Button URL",
-                  },
-                  {
                     type: "object",
-                    name: "cta",
-                    label: "Call to Action",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
                     fields: [
                       {
                         type: "string",
-                        name: "text",
-                        label: "Button Text",
+                        name: "title",
+                        label: "Label",
                       },
                       {
                         type: "string",
-                        name: "url",
-                        label: "Button URL",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
                       },
                     ],
                   },
@@ -574,11 +595,11 @@ export default defineConfig({
               // FAQ Block
               {
                 name: "faq",
-                label: "FAQ",
+                label: "⊕   FAQ",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.heading ? `FAQ: ${item.heading}` : "FAQ",
+                      label: item?.heading ? `⊕   ${item.heading}` : `⊕`,
                     };
                   },
                 },
@@ -601,7 +622,7 @@ export default defineConfig({
                     ui: {
                       itemProps: (item) => {
                         return {
-                          label: item?.question || "New FAQ",
+                          label: item?.question || "FAQ",
                         };
                       },
                     },
@@ -627,13 +648,11 @@ export default defineConfig({
               // Custom HTML Block
               {
                 name: "html",
-                label: "Custom HTML",
+                label: "‹›   HTML",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.label
-                        ? `HTML: ${item.label}`
-                        : "Custom HTML",
+                      label: item?.label ? `‹›   ${item.label}` : "‹›",
                     };
                   },
                 },
@@ -662,13 +681,12 @@ export default defineConfig({
               // StyledText
               {
                 name: "styledText",
-                label: "Styled Text",
+                label: "[]   Styled Text",
                 ui: {
                   itemProps: (item) => {
                     // Show first 50 chars in the list
-                    const preview =
-                      item?.text?.substring(0, 50) || "Styled Text";
-                    return { label: `Styled Text: ${preview}...` };
+                    const preview = item?.text?.substring(0, 50) || "[]";
+                    return { label: `[]   ${preview}...` };
                   },
                 },
                 fields: [
@@ -826,6 +844,36 @@ export default defineConfig({
               itemProps: (item) => {
                 return {
                   label: item?.title || "Navigation Item",
+                };
+              },
+            },
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Label",
+              },
+              {
+                type: "string",
+                name: "link",
+                label: "URL",
+              },
+              {
+                type: "string",
+                name: "classes",
+                label: "CSS Classes",
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "footerLinks",
+            label: "Footer Links",
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return {
+                  label: item?.title || "Link",
                 };
               },
             },

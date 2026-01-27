@@ -12,3 +12,8 @@ label[for*="html"],
 label[for*="text"] {
   /* your label styles */
 }
+
+.flex.items-baseline {
+  border-right: 1px solid rgb(225 221 236 / var(--tw-border-opacity, 1));
+  background: white;
+}

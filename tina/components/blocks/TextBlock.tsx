@@ -37,15 +37,15 @@ export default function TextBlock({
       <div data-tina-field={tinaField(block, "body")}>
         <TinaMarkdown content={block.body} />
       </div>
-      {block.cta && (
+      {block.buttons?.map((button: any, buttonIndex: number) => (
         <a
-          href={block.cta.url}
-          className="button"
-          data-tina-field={tinaField(block.cta, "text")}
+          href={button.link}
+          className={`button ${button.classes}`}
+          data-tina-field={tinaField(button, "title")}
         >
-          {block.cta.text}
+          {button.title}
         </a>
-      )}
+      ))}
     </BlockTag>
   );
 }
