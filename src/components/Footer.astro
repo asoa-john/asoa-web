@@ -6,7 +6,7 @@ const today = new Date();
 ---
 <footer class="footer">
 	<div class="flex justify-between m-auto">
-		<div>
+		<div class="footer-half-1">
 			<a href="/" class="footer-group">
 				<img src=`${config.siteLogo}` 
 						alt=`${config.siteTitle} logo` 
@@ -102,9 +102,9 @@ const today = new Date();
 	.copyright-footer {
 		display: flex;
 		justify-content: space-between;
-		gap: 3rem;
+		gap: var(--gap);
 		margin: 0 auto;
-		padding: 2em 1em 2em 1em;
+		padding: var(--gap) 0;
 		max-width: 1000px;
 	}
 	.footer {
@@ -125,6 +125,10 @@ const today = new Date();
 	.footer > * {
 		width: 100%;
 		max-width: 1000px;
+	}
+	.footer-half-1 {
+		flex-grow: 1;
+    flex-shrink: 0;
 	}
 	.footer-group {
 		display: flex;
@@ -168,14 +172,25 @@ const today = new Date();
 	h2 a.active {
 		text-decoration: none;
 	}
-	.footer-links a {
+	.footer-links a:not(.button) {
 		border-bottom: 4px solid transparent;
 		padding: var(--button-padding);
 		color: var(--black);
+		font-size: .8rem;
+		text-transform: uppercase;
 	}
 	.footer-links a.active {
-    background: -webkit-linear-gradient(318deg, var(--color-1), var(--color-4));
+		background: -webkit-linear-gradient(318deg, var(--color-1), var(--color-4));
 		-webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+	}
+	@media (width <= 800px) {
+		.footer-group {
+			flex-direction: column;
+		}
+		.footer-links a {
+			display: block;
+			padding: 0.3rem;
+		}
 	}
 </style>

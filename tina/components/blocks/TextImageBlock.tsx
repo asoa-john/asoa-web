@@ -35,10 +35,18 @@ export default function TextImageBlock({
           data-tina-field={tinaField(block, "text")}
         >
           {block.brow && (
-            <h3 data-tina-field={tinaField(block, "brow")}>{block.brow}</h3>
+            <h3
+              className="block-brow"
+              data-tina-field={tinaField(block, "brow")}
+            >
+              {block.brow}
+            </h3>
           )}
           {block.heading && (
-            <h2 data-tina-field={tinaField(block, "heading")}>
+            <h2
+              className="block-heading"
+              data-tina-field={tinaField(block, "heading")}
+            >
               {block.heading}
             </h2>
           )}

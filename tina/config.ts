@@ -434,6 +434,11 @@ export default defineConfig({
                     fields: [
                       {
                         type: "string",
+                        name: "brow",
+                        label: "Brow",
+                      },
+                      {
+                        type: "string",
                         name: "title",
                         label: "Feature Title",
                       },
@@ -519,6 +524,11 @@ export default defineConfig({
                 fields: [
                   {
                     type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
+                  {
+                    type: "string",
                     name: "heading",
                     label: "Heading",
                   },
@@ -573,6 +583,11 @@ export default defineConfig({
                   },
                 },
                 fields: [
+                  {
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
                   {
                     type: "string",
                     name: "heading",

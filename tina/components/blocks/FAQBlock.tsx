@@ -17,8 +17,18 @@ export default function FAQBlock({
 
   return (
     <BlockTag key={blockKey} className={`faq ${blockClassName}`}>
+      {block.brow && (
+        <h3 className="block-brow" data-tina-field={tinaField(block, "brow")}>
+          {block.brow}
+        </h3>
+      )}
       {block.heading && (
-        <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
+        <h2
+          className="block-heading"
+          data-tina-field={tinaField(block, "heading")}
+        >
+          {block.heading}
+        </h2>
       )}
       <div className="faq-items">
         {block.items?.map((item: any, itemIndex: number) => (

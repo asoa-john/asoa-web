@@ -22,10 +22,17 @@ export default function TextBlock({
       data-tina-field={tinaField(block, "body")}
     >
       {block.brow && (
-        <h3 data-tina-field={tinaField(block, "brow")}>{block.brow}</h3>
+        <h3 className="block-brow" data-tina-field={tinaField(block, "brow")}>
+          {block.brow}
+        </h3>
       )}
       {block.heading && (
-        <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
+        <h2
+          className="block-heading"
+          data-tina-field={tinaField(block, "heading")}
+        >
+          {block.heading}
+        </h2>
       )}
       <div data-tina-field={tinaField(block, "body")}>
         <TinaMarkdown content={block.body} />

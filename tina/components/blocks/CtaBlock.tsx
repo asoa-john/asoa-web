@@ -16,7 +16,19 @@ export default function CtaBlock({
 
   return (
     <BlockTag key={blockKey} className={`cta ${blockClassName}`}>
-      <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
+      {block.brow && (
+        <h3 className="block-brow" data-tina-field={tinaField(block, "brow")}>
+          {block.brow}
+        </h3>
+      )}
+      {block.heading && (
+        <h2
+          className="block-heading"
+          data-tina-field={tinaField(block, "heading")}
+        >
+          {block.heading}
+        </h2>
+      )}
       {block.description && (
         <p data-tina-field={tinaField(block, "description")}>
           {block.description}

@@ -146,6 +146,9 @@ p {
   font-size: 8rem;
   line-height: 1;
 }
+.pt-0 {
+  padding-top: 0;
+}
 .pt-1 {
   padding-top: 0.25rem;
 }
@@ -331,7 +334,9 @@ section > *:not(.background-video) {
   background-repeat: no-repeat;
   padding: var(--button-padding);
   color: var(--black);
+  font-size: 0.8rem;
   text-decoration: none;
+  text-transform: uppercase;
 }
 .has-background .button {
   --color-1: white;
@@ -392,6 +397,30 @@ section > *:not(.background-video) {
   color: var(--color-3);
 }
 
+/*   B L O C K   D E F A U L T S
+ *   ===========================
+ */
+
+.block-brow {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+  font-family: var(--font-cursive);
+}
+.block-heading {
+  margin-bottom: 1rem;
+  background: -webkit-linear-gradient(316deg, var(--color-1), var(--color-5));
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  font-family: var(--font-serif);
+  -webkit-background-clip: text;
+}
+.text-white .block-heading {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: #fff;
+  -webkit-background-clip: initial;
+}
+
 /*   S L I D E T E X T
  *   =================
  */
@@ -418,6 +447,12 @@ section > *:not(.background-video) {
  *   =================================
  */
 
+/* Optional: Make slideshow images fill the container */
+.gallery-grid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 /* Hide all slides */
 .gallery-grid figure {
   opacity: 0;
@@ -425,7 +460,6 @@ section > *:not(.background-video) {
   filter: blur(100px) brightness(300%);
   transition: opacity 4s 2s ease-in-out, filter 6s ease-in-out;
 }
-
 /* Show only the current slide */
 .gallery-grid figure.current {
   opacity: 1;
@@ -433,14 +467,6 @@ section > *:not(.background-video) {
   filter: blur(0);
   transition: opacity 3s ease-in-out;
 }
-
-/* Optional: Make slideshow images fill the container */
-.gallery-grid {
-  position: relative;
-  width: 100%;
-  height: 100%; /* or whatever height you want */
-}
-
 .gallery-grid figure {
   position: absolute;
   top: 0;
@@ -448,11 +474,16 @@ section > *:not(.background-video) {
   width: 100%;
   height: 100%;
 }
-
 .gallery-grid img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+@media (width <= 800px) {
+  .gallery-grid {
+    margin-bottom: var(--gap);
+    padding-top: 66.67%;
+  }
 }
 
 /*   G A L L E R Y / T E X T   L A Y O U T
@@ -470,7 +501,7 @@ section > *:not(.background-video) {
   background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
   content: "";
 }
-@media (min-width: 768px) {
+@media (width > 800px) {
   .gallery-text {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two equal columns */
@@ -502,6 +533,7 @@ section > *:not(.background-video) {
   width: 100%;
   height: 100%;
 }
+
 .text-image__content > * {
   flex-basis: 50%;
 }
@@ -518,19 +550,6 @@ section > *:not(.background-video) {
   object-fit: cover;
   object-position: center;
 }
-.text-image__text h3 {
-  margin-bottom: 1rem;
-  font-size: 4rem;
-  font-family: var(--font-cursive);
-}
-.text-image__text h2 {
-  margin-bottom: 1rem;
-  background: -webkit-linear-gradient(316deg, var(--color-1), var(--color-5));
-  -webkit-text-fill-color: transparent;
-  font-size: 2rem;
-  font-family: var(--font-serif);
-  -webkit-background-clip: text;
-}
 .text-image__text p {
   margin: 0 0 1rem;
 }
@@ -540,6 +559,14 @@ section > *:not(.background-video) {
 .text-image__text .button {
   margin-top: 2rem;
 }
+@media (max-width: 800px) {
+  .text-image__content {
+    flex-direction: column;
+  }
+  .text-image__image {
+    padding-top: 66.67%;
+  }
+}
 
 /*   T E X T    S I N G L E
  *   ======================
@@ -547,18 +574,18 @@ section > *:not(.background-video) {
 
 .text-single {
 }
-.text-single h3 {
-  margin-bottom: 1rem;
-  font-size: 4rem;
-  font-family: var(--font-cursive);
-  text-align: center;
-}
-.text-single h2 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  font-family: var(--font-serif);
-  text-align: center;
-}
+// .text-single h3 {
+//   margin-bottom: 1rem;
+//   font-size: 4rem;
+//   font-family: var(--font-cursive);
+//   text-align: center;
+// }
+// .text-single h2 {
+//   margin-bottom: 1rem;
+//   font-size: 2rem;
+//   font-family: var(--font-serif);
+//   text-align: center;
+// }
 
 /*   Q U O T E
  *   =========
@@ -618,6 +645,24 @@ section > *:not(.background-video) {
   position: relative;
 }
 .cta h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-family: var(--font-serif);
+}
+
+/*   F A Q
+ *   =====
+ */
+
+.faq-items details {
+  summary {
+    font-weight: bold;
+  }
+  &:not(:first-of-type) {
+    margin-top: 2rem;
+  }
+}
+.faq h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
   font-family: var(--font-serif);
