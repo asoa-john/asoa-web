@@ -561,6 +561,54 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
+              // FAQ Block
+              {
+                name: "faq",
+                label: "FAQ",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading ? `FAQ: ${item.heading}` : "FAQ",
+                    };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Section Heading",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "items",
+                    label: "FAQ Items",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.question || "New FAQ",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "question",
+                        label: "Question",
+                        required: true,
+                      },
+                      {
+                        type: "rich-text",
+                        name: "answer",
+                        label: "Answer",
+                        isBody: true,
+                      },
+                    ],
+                  },
+                  blockStylingFields,
+                  sectionStylingFields,
+                ],
+              },
               // Custom HTML Block
               {
                 name: "html",

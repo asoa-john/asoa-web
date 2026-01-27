@@ -5,6 +5,7 @@ import HeroBlock from "../components/blocks/HeroBlock";
 import TextBlock from "../components/blocks/TextBlock";
 import TextImageBlock from "../components/blocks/TextImageBlock";
 import GalleryBlock from "../components/blocks/GalleryBlock";
+import FAQBlock from "../components/blocks/FAQBlock";
 import FeaturesBlock from "../components/blocks/FeaturesBlock";
 import QuoteBlock from "../components/blocks/QuoteBlock";
 import CtaBlock from "../components/blocks/CtaBlock";
@@ -80,6 +81,18 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   if (block.__typename === "PageBlocksGallery") {
     return (
       <GalleryBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
+    );
+  }
+
+  // FAQs Block
+  if (block.__typename === "PageBlocksFaq") {
+    return (
+      <FAQBlock
         key={index}
         block={block}
         blockKey={index}
