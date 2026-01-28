@@ -97,15 +97,11 @@
       "link": "/contact"
     },
     {
-      "title": "Trademark Information",
-      "link": "/trademark"
-    },
-    {
-      "title": "Sign In",
-      "link": "https://elearning.appliedscholasticsonline.com/",
-      "classes": "button"
+      "title": "Trademarks",
+      "link": "/trademark-information"
     }
   ],
+  "html": "<a href=\"https://elearning.appliedscholasticsonline.com/\" class=\"button block\">Sign In</a>",
   "social": [
     {
       "title": "Facebook",

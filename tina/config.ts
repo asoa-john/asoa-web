@@ -896,6 +896,14 @@ export default defineConfig({
             ],
           },
           {
+            type: "string",
+            name: "html",
+            label: "HTML",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
             type: "object",
             name: "social",
             label: "Social Media Links",
