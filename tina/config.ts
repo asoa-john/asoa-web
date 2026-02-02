@@ -115,6 +115,21 @@ export default defineConfig({
         label: "Pages",
         path: "src/content/page",
         format: "mdx",
+        defaultItem: () => ({
+          blocks: [
+            {
+              _template: "hero",
+              headline: "New Page Headline",
+              tagline: "Add your tagline here",
+              image: "",
+              imageAlt: "",
+              cta: {
+                text: "Get Started",
+                url: "#",
+              },
+            },
+          ],
+        }),
         ui: {
           router: ({ document }) => {
             if (document._sys.filename === "home") {
@@ -135,6 +150,7 @@ export default defineConfig({
             type: "string",
             name: "description",
             label: "Meta Description",
+            required: true,
           },
           {
             type: "object",
@@ -143,6 +159,7 @@ export default defineConfig({
             label: "Page Sections",
             ui: {
               visualSelector: true,
+              defaultItem: [],
             },
             templates: [
               // Hero Block
@@ -733,6 +750,7 @@ export default defineConfig({
             type: "string",
             name: "description",
             label: "Description",
+            required: true,
             ui: {
               component: "textarea",
             },
