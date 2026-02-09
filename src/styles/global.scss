@@ -12,8 +12,9 @@
   --gray-light: 229, 233, 240;
   --gray-dark: 34, 41, 57;
   --gray-gradient: rgba(var(--gray-light), 50%), #fff;
-  --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
-    0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
+  --box-shadow:
+    0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
+    0 16px 32px rgba(var(--gray), 33%);
   --font-sans: Arial, system-ui, sans-serif;
   --font-serif: "DM Serif Text", Georgia, serif;
   --font-cursive: "Oooh Baby", Zapfino, cursive;
@@ -24,6 +25,7 @@
   --color-5: #00dad2;
   --button-padding: 0.75rem 1rem;
   --gap: 60px;
+  --nav-height: 100px;
   font-family: Arial, system-ui, sans-serif;
 }
 @font-face {
@@ -52,6 +54,7 @@
 }
 body {
   margin: auto;
+  background-color: #fff;
   padding: 0;
   font-family: var(--font-sans);
 }
@@ -118,7 +121,7 @@ section a:not(.button):hover {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
-section > *:not(.background-video) {
+section > *:not(.background-video, .background-image) {
   /* max-width: 800px; */
 }
 
@@ -129,6 +132,7 @@ section > *:not(.background-video) {
 .section-wrapper {
   position: relative;
 }
+.section-wrapper .background-image,
 .section-wrapper .background-video {
   position: absolute;
   z-index: -1;
@@ -153,9 +157,12 @@ section > *:not(.background-video) {
   cursor: pointer;
   border: none;
   border-radius: var(--border-radius);
-  background: linear-gradient(to right, var(--color-1) 30%, var(--color-5)),
+  background:
+    linear-gradient(to right, var(--color-1) 30%, var(--color-5)),
     linear-gradient(to right, var(--color-1), var(--color-5) 70%);
-  background-position: var(--border-radius) 0, var(--border-radius) 100%;
+  background-position:
+    var(--border-radius) 0,
+    var(--border-radius) 100%;
   background-size: calc(100% - var(--border-radius) - var(--border-radius))
     var(--border-width);
   background-repeat: no-repeat;
@@ -250,6 +257,81 @@ section > *:not(.background-video) {
   -webkit-background-clip: initial;
 }
 
+/*
+ *   H E R O
+ *   =======
+ */
+
+.section-wrapper.has-background:has(.hero):before {
+  position: absolute;
+  z-index: -1;
+  filter: blur(100px);
+  inset: -50px 0 0 0;
+  background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
+  content: "";
+}
+.section-wrapper.has-background:has(.hero) .background-image {
+  /* opacity: 0.66; */
+  filter: contrast(0.3);
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding-top: var(--nav-height);
+  &::before {
+    position: absolute;
+    opacity: 0.5;
+    z-index: -1;
+    inset: 0;
+    background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
+    content: "";
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .hero-content {
+    h1 {
+      font-size: 4rem;
+      font-family: var(--font-cursive);
+      text-align: center;
+      text-wrap: balance;
+    }
+    p {
+      font-size: 1.5rem;
+      font-family: var(--font-serif);
+      text-align: center;
+      text-wrap: balance;
+    }
+  }
+}
+
+@media (width > 800px) {
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: var(--gap); /* Space between columns */
+    & > *:not(.background-video, .background-image) {
+      grid-column: 2; /* Second column */
+      /* Each subsequent div gets its own row automatically */
+    }
+    & > *:nth-child(1):not(.background-video, .background-image),
+    &:has(.background-video, .background-image) > *:nth-child(2) {
+      grid-row: 1/-1; /* Span all rows (stretches to match height) */
+      grid-column: 1; /* First column */
+    }
+    .hero-content {
+      h1,
+      p {
+        text-align: left;
+      }
+    }
+  }
+}
+
 /*   S L I D E T E X T
  *   =================
  */
@@ -287,7 +369,9 @@ section > *:not(.background-video) {
   opacity: 0;
   z-index: 0;
   filter: blur(100px) brightness(300%);
-  transition: opacity 4s 2s ease-in-out, filter 6s ease-in-out;
+  transition:
+    opacity 4s 2s ease-in-out,
+    filter 6s ease-in-out;
 }
 /* Show only the current slide */
 .gallery-grid figure.current {
@@ -336,12 +420,12 @@ section > *:not(.background-video) {
     grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: var(--gap); /* Space between columns */
   }
-  .gallery-text > *:not(.background-video) {
+  .gallery-text > *:not(.background-video, .background-image) {
     grid-column: 2; /* Second column */
     /* Each subsequent div gets its own row automatically */
   }
-  .gallery-text > *:nth-child(1):not(.background-video),
-  .gallery-text:has(.background-video) > *:nth-child(2) {
+  .gallery-text > *:nth-child(1):not(.background-video, .background-image),
+  .gallery-text:has(.background-video, .background-image) > *:nth-child(2) {
     grid-row: 1 / -1; /* Span all rows (stretches to match height) */
     grid-column: 1; /* First column */
   }
@@ -634,7 +718,7 @@ section.contain.max-width-full {
   background-image: linear-gradient(180deg, transparent, white);
 }
 @supports (animation-timeline: view()) {
-  .parallax-img-1 img {
+  .parallax-img-1 .text-image__image img {
     animation-timeline: view();
     animation-timing-function: linear;
     animation-name: parallax-y-1;
@@ -675,6 +759,7 @@ section.contain.max-width-full {
  *   ==============
  */
 
+li,
 p {
   line-height: 1.6;
 }

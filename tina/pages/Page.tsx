@@ -223,18 +223,24 @@ const TinaPage = (props: Props) => {
           if (section.maxWidth)
             classNames.push(`max-width-${section.maxWidth}`);
 
-          const styles: React.CSSProperties = {};
-          if (section.backgroundImage) {
-            styles.backgroundImage = `url(${section.backgroundImage})`;
-          }
+          // const styles: React.CSSProperties = {};
+          // if (section.backgroundImage) {
+          //   styles.backgroundImage = `url(${section.backgroundImage})`;
+          // }
 
           return (
             <section
               key={groupIndex}
               className={classNames.join(" ")}
-              style={styles}
+              // style={styles}
               data-tina-field={tinaField(section)}
             >
+              {section.backgroundImage && (
+                <img
+                  src={section.backgroundImage}
+                  className="background-image"
+                />
+              )}
               {section.backgroundVideoUrl && (
                 <video
                   className="background-video"
@@ -299,7 +305,7 @@ const TinaPage = (props: Props) => {
               </video>
             )}
             {group.map((block, blockIndex) =>
-              renderBlock(block, `${groupIndex}-${blockIndex}`, true)
+              renderBlock(block, `${groupIndex}-${blockIndex}`, true),
             )}
           </section>
         );
