@@ -199,9 +199,10 @@ const TinaPage = (props: Props) => {
             section.backgroundColor ||
             section.backgroundImage ||
             section.backgroundVideoUrl ||
-            section.paddingSize ||
+            section.paddingTop ||
+            section.paddingBot ||
             section.maxWidth ||
-            section.groupClassName;
+            section.sectionClassName;
 
           if (!hasSectionStyling) {
             return renderBlock(block, groupIndex, false);
@@ -215,11 +216,14 @@ const TinaPage = (props: Props) => {
             section.backgroundVideoUrl
           )
             classNames.push("has-background");
-          if (section.groupClassName) classNames.push(section.groupClassName);
+          if (section.sectionClassName)
+            classNames.push(section.sectionClassName);
           if (section.backgroundColor)
             classNames.push(`bg-${section.backgroundColor}`);
-          if (section.paddingSize)
-            classNames.push(`padding-${section.paddingSize}`);
+          if (section.paddingTop)
+            classNames.push(`padtop-${section.paddingTop}`);
+          if (section.paddingBot)
+            classNames.push(`padbot-${section.paddingBot}`);
           if (section.maxWidth)
             classNames.push(`max-width-${section.maxWidth}`);
 
@@ -230,6 +234,7 @@ const TinaPage = (props: Props) => {
 
           return (
             <section
+              id={section.sectionId}
               key={groupIndex}
               className={classNames.join(" ")}
               // style={styles}
@@ -263,7 +268,7 @@ const TinaPage = (props: Props) => {
         const firstBlock = group[0];
         const section = firstBlock.section || {};
 
-        // Build group className using groupClassName from first block
+        // Build group className using sectionClassName from first block
         const classNames = ["section-wrapper"];
         if (
           section.backgroundColor ||
@@ -271,11 +276,13 @@ const TinaPage = (props: Props) => {
           section.backgroundVideoUrl
         )
           classNames.push("has-background");
-        if (section.groupClassName) classNames.push(section.groupClassName);
+        if (section.sectionClassName) classNames.push(section.sectionClassName);
         if (section.backgroundColor)
           classNames.push(`bg-${section.backgroundColor}`);
-        if (section.paddingSize)
-          classNames.push(`padding-${section.paddingSize}`);
+        if (section.paddingTop)
+          classNames.push(`padding-${section.paddingTop}`);
+        if (section.paddingBot)
+          classNames.push(`padding-${section.paddingBot}`);
         if (section.maxWidth) classNames.push(`max-width-${section.maxWidth}`);
 
         // Build inline styles
@@ -288,6 +295,7 @@ const TinaPage = (props: Props) => {
 
         return (
           <section
+            id={section.sectionId}
             key={groupIndex}
             className={classNames.join(" ")}
             style={styles}

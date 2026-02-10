@@ -25,10 +25,15 @@ const sectionStylingFields = {
     },
     {
       type: "string",
-      name: "groupClassName",
-      label: "Group CSS Classes",
-      description:
-        "CSS classes for the group wrapper (only used if this is the first block in a group)",
+      name: "sectionId",
+      label: "ID",
+      description: "For internal jumplinks",
+    },
+    {
+      type: "string",
+      name: "sectionClassName",
+      label: "Section CSS Classes",
+      description: "CSS classes for the section or group wrapper",
     },
     {
       type: "string",
@@ -64,8 +69,14 @@ const sectionStylingFields = {
     },
     {
       type: "string",
-      name: "paddingSize",
-      label: "Padding Size",
+      name: "paddingTop",
+      label: "Top Padding",
+      options: ["", "none", "small", "medium", "large", "xlarge"],
+    },
+    {
+      type: "string",
+      name: "paddingBot",
+      label: "Bottom Padding",
       options: ["", "none", "small", "medium", "large", "xlarge"],
     },
     {

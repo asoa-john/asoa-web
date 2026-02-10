@@ -208,9 +208,9 @@ const TinaPage = (props: Props) => {
         const firstBlock = group[0];
         const section = firstBlock.section || {};
 
-        // Build group className using groupClassName from first block
+        // Build group className using sectionClassName from first block
         const classNames = ["section-wrapper"];
-        if (section.groupClassName) classNames.push(section.groupClassName);
+        if (section.sectionClassName) classNames.push(section.sectionClassName);
         if (section.backgroundColor)
           classNames.push(`bg-${section.backgroundColor}`);
         if (section.paddingSize)
@@ -233,7 +233,7 @@ const TinaPage = (props: Props) => {
             data-tina-field={tinaField(firstBlock, "section")}
           >
             {group.map((block, blockIndex) =>
-              renderBlock(block, `${groupIndex}-${blockIndex}`, true)
+              renderBlock(block, `${groupIndex}-${blockIndex}`, true),
             )}
           </section>
         );

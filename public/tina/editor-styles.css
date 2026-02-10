@@ -5,7 +5,8 @@ textarea[name*="text"] {
   color: #ddd !important;
   font-size: 14px !important;
   line-height: 1.6 !important;
-  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", monospace !important;
+  font-family:
+    "Monaco", "Menlo", "Ubuntu Mono", "Consolas", monospace !important;
 }
 
 label[for*="html"],
@@ -49,6 +50,9 @@ label[for*="text"] {
     /* background: var(--tina-color-grey-1); */
     /* color: var(--tina-color-grey-10); */
   }
+  body.tina-tailwind {
+    color: #fff;
+  }
   div .h-dvh {
     background: #0e050e var(--tina-color-grey-0);
   }
@@ -64,7 +68,7 @@ label[for*="text"] {
   .text-gray-500 {
     color: var(--tina-color-grey-7);
   }
-  .text-gray-600 {
+  .text-gray-600:not(.tina-prose) {
     color: var(--tina-color-grey-7);
   }
   .text-gray-700 {
@@ -107,7 +111,7 @@ label[for*="text"] {
   .bg-gray-50\/50 {
     background-color: var(--tina-color-grey-1);
   }
-  .bg-white {
+  .bg-white:not(.tina-prose) {
     background-color: var(--tina-color-grey-1);
   }
   .bg-gray-50 {
@@ -120,7 +124,8 @@ label[for*="text"] {
     background-color: #544100;
   }
   img[style*="background-image: linear-gradient(45deg, rgb(238, 238, 238) 25%, transparent 25%),"] {
-    background-image: linear-gradient(45deg, #565165 25%, transparent 25%),
+    background-image:
+      linear-gradient(45deg, #565165 25%, transparent 25%),
       linear-gradient(-45deg, #565165 25%, transparent 25%),
       linear-gradient(45deg, transparent 75%, #565165 75%),
       linear-gradient(-45deg, transparent 75%, #565165 75%) !important;
@@ -183,5 +188,13 @@ label[for*="text"] {
   .flex.items-baseline {
     border-right: 1px solid var(--tw-color-grey-3);
     background: var(--tina-color-grey-0);
+  }
+  /* Drag & drop fields */
+  .text-center.bg-gray-100.text-gray-300.font-normal {
+    background-color: var(--tina-color-grey-0);
+  }
+  /* Icons */
+  svg.w-5.h-auto.opacity-30.transition-all.ease-out.duration-150 {
+    fill: white;
   }
 }

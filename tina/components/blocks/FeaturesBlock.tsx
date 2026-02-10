@@ -42,7 +42,10 @@ export default function FeaturesBlock({
               />
             )}
             <h3 data-tina-field={tinaField(item, "title")}>{item.title}</h3>
-            <div data-tina-field={tinaField(item, "richText")}>
+            <div
+              className="rich-text"
+              data-tina-field={tinaField(item, "richText")}
+            >
               <TinaMarkdown content={item.richText} />
             </div>
             <div data-tina-field={tinaField(item, "styledText")}>
