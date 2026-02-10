@@ -93,6 +93,7 @@ ol {
 }
 li,
 p {
+  margin-top: 0;
   margin-bottom: 1rem;
   line-height: 1.6;
 }
@@ -120,6 +121,17 @@ li:nth-child(2)::marker {
 }
 li:nth-last-child(2)::marker {
   color: var(--color-4);
+}
+blockquote {
+  background: -webkit-linear-gradient(130deg, var(--color-4), var(--color-2));
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1.8rem;
+  font-family: var(--font-cursive);
+  text-decoration: none;
+  text-wrap: balance;
+  -webkit-background-clip: text;
 }
 table {
   margin: 0;
@@ -246,6 +258,30 @@ section > *:not(.background-video, .background-image) {
   }
   &medium {
     padding-bottom: var(--padding) !important;
+  }
+}
+.contain {
+  &.padtop- {
+    &none {
+      margin-top: 0 !important;
+    }
+    &small {
+      margin-top: calc(var(--padding) / 2) !important;
+    }
+    &medium {
+      margin-top: var(--padding) !important;
+    }
+  }
+  &.padbot- {
+    &none {
+      margin-bottom: 0 !important;
+    }
+    &small {
+      margin-bottom: calc(var(--padding) / 2) !important;
+    }
+    &medium {
+      margin-bottom: var(--padding) !important;
+    }
   }
 }
 
@@ -720,6 +756,7 @@ section > *:not(.background-video, .background-image) {
   &[open] {
     .faq-answer {
       animation: expand var(--speed) cubic-bezier(0, 0, 1, 1);
+      padding-top: 1rem;
     }
     summary::before {
       transform: rotate(135deg);
@@ -1052,4 +1089,7 @@ section.contain.max-width-full {
 }
 .bg-light-gray {
   background-image: linear-gradient(130deg, var(--light-1), var(--light-5));
+}
+.bg-white {
+  background-color: white;
 }
