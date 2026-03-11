@@ -483,17 +483,17 @@ section > *:not(.background-video, .background-image) {
   margin-top: 0.5em;
   margin-bottom: -0.5em;
   height: 1em;
-}
-.slidetext-word {
-  display: block;
-  opacity: 0;
-  filter: blur(0.1em);
-  transition: all 2s cubic-bezier(0.5, 0, 0.5, 1);
-  line-height: 0;
-}
-.slidetext-word.reveal {
-  opacity: 1;
-  filter: blur(0);
+  i {
+    display: block;
+    opacity: 0;
+    filter: blur(0.1em);
+    transition: all 2s cubic-bezier(0.5, 0, 0.5, 1);
+    line-height: 0;
+  }
+  i.reveal {
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
 /*   G A L L E R Y   S L I D E S H O W

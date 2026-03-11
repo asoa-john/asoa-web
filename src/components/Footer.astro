@@ -74,6 +74,28 @@ const today = new Date();
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const slideshows = document.querySelectorAll('.slidetext');
+    
+    slideshows.forEach((gallery) => {
+      const words = gallery.querySelectorAll('i');
+      if (words.length <= 1) return;
+      
+      const duration = parseInt(gallery.dataset.slideDuration || '3333');
+      let revealIndex = 0;
+      
+      // First slide already has 'reveal' class from render
+      
+      setInterval(() => {
+        words[revealIndex].classList.remove('reveal');
+        revealIndex = (revealIndex + 1) % words.length;
+        words[revealIndex].classList.add('reveal');
+      }, duration);
+    });
+  });
+</script>
+
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', () => {
     const slidetexts = document.querySelectorAll('.slidetext');
     slidetexts.forEach((span) => {
       let revealIndex = 0;
@@ -97,7 +119,7 @@ const today = new Date();
       }, '3333');
     });
   });
-</script>
+</script> -->
 
 <style>
 	.copyright-footer {
