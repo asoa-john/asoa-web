@@ -148,6 +148,19 @@ export default defineConfig({
             }
             return `/${document._sys.filename}`;
           },
+          filename: {
+            slugify: (values) => {
+              if (!values?.title) return "untitled";
+              return values.title
+                .trim()
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "") // ñ → n, é → e, etc.
+                .replace(/[^a-z0-9\s-]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-");
+            },
+          },
         },
         fields: [
           {
@@ -747,6 +760,19 @@ export default defineConfig({
         ui: {
           router: ({ document }) => {
             return `/blog/${document._sys.filename}`;
+          },
+          filename: {
+            slugify: (values) => {
+              if (!values?.title) return "untitled";
+              return values.title
+                .trim()
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9\s-]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-");
+            },
           },
         },
         fields: [

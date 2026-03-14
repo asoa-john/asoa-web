@@ -114,6 +114,10 @@ label[for*="text"] {
   .bg-white:not(.tina-prose) {
     background-color: var(--tina-color-grey-1);
   }
+  .hover\:bg-white:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(70 70 70 / var(--tw-bg-opacity, 1));
+  }
   .bg-gray-50 {
     background-color: var(--tina-color-grey-1);
   }
@@ -182,6 +186,9 @@ label[for*="text"] {
   .text-blue-600 {
     color: #9eceff;
   }
+  .text-black {
+    color: white;
+  }
   .bg-blue-100\/50 {
     background-color: rgba(0, 110, 219, 0.5);
   }
@@ -196,5 +203,16 @@ label[for*="text"] {
   /* Icons */
   svg.w-5.h-auto.opacity-30.transition-all.ease-out.duration-150 {
     fill: white;
+  }
+  /* "View in rich-text editor" button */
+  .bg-white.cursor-pointer.border-gray-200.hover\:text-white.hover\:bg-blue-500 {
+    color: #fff;
+  }
+  .bg-white.cursor-pointer.border-gray-200.hover\:text-white.hover\:bg-blue-500:hover {
+    background-color: #444;
+  }
+  /* Tag picker tooltip popup */
+  div[role="toolbar"].bg-popover {
+    background: #363636;
   }
 }

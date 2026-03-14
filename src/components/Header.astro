@@ -14,7 +14,7 @@ import IconLink from "./react/IconLink";
 					 class="header-group-logo" />
 			<div class="header-group-text">
 				<h2>{config.siteTitle}</h2>
-				<h3>{config.siteTagline}</h3>
+				<!-- <h3>{config.siteTagline}</h3> -->
 			</div>
 	  </a>
 		<div class="header-links" tabindex="1" aria-label="Navigation Menu">
@@ -64,7 +64,8 @@ import IconLink from "./react/IconLink";
 		text-decoration: none;
 	}
 	.header-group-text h2 {
-		width: 145px;
+		width: 200px;
+		font-size: 1.3rem;
 		line-height: 1.1;
 		font-family: var(--font-serif);
 	}
@@ -108,9 +109,9 @@ import IconLink from "./react/IconLink";
 	}
 	.header-links {
 		display: flex;
+		position: relative;
 		flex-wrap: wrap;
 		justify-content: end;
-		position: relative;
 		transition: all 0.3s ease;
 	}
 	.header-links > a {
@@ -119,52 +120,70 @@ import IconLink from "./react/IconLink";
 	}
 	@media (width <= 800px) {
 		.header-links {
+			display: block;
 			position: absolute;
 			top: 0;
 			right: 0;
-			display: block;
-      background: transparent;
-		}
-		.header-links a {
-			opacity: 0 !important;
-			display: block;
-			padding: 0;
-			line-height: 0;
-      margin-bottom: -1rem;
-			z-index: -1;
-		  transition: all 0.3s ease;
+			z-index: 2;
+			border-radius: 1rem;
+			padding: 2rem;
 		}
 		.header-links:focus-within {
+			top: var(--padding);
+			right: var(--padding);
 			background: #ffffff;
 		}
-		.header-links:focus-within > a {
-			opacity: 1 !important;
-			line-height: 1.1;
-      margin-bottom: 0;
-			z-index: 1;
+		.header-links::after {
+			position: absolute;
+			opacity: 0.66;
+			z-index: -1;
+			filter: blur(100px);
+			inset: 0;
+      background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
+			content: "";
 		}
-		.header-links > a:hover {
-			color: black;
+		.header-links:focus-within::after {
 		}
 		.header-links::before {
-			position: absolute;
+			position: fixed;
 			top: 2rem;
 			right: 2.5rem;
 			transition: all 0.3s ease;
-			width: 32px;
-			height: 32px;
 			background-image: url("data:image/svg+xml,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20800%20800%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xml%3Aspace%3D%22preserve%22%20xmlns%3Aserif%3D%22http%3A%2F%2Fwww.serif.com%2F%22%20style%3D%22fill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A2%3B%22%3E%3Cg%3E%3Crect%20id%3D%22Icons%22%20x%3D%22-12800%22%20y%3D%22-2400%22%20width%3D%2216000%22%20height%3D%2210000%22%20style%3D%22fill%3Anone%3B%22%2F%3E%3Cg%20id%3D%22Icons1%22%20serif%3Aid%3D%22Icons%22%3E%3Cg%20id%3D%22hamburger-1%22%3E%3Cg%3E%3Crect%20x%3D%2290.318%22%20y%3D%22586.892%22%20width%3D%22617.103%22%20height%3D%2288.035%22%2F%3E%3C%2Fg%3E%3Cg%3E%3Crect%20x%3D%2293.024%22%20y%3D%22355.054%22%20width%3D%22617.103%22%20height%3D%2288.035%22%2F%3E%3C%2Fg%3E%3Cg%3E%3Crect%20x%3D%2293.024%22%20y%3D%22123.216%22%20width%3D%22617.103%22%20height%3D%2288.035%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 			background-size: 100% 100%;
 			background-repeat: no-repeat;
+			width: 32px;
+			height: 32px;
 			content: "";
 		}
 		.header-links:focus-within::before {
 			opacity: 0;
 			z-index: -1;
 		}
+		.header-links a {
+			display: block;
+			position: relative;
+			opacity: 0 !important;
+			z-index: -1;
+		  transition: all 0.3s ease;
+      margin-bottom: -1rem;
+			padding: 0;
+			line-height: 0;
+		}
+		.header-links:focus-within > a {
+			opacity: 1 !important;
+			z-index: 1;
+      margin-bottom: 0;
+			padding: 1rem 2rem;
+			line-height: 1.1;
+		}
+		.header-links > a:hover {
+			color: black;
+		}
 	}
 @media (width > 800px) {
   .hide-on-desktop {
     display: none !important;
   }
+}
 </style>
