@@ -24,18 +24,18 @@ label[for*="text"] {
   html,
   body,
   #root {
-    --tina-color-primary-light: #2296fe;
+    --tina-color-primary-light: #0574e4;
     --tina-color-primary: #0084ff;
-    --tina-color-primary-dark: #0574e4;
-    --tina-color-error-light: #eb6337;
+    --tina-color-primary-dark: #2296fe;
+    --tina-color-error-light: #dc4419;
     --tina-color-error: #ec4815;
-    --tina-color-error-dark: #dc4419;
-    --tina-color-warning-light: #f5e06e;
+    --tina-color-error-dark: #eb6337;
+    --tina-color-warning-light: #d3ba38;
     --tina-color-warning: #e9d050;
-    --tina-color-warning-dark: #d3ba38;
-    --tina-color-success-light: #57c355;
+    --tina-color-warning-dark: #f5e06e;
+    --tina-color-success-light: #249a21;
     --tina-color-success: #3cad3a;
-    --tina-color-success-dark: #249a21;
+    --tina-color-success-dark: #57c355;
     --tina-color-grey-10: #ffffff !important;
     --tina-color-grey-9: #f6f6f6 !important;
     --tina-color-grey-8: #edecf3 !important;

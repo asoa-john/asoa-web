@@ -57,7 +57,7 @@ import IconLink from "./react/IconLink";
 	.header-group-text {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: center;
 	}
 	.header-group {
 		color: var(--black);
@@ -73,6 +73,14 @@ import IconLink from "./react/IconLink";
 		width: 7rem;
 		font-size: 0.7rem;
 		font-family: var(--font-sans);
+	}
+	@media (width <= 420px) {
+		.header-group-text h2 {
+			font-size: 4.95vw;
+		}
+		.header-group-logo {
+			margin-right: 4.57vw;
+		}
 	}
 	h3 {
 		margin: 0;
@@ -181,9 +189,17 @@ import IconLink from "./react/IconLink";
 			color: black;
 		}
 	}
-@media (width > 800px) {
-  .hide-on-desktop {
-    display: none !important;
+	@media (width <= 420px) {
+		header {
+			padding: 1rem var(--padding);
+		}
+		.header-links::before {
+			right: var(--padding);
+		}
+	}
+  @media (width > 800px) {
+		.hide-on-desktop {
+			display: none !important;
+		}
   }
-}
 </style>

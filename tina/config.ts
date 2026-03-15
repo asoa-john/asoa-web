@@ -134,10 +134,6 @@ export default defineConfig({
               tagline: "Add your tagline here",
               image: "",
               imageAlt: "",
-              cta: {
-                text: "Get Started",
-                url: "#",
-              },
             },
           ],
         }),
