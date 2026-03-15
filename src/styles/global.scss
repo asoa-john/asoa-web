@@ -434,7 +434,7 @@ section > *:not(.background-video, .background-image) {
 section.hero::after,
 .section-wrapper:has(.hero)::after {
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   filter: blur(100px);
   inset: -50px 0 0 0;
   background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
