@@ -16,7 +16,7 @@ export default function FAQBlock({
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag key={blockKey} className={`faq ${blockClassName}`}>
+    <BlockTag key={blockKey} className={`:: faq ${blockClassName}`}>
       {block.brow && (
         <h3 className="block-brow" data-tina-field={tinaField(block, "brow")}>
           {block.brow}

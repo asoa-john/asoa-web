@@ -16,7 +16,7 @@ export default function TextImageBlock({
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag className={`text-image ${blockClassName}`}>
+    <BlockTag className={`:: text-image ${blockClassName}`}>
       <div className="text-image__content">
         <div
           className="text-image__image"

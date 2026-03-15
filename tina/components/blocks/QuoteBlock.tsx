@@ -15,7 +15,7 @@ export default function QuoteBlock({
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag key={blockKey} className={`quote ${blockClassName}`}>
+    <BlockTag key={blockKey} className={`:: quote ${blockClassName}`}>
       <blockquote data-tina-field={tinaField(block, "quote")}>
         <svg
           width="47"

@@ -17,7 +17,7 @@ export default function HtmlBlock({
   return (
     <BlockTag
       key={blockKey}
-      className={`custom-html ${blockClassName}`}
+      className={`:: custom-html ${blockClassName}`}
       data-tina-field={tinaField(block, "html")}
       dangerouslySetInnerHTML={{ __html: block.html || "" }}
       suppressHydrationWarning

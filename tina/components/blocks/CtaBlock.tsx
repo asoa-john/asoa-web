@@ -15,7 +15,7 @@ export default function CtaBlock({
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag key={blockKey} className={`cta ${blockClassName}`}>
+    <BlockTag key={blockKey} className={`:: cta ${blockClassName}`}>
       {block.brow && (
         <h3 className="block-brow" data-tina-field={tinaField(block, "brow")}>
           {block.brow}

@@ -17,7 +17,7 @@
     0 16px 32px rgba(var(--gray), 33%);
   --font-sans: Arial, system-ui, sans-serif;
   --font-serif: "DM Serif Text", Georgia, serif;
-  --font-cursive: "Oooh Baby", Zapfino, cursive;
+  --font-cursive: "Oooh Baby", "Segoe Script", cursive;
   --color-1: #a758b2;
   --color-2: #7d78ba;
   --color-3: #5499c2;
@@ -80,6 +80,7 @@ body {
   font-family: var(--font-sans);
 }
 main:first-of-type {
+  padding-top: var(--nav-height);
   overflow: hidden;
 }
 figure {
@@ -183,38 +184,29 @@ section {
 }
 @media (min-width: 800px) {
   /* restrict inner content to 600px wide */
-  :not(section).max-width-narrow {
+  :not(section).max-width-narrow,
+  section.max-width-narrow .\:\: {
     margin-right: auto;
     margin-left: auto;
     max-width: 600px;
   }
-  section.max-width-narrow {
-    padding-right: calc(50vw - 300px);
-    padding-left: calc(50vw - 300px);
-  }
 }
 @media (min-width: 1100px) {
   /* restrict inner content to 900px wide */
-  :not(section).max-width-medium {
+  :not(section).max-width-medium,
+  section.max-width-medium .\:\: {
     margin-right: auto;
     margin-left: auto;
     max-width: 900px;
   }
-  section.max-width-medium {
-    padding-right: calc(50vw - 450px);
-    padding-left: calc(50vw - 450px);
-  }
 }
 @media (min-width: 1300px) {
   /* restrict inner content to 1200px wide */
-  :not(section).max-width-wide {
+  :not(section).max-width-wide,
+  section.max-width-wide .\:\: {
     margin-right: auto;
     margin-left: auto;
     max-width: 1200px;
-  }
-  section.max-width-wide {
-    padding-right: calc(50vw - 600px);
-    padding-left: calc(50vw - 600px);
   }
 }
 section a:not(.button) {
@@ -439,7 +431,8 @@ section > *:not(.background-video, .background-image) {
  *   =======
  */
 
-.section-wrapper.has-background:has(.hero):before {
+section.hero::after,
+.section-wrapper:has(.hero)::after {
   position: absolute;
   z-index: -1;
   filter: blur(100px);
@@ -455,7 +448,6 @@ section > *:not(.background-video, .background-image) {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  padding-top: var(--nav-height);
   &::before {
     position: absolute;
     opacity: 0.5;
@@ -484,6 +476,10 @@ section > *:not(.background-video, .background-image) {
       text-wrap: balance;
     }
   }
+}
+section.hero {
+  position: relative;
+  background-color: #ffffff99;
 }
 
 @media (width > 800px) {

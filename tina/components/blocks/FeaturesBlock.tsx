@@ -17,7 +17,7 @@ export default function FeaturesBlock({
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag key={blockKey} className={`features ${blockClassName}`}>
+    <BlockTag key={blockKey} className={`:: features ${blockClassName}`}>
       {block.brow && (
         <h3 className="block-brow" data-tina-field={tinaField(block, "brow")}>
           {block.brow}

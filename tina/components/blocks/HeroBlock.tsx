@@ -17,7 +17,7 @@ export default function HeroBlock({
   return (
     <BlockTag
       key={blockKey}
-      className={`hero ${blockClassName}`}
+      className={`:: hero ${blockClassName}`}
       data-tina-field={tinaField(block)}
     >
       {block.image && (

@@ -39,7 +39,7 @@ export default function GalleryBlock({
   return (
     <BlockTag
       key={blockKey}
-      className={`gallery ${blockClassName} ${isSlideshow ? "slideshow" : ""}`}
+      className={`:: gallery ${blockClassName} ${isSlideshow ? "slideshow" : ""}`}
       data-slide-duration={isSlideshow ? slideDuration : undefined}
     >
       {block.heading && (

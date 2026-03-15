@@ -18,7 +18,7 @@ export default function StyledTextBlock({
   return (
     <BlockTag
       key={blockKey}
-      className={`styled-text ${blockClassName}`}
+      className={`:: styled-text ${blockClassName}`}
       data-tina-field={tinaField(block, "text")}
     >
       <StyledText text={block.text || ""} />
