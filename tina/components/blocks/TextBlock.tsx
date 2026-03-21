@@ -39,6 +39,7 @@ export default function TextBlock({
       </div>
       {block.buttons?.map((button: any, buttonIndex: number) => (
         <a
+          key={buttonIndex}
           href={button.link}
           className={`button ${button.classes}`}
           data-tina-field={tinaField(button, "title")}

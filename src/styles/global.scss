@@ -188,6 +188,8 @@ section {
   section.max-width-narrow .\:\: {
     margin-right: auto;
     margin-left: auto;
+    width: 100%;
+    min-width: unset;
     max-width: 600px;
   }
 }
@@ -197,6 +199,8 @@ section {
   section.max-width-medium .\:\: {
     margin-right: auto;
     margin-left: auto;
+    width: 100%;
+    min-width: unset;
     max-width: 900px;
   }
 }
@@ -206,6 +210,8 @@ section {
   section.max-width-wide .\:\: {
     margin-right: auto;
     margin-left: auto;
+    width: 100%;
+    min-width: unset;
     max-width: 1200px;
   }
 }
