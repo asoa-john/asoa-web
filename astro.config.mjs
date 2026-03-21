@@ -16,4 +16,7 @@ export default defineConfig({
     tinaDirective(),
     fixMissingBlocks(),
   ],
+  redirects: {
+    "/blog": "/blog/1",
+  },
 });
