@@ -188,8 +188,6 @@ section {
   section.max-width-narrow .\:\: {
     margin-right: auto;
     margin-left: auto;
-    width: 100%;
-    min-width: unset;
     max-width: 600px;
   }
 }
@@ -199,8 +197,6 @@ section {
   section.max-width-medium .\:\: {
     margin-right: auto;
     margin-left: auto;
-    width: 100%;
-    min-width: unset;
     max-width: 900px;
   }
 }
@@ -210,8 +206,6 @@ section {
   section.max-width-wide .\:\: {
     margin-right: auto;
     margin-left: auto;
-    width: 100%;
-    min-width: unset;
     max-width: 1200px;
   }
 }
@@ -600,16 +594,35 @@ section.hero {
     grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: var(--gap); /* Space between columns */
   }
-  .gallery-text > *:not(.background-video, .background-image) {
+  .gallery-text .\:\::last-of-type {
     grid-column: 2; /* Second column */
     /* Each subsequent div gets its own row automatically */
+    margin: 0 auto 0 0;
   }
-  .gallery-text > *:nth-child(1):not(.background-video, .background-image),
-  .gallery-text:has(.background-video, .background-image) > *:nth-child(2) {
-    grid-row: 1 / -1; /* Span all rows (stretches to match height) */
+  .gallery-text .\:\::first-of-type {
+    // grid-row: 1 / -1; /* Span all rows (stretches to match height) */
     grid-column: 1; /* First column */
+    margin: 0 0 0 auto;
   }
 }
+// @media (min-width: 800px) {
+section.gallery-text.max-width-narrow .\:\: {
+  width: 100%;
+  max-width: 300px;
+}
+// }
+// @media (min-width: 1100px) {
+section.gallery-text.max-width-medium .\:\: {
+  width: 100%;
+  max-width: 450px;
+}
+// }
+// @media (min-width: 1300px) {
+section.gallery-text.max-width-wide .\:\: {
+  width: 100%;
+  max-width: 600px;
+}
+// }
 
 .nav-cushion {
   margin-top: 100px;
