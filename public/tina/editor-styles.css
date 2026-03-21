@@ -24,6 +24,7 @@ label[for*="text"] {
   html,
   body,
   #root {
+    color-scheme: dark;
     --tina-color-primary-light: #0574e4;
     --tina-color-primary: #0084ff;
     --tina-color-primary-dark: #2296fe;
