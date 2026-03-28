@@ -890,6 +890,35 @@ section.contain.max-width-full {
   background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
   content: "";
 }
+.blur-matte,
+.hero-image {
+  position: relative;
+}
+.blur-matte::before,
+.hero-image::before,
+.hero-image::after {
+  position: absolute;
+  z-index: -1;
+  filter: blur(6vw);
+  inset: 0;
+  background: image-set(attr(data-src));
+  content: "";
+}
+.hero-image::after {
+  opacity: 0.5;
+  mix-blend-mode: plus-lighter;
+  background: linear-gradient(130deg, var(--color-1), var(--color-5));
+}
+.hero-image {
+  padding: var(--padding);
+  aspect-ratio: 4 / 3;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
 .fade-white-top,
 .fade-white-bottom {
   position: relative;
@@ -1135,4 +1164,10 @@ section.contain.max-width-full {
 }
 .bg-white {
   background-color: white;
+}
+img.contain,
+video.contain,
+.contain img,
+.contain video {
+  object-fit: contain;
 }

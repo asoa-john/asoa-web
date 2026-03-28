@@ -30,31 +30,51 @@ joerhoney.com        ▟███▄▄
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
+				margin: 0;
 				width: calc(100% - 2em);
 				max-width: 100%;
-				margin: 0;
 			}
 			.hero-image {
+        position: relative;
 				width: 100%;
+			}
+			.hero-image::before {
+				position: absolute;
+				z-index: -2;
+				filter: blur(8vw);
+				inset: 0;
+				background: image-set(attr(data-src));
+				content: "";
+			}
+			.hero-image::after {
+				position: absolute;
+				z-index: -1;
+				filter: blur(8vw);
+				inset: 0;
+				background: linear-gradient(130deg, var(--color-1), var(--color-5));
+				content: "";
 			}
 			.hero-image img {
 				display: block;
 				margin: 0 auto;
 				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				object-position: center;
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
 				margin: auto;
 				padding: 1em;
+				width: 720px;
+				max-width: calc(100% - 2em);
 				color: rgb(var(--gray-dark));
 			}
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
-				text-align: center;
 				line-height: 1;
+				text-align: center;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
