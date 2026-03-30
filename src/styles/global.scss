@@ -210,13 +210,14 @@ section {
     max-width: 1200px;
   }
 }
-section a:not(.button) {
+section a:not(.button, .blog-link) {
   background: -webkit-linear-gradient(130deg, var(--color-4), var(--color-2));
   -webkit-text-fill-color: transparent;
   text-decoration: none;
   -webkit-background-clip: text;
 }
-section a:not(.button):hover {
+section a:not(.button, .blog-link):focus,
+section a:not(.button, .blog-link):hover {
   background: -webkit-linear-gradient(130deg, var(--color-5), var(--color-1));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
