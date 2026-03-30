@@ -15,7 +15,7 @@ main {
     flex-basis: calc(50% - var(--gap) / 2);
   }
 }
-.blog-list .blog-item a {
+.blog-item a {
   background: initial;
   -webkit-text-fill-color: initial;
   color: var(--black);
@@ -23,7 +23,7 @@ main {
   -webkit-background-clip: initial;
 }
 .blog-content .title,
-.blog-list .blog-item h4.title {
+.blog-item h4.title {
   background: -webkit-linear-gradient(130deg, var(--color-5), var(--color-1));
   -webkit-text-fill-color: transparent;
   font-size: 2rem;
@@ -33,11 +33,23 @@ main {
   margin-bottom: -0.3rem;
   padding-bottom: 0.3em;
 }
-.blog-list .blog-item .date {
+.blog-item h4.title {
+  position: relative;
+}
+.blog-item h4.title::before {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  filter: blur(3rem);
+  inset: 0;
+  background: white;
+  content: "";
+}
+.blog-item .date {
   margin: 0 auto 1rem;
   text-align: center;
 }
-.blog-list .blog-item * {
+.blog-item * {
   transition: 0.2s ease;
   text-decoration: none;
 }
@@ -49,7 +61,7 @@ main {
 .blog-list li:first-child .title {
   font-size: 2.369rem;
 }
-.blog-list .blog-item a {
+.blog-item a {
   display: block;
 }
 .title {
@@ -73,7 +85,7 @@ main {
   .blog-list {
     gap: 0.5em;
   }
-  .blog-list .blog-item {
+  .blog-item {
     width: 100%;
     text-align: center;
   }
@@ -92,8 +104,10 @@ main {
 .blog-img,
 .hero-image {
   position: relative;
+  margin: auto;
   padding: var(--padding);
   aspect-ratio: 4 / 3;
+  max-height: 70vh;
 }
 .blog-img::before,
 .blog-img::after,
@@ -116,10 +130,9 @@ main {
   background: linear-gradient(130deg, var(--color-1), var(--color-5));
 }
 .blog-img {
-  position: relative;
   margin-bottom: 1rem;
   padding: 0;
-  aspect-ratio: 4 / 3;
+  max-height: calc(70vh - (var(--padding) * 2));
 }
 .blog-img img,
 .hero-image img {
@@ -132,6 +145,10 @@ main {
 .blog-img::after {
   inset: calc(0vw - var(--padding) / 2);
 }
+.summary {
+  margin: 0 auto var(--padding);
+  max-width: 600px;
+}
 .blog-content {
   margin: 0 auto var(--padding);
   padding: 1em;
@@ -140,8 +157,9 @@ main {
   color: rgb(var(--gray-dark));
 }
 .blog-content .title {
-  margin-bottom: 1em;
+  margin: 0 auto 1rem;
   padding: 1em 0;
+  max-width: 600px;
   line-height: 1;
   text-align: center;
 }
