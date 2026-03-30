@@ -1,0 +1,152 @@
+main {
+  margin: auto;
+  width: 960px;
+}
+.blog-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.blog-list .blog-item {
+  width: calc(50% - 1rem);
+}
+.blog-list .blog-item a {
+  background: initial;
+  -webkit-text-fill-color: initial;
+  color: var(--black);
+  text-decoration: initial;
+  -webkit-background-clip: initial;
+}
+.blog-list .blog-item h4.title {
+  background: -webkit-linear-gradient(130deg, var(--color-5), var(--color-1));
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: none;
+  -webkit-background-clip: text;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.blog-list .blog-item .date {
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+.blog-list .blog-item * {
+  transition: 0.2s ease;
+  text-decoration: none;
+}
+.blog-list li:first-child {
+  margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
+}
+.blog-list li:first-child img {
+  width: 100%;
+}
+.blog-list li:first-child .title {
+  font-size: 2.369rem;
+}
+.blog-list .blog-item img {
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+}
+.blog-list .blog-item a {
+  display: block;
+}
+.title {
+  margin: 0;
+  color: rgb(var(--black));
+  line-height: 1;
+}
+.date {
+  margin: 0;
+  color: rgb(var(--gray));
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  a {
+    margin: 0 0.5em;
+  }
+}
+.blog-list .blog-item a:hover h4,
+.blog-list .blog-item a:hover .date {
+  color: rgb(var(--accent));
+}
+.blog-list a:hover img {
+  box-shadow: var(--box-shadow);
+}
+@media (max-width: 720px) {
+  .blog-list {
+    gap: 0.5em;
+  }
+  .blog-list .blog-item {
+    width: 100%;
+    text-align: center;
+  }
+  .blog-list li:first-child {
+    margin-bottom: 0;
+  }
+  .blog-list li:first-child .title {
+    font-size: 1.563em;
+  }
+}
+main {
+  margin: 0;
+  width: calc(100% - 2em);
+  max-width: 100%;
+}
+.hero-image {
+  position: relative;
+}
+.hero-image::before,
+.hero-image::after {
+  position: absolute;
+  z-index: -1;
+  filter: blur(6vw);
+  inset: 0;
+  background: image-set(attr(data-src));
+  content: "";
+}
+.hero-image::after {
+  opacity: 0.5;
+  mix-blend-mode: plus-lighter;
+  background: linear-gradient(130deg, var(--color-1), var(--color-5));
+}
+.hero-image {
+  padding: var(--padding);
+  aspect-ratio: 4 / 3;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.prose {
+  margin: auto;
+  padding: 1em;
+  width: 720px;
+  max-width: calc(100% - 2em);
+  color: rgb(var(--gray-dark));
+}
+.prose .title {
+  margin-bottom: 1em;
+  padding: 1em 0;
+  line-height: 1;
+  text-align: center;
+}
+.prose .title h1 {
+  margin: 0 0 0.5em 0;
+}
+.prose .date {
+  margin-bottom: 0.5em;
+  color: rgb(var(--gray));
+}
+.last-updated-on {
+  font-style: italic;
+}

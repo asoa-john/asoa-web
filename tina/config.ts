@@ -795,6 +795,11 @@ export default defineConfig({
             required: true,
           },
           {
+            type: "datetime",
+            name: "updatedDate",
+            label: "Last updated on (if applicable)",
+          },
+          {
             type: "image",
             name: "heroImage",
             label: "Hero Image",

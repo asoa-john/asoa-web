@@ -49,9 +49,8 @@ export default function AdminBlogPost(props: Props) {
             )}
           </div>
           <h1 data-tina-field={tinaField(blog, "title")}>{blog.title}</h1>
-          <hr />
         </div>
-        <div data-tina-field={tinaField(blog, "body")}>
+        <div className="post-content" data-tina-field={tinaField(blog, "body")}>
           <TinaMarkdown content={blog.body} />
         </div>
       </div>
