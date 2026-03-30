@@ -48,7 +48,9 @@ joerhoney.com        ▟███▄▄
             page.data.map((post) => (
               <li class="blog-item">
                 <a href={`/blog/${post.id}/`}>
-                  <img width={360} height={360} src={post.data.heroImage} alt={post.data.heroImageAlt} />
+                  <div class="blog-img" data-src={post.data.heroImage}>
+                    <img width={360} height={360} src={post.data.heroImage} alt={post.data.heroImageAlt} />
+                  </div>
 									<div class="summary">
 										<h4 class="title">{post.data.title}</h4>
 										<div class="date">

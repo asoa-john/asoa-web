@@ -5,13 +5,15 @@ main {
 .blog-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: var(--gap);
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-.blog-list .blog-item {
-  width: calc(50% - 1rem);
+@media (width > 767px) {
+  .blog-item {
+    flex-basis: calc(50% - var(--gap) / 2);
+  }
 }
 .blog-list .blog-item a {
   background: initial;
@@ -20,6 +22,7 @@ main {
   text-decoration: initial;
   -webkit-background-clip: initial;
 }
+.blog-content .title,
 .blog-list .blog-item h4.title {
   background: -webkit-linear-gradient(130deg, var(--color-5), var(--color-1));
   -webkit-text-fill-color: transparent;
@@ -27,8 +30,8 @@ main {
   text-align: center;
   text-decoration: none;
   -webkit-background-clip: text;
-  margin-bottom: 0;
-  padding-bottom: 0;
+  margin-bottom: -0.3rem;
+  padding-bottom: 0.3em;
 }
 .blog-list .blog-item .date {
   margin: 0 auto 1rem;
@@ -39,19 +42,12 @@ main {
   text-decoration: none;
 }
 .blog-list li:first-child {
+  flex-basis: 100%;
   margin-bottom: 1rem;
-  width: 100%;
   text-align: center;
-}
-.blog-list li:first-child img {
-  width: 100%;
 }
 .blog-list li:first-child .title {
   font-size: 2.369rem;
-}
-.blog-list .blog-item img {
-  margin-bottom: 0.5rem;
-  object-fit: cover;
 }
 .blog-list .blog-item a {
   display: block;
@@ -68,17 +64,10 @@ main {
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 2em;
+  margin-top: var(--gap);
   a {
     margin: 0 0.5em;
   }
-}
-.blog-list .blog-item a:hover h4,
-.blog-list .blog-item a:hover .date {
-  color: rgb(var(--accent));
-}
-.blog-list a:hover img {
-  box-shadow: var(--box-shadow);
 }
 @media (max-width: 720px) {
   .blog-list {
@@ -96,54 +85,70 @@ main {
   }
 }
 main {
-  margin: 0;
-  width: calc(100% - 2em);
-  max-width: 100%;
+  margin: auto;
+  width: 100%;
+  max-width: 1400px;
 }
+.blog-img,
 .hero-image {
   position: relative;
+  padding: var(--padding);
+  aspect-ratio: 4 / 3;
 }
+.blog-img::before,
+.blog-img::after,
 .hero-image::before,
 .hero-image::after {
   position: absolute;
   z-index: -1;
   filter: blur(6vw);
-  inset: 0;
+  inset: calc(0vw - var(--padding) / 2);
   background: image-set(attr(data-src));
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   content: "";
 }
+.blog-img::after,
 .hero-image::after {
   opacity: 0.5;
   mix-blend-mode: plus-lighter;
   background: linear-gradient(130deg, var(--color-1), var(--color-5));
 }
-.hero-image {
-  padding: var(--padding);
+.blog-img {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 0;
   aspect-ratio: 4 / 3;
 }
+.blog-img img,
 .hero-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center;
 }
-.prose {
-  margin: auto;
+.blog-img::before,
+.blog-img::after {
+  inset: calc(0vw - var(--padding) / 2);
+}
+.blog-content {
+  margin: 0 auto var(--padding);
   padding: 1em;
   width: 720px;
   max-width: calc(100% - 2em);
   color: rgb(var(--gray-dark));
 }
-.prose .title {
+.blog-content .title {
   margin-bottom: 1em;
   padding: 1em 0;
   line-height: 1;
   text-align: center;
 }
-.prose .title h1 {
+.blog-content .title h1 {
   margin: 0 0 0.5em 0;
 }
-.prose .date {
+.blog-content .date {
   margin-bottom: 0.5em;
   color: rgb(var(--gray));
 }

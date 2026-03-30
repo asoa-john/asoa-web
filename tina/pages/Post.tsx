@@ -35,8 +35,11 @@ export default function AdminBlogPost(props: Props) {
           />
         )}
       </div>
-      <div className="prose">
-        <div className="title">
+      <div className="blog-content">
+        <div className="blog-meta">
+          <h1 className="title" data-tina-field={tinaField(blog, "title")}>
+            {blog.title}
+          </h1>
           <div className="date" data-tina-field={tinaField(blog, "pubDate")}>
             <FormattedDate date={blog.pubDate} />
             {blog.updatedDate && (
@@ -48,7 +51,6 @@ export default function AdminBlogPost(props: Props) {
               </div>
             )}
           </div>
-          <h1 data-tina-field={tinaField(blog, "title")}>{blog.title}</h1>
         </div>
         <div className="post-content" data-tina-field={tinaField(blog, "body")}>
           <TinaMarkdown content={blog.body} />

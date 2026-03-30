@@ -38,6 +38,7 @@
   --nav-height: 100px;
   font-family: Arial, system-ui, sans-serif;
 }
+
 @media (max-width: 1000px) {
   :root {
     --gap: 7.5vw;
@@ -48,7 +49,6 @@
     --padding-xl: 20vw;
   }
 }
-
 @font-face {
   font-style: normal;
   font-weight: 400;
@@ -71,6 +71,7 @@
   font-display: swap;
 }
 * {
+  box-sizing: border-box;
   min-width: 0;
 }
 body {
@@ -81,7 +82,7 @@ body {
 }
 main:first-of-type {
   padding-top: var(--nav-height);
-  overflow: hidden;
+  // overflow: hidden;
 }
 figure {
   margin: 0;
