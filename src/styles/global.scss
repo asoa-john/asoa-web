@@ -15,9 +15,6 @@
   --box-shadow:
     0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
     0 16px 32px rgba(var(--gray), 33%);
-  --font-sans: Arial, system-ui, sans-serif;
-  --font-serif: "DM Serif Text", Georgia, serif;
-  --font-cursive: "Oooh Baby", "Segoe Script", cursive;
   --color-1: #a758b2;
   --color-2: #7d78ba;
   --color-3: #5499c2;
@@ -36,6 +33,25 @@
   --padding-xl: 200px;
   --gap: 60px;
   --nav-height: 100px;
+  --font-sans: Arial, system-ui, sans-serif;
+  --font-serif: "DM Serif Text", Georgia, serif;
+  --font-cursive: "Oooh Baby", "Segoe Script", cursive;
+  --font-xs: 0.8rem;
+  --font-sm: 0.9rem;
+  --font-md: 1rem;
+  --font-lg: 1.2rem;
+  --font-xl: 1.4rem;
+  --font-sans-xs: 0.8rem/1.2 var(--font-sans);
+  --font-sans-sm: 0.9rem/1.4 var(--font-sans);
+  --font-sans-md: 1rem/1.6 var(--font-sans);
+  --font-serif-md: 1rem/1.1 var(--font-serif);
+  --font-serif-lg: 1.5rem/1.1 var(--font-serif);
+  --font-serif-xl: 2rem/1.1 var(--font-serif);
+  --font-cursive-md: 1.8rem/1.2 var(--font-cursive);
+  --font-cursive-lg: 2rem/1.16 var(--font-cursive);
+  --font-cursive-xl: 3rem/1.13 var(--font-cursive);
+  --font-cursive-2xl: 4rem/1.1 var(--font-cursive);
+  --font-cursive-3xl: 6rem/1.1 var(--font-cursive);
   font-family: Arial, system-ui, sans-serif;
 }
 
