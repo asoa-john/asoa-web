@@ -41,6 +41,19 @@
   --font-md: 1rem;
   --font-lg: 1.2rem;
   --font-xl: 1.4rem;
+  --lh-1r: 1rem;
+  --lh-11: 1.1;
+  --lh-113: 1.13;
+  --lh-116: 1.16;
+  --lh-12: 1.2;
+  --lh-125r: 1.25rem;
+  --lh-14: 1.4; //?
+  --lh-15r: 1.5rem;
+  --lh-16: 1.6;
+  --lh-175r: 1.75rem;
+  --lh-2r: 2rem;
+  --lh-225r: 2.25rem;
+  --lh-25r: 2.5rem;
   --font-sans-xs: 0.8rem/1.2 var(--font-sans);
   --font-sans-sm: 0.9rem/1.4 var(--font-sans);
   --font-sans-md: 1rem/1.6 var(--font-sans);
@@ -154,9 +167,10 @@ li:nth-last-child(2)::marker {
 blockquote {
   background: -webkit-linear-gradient(130deg, var(--color-4), var(--color-2));
   -webkit-text-fill-color: transparent;
-  font-style: italic;
+  // font-style: italic;
   font-weight: normal;
   font-size: 1.8rem;
+  line-height: 1.2;
   font-family: var(--font-cursive);
   text-decoration: none;
   text-wrap: balance;
@@ -1013,35 +1027,35 @@ section.contain.max-width-full {
 }
 .text-xs {
   font-size: 0.75rem;
-  line-height: 1rem;
+  line-height: 1.3333;
 }
 .text-sm {
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: 1.4286;
 }
 .text-base {
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 1.5;
 }
 .text-lg {
   font-size: 1.125rem;
-  line-height: 1.75rem;
+  line-height: 1.5556;
 }
 .text-xl {
   font-size: 1.25rem;
-  line-height: 1.75rem;
+  line-height: 1.4;
 }
 .text-2xl {
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 1.3333;
 }
 .text-3xl {
   font-size: 1.875rem;
-  line-height: 2.25rem;
+  line-height: 1.2;
 }
 .text-4xl {
   font-size: 2.25rem;
-  line-height: 2.5rem;
+  line-height: 1.1111;
 }
 .text-5xl {
   font-size: 3rem;
