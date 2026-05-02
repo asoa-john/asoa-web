@@ -34,15 +34,16 @@ export default function HeroBlock({
         {block.tagline && (
           <p data-tina-field={tinaField(block, "tagline")}>{block.tagline}</p>
         )}
-        {block.cta && (
+        {block.buttons?.map((button: any, buttonIndex: number) => (
           <a
-            href={block.cta.url}
-            className="button"
-            data-tina-field={tinaField(block.cta, "text")}
+            key={buttonIndex}
+            href={button.link}
+            className={`button ${button.classes}`}
+            data-tina-field={tinaField(button, "title")}
           >
-            {block.cta.text}
+            {button.title}
           </a>
-        )}
+        ))}
       </div>
     </BlockTag>
   );

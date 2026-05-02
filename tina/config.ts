@@ -219,18 +219,31 @@ export default defineConfig({
                   },
                   {
                     type: "object",
-                    name: "cta",
-                    label: "Call to Action",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
                     fields: [
                       {
                         type: "string",
-                        name: "text",
-                        label: "Button Text",
+                        name: "title",
+                        label: "Label",
                       },
                       {
                         type: "string",
-                        name: "url",
-                        label: "Button URL",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
                       },
                     ],
                   },

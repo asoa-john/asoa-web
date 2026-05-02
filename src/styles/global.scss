@@ -857,7 +857,7 @@ section.contain.max-width-full {
 }
 .half-left {
   display: block;
-  margin: 0 auto 0 0;
+  margin: 0 auto 0 0 !important;
   width: 50%;
 }
 .half-right {
