@@ -149,8 +149,7 @@ li::marker {
   font-size: 1.5rem;
 }
 ol > li::marker {
-  font-size: 2rem;
-  font-family: var(--font-cursive);
+  font: var(--font-cursive-lg);
 }
 li:nth-child(1)::marker {
   color: var(--color-1);
@@ -167,11 +166,8 @@ li:nth-last-child(2)::marker {
 blockquote {
   background: -webkit-linear-gradient(130deg, var(--color-4), var(--color-2));
   -webkit-text-fill-color: transparent;
-  // font-style: italic;
+  font: var(--font-cursive-md);
   font-weight: normal;
-  font-size: 1.8rem;
-  line-height: 1.2;
-  font-family: var(--font-cursive);
   text-decoration: none;
   text-wrap: balance;
   -webkit-background-clip: text;
@@ -344,9 +340,6 @@ section > *:not(.background-video, .background-image) {
   }
 }
 
-/* .button {
-    @apply cursor-pointer rounded border-2 px-5 py-2 text-sm font-semibold;
-  } */
 .button:has(+ .button) {
   margin-right: 1rem;
 }
@@ -370,7 +363,7 @@ section > *:not(.background-video, .background-image) {
   padding: var(--button-padding);
   min-width: min-content;
   color: var(--black);
-  font-size: 0.8rem;
+  font: var(--font-sans-xs);
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -440,15 +433,13 @@ section > *:not(.background-video, .background-image) {
 
 .block-brow {
   margin-bottom: 1rem;
-  font-size: 4rem;
-  font-family: var(--font-cursive);
+  font: var(--font-cursive-2xl);
 }
 .block-heading {
   margin-bottom: 1rem;
   background: -webkit-linear-gradient(316deg, var(--color-1), var(--color-5));
   -webkit-text-fill-color: transparent;
-  font-size: 2rem;
-  font-family: var(--font-serif);
+  font: var(--font-serif-xl);
   -webkit-background-clip: text;
 }
 .text-white .block-heading {
@@ -496,14 +487,12 @@ section.hero::after,
   }
   .hero-content {
     h1 {
-      font-size: 4rem;
-      font-family: var(--font-cursive);
+      font: var(--font-cursive-2xl);
       text-align: center;
       text-wrap: balance;
     }
     p {
-      font-size: 1.5rem;
-      font-family: var(--font-serif);
+      font: var(--font-serif-lg);
       text-align: center;
       text-wrap: balance;
     }
@@ -706,14 +695,12 @@ section.gallery-text.max-width-wide .\:\: {
 // }
 // .text-single h3 {
 //   margin-bottom: 1rem;
-//   font-size: 4rem;
-//   font-family: var(--font-cursive);
+//   font: var(--font-cursive-2xl);
 //   text-align: center;
 // }
 // .text-single h2 {
 //   margin-bottom: 1rem;
-//   font-size: 2rem;
-//   font-family: var(--font-serif);
+//   font: var(--font-serif-xl);
 //   text-align: center;
 // }
 @media (width > 800px) {
@@ -747,8 +734,7 @@ section.gallery-text.max-width-wide .\:\: {
 }
 .quote__text {
   flex-basis: fit-content;
-  font-size: 3rem;
-  font-family: var(--font-cursive);
+  font: var(--font-cursive-xl);
   text-align: center;
 }
 
@@ -784,8 +770,7 @@ section.gallery-text.max-width-wide .\:\: {
 }
 .cta h2 {
   margin-bottom: 2rem;
-  font-size: 2rem;
-  font-family: var(--font-serif);
+  font: var(--font-serif-xl);
 }
 
 /*   F A Q
@@ -809,15 +794,15 @@ section.gallery-text.max-width-wide .\:\: {
     margin-top: 2rem;
     outline: none;
     font-weight: bold;
-    font-weight: bold;
+    text-indent: -1.1em;
     &::marker {
-      content: "";
+      color: transparent;
     }
     &::before {
       display: block;
       position: absolute;
       top: -0.26em;
-      left: -1em;
+      left: -0.46em;
       transition: transform var(--speed) cubic-bezier(0, 0, 0, 1);
       padding: 0.46em 0 0.59em;
       content: "\2295";
@@ -1025,56 +1010,16 @@ section.contain.max-width-full {
 .heading-center h6 {
   text-align: center;
 }
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1.3333;
-}
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.4286;
-}
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.5556;
-}
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.4;
-}
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 1.3333;
-}
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 1.2;
-}
 .text-4xl {
-  font-size: 2.25rem;
+  font-size: 2.25rem; // serif
   line-height: 1.1111;
 }
 .text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
-.text-7xl {
-  font-size: 4.5rem;
+  font-size: 3rem; // cursive
   line-height: 1;
 }
 .text-8xl {
-  font-size: 6rem;
-  line-height: 1;
-}
-.text-9xl {
-  font-size: 8rem;
+  font-size: 6rem; // cursive
   line-height: 1;
 }
 .pt-0 {
