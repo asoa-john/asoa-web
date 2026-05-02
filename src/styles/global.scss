@@ -803,6 +803,7 @@ section.gallery-text.max-width-wide .\:\: {
       position: absolute;
       top: -0.26em;
       left: -0.46em;
+      transform-origin: -0.175em 0.5125em;
       transition: transform var(--speed) cubic-bezier(0, 0, 0, 1);
       padding: 0.46em 0 0.59em;
       content: "\2295";
