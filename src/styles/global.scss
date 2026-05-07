@@ -638,6 +638,27 @@ section.gallery-text.max-width-wide .\:\: {
   margin-top: 100px;
 }
 
+/*   T E X T   D O U B L E
+ *   =====================
+ */
+
+.text-double__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+.text-double__content > * {
+  flex-basis: 100%;
+}
+@media (min-width: 800px) {
+  .text-double__content {
+    flex-direction: row;
+  }
+  .text-double__content > * {
+    flex-basis: 50%;
+  }
+}
+
 /*   T E X T   I M A G E
  *   ===================
  */

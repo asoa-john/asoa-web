@@ -313,6 +313,102 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
+              // Text Double Block
+              {
+                name: "textDouble",
+                label: "☰☰  Text / Text",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading ? `☰☰  ${item.heading}` : `☰☰`,
+                    };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Heading",
+                  },
+                  {
+                    type: "rich-text",
+                    name: "leftColumn",
+                    label: "Left Column",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "leftButtons",
+                    label: "Left Column Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Label",
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
+                      },
+                    ],
+                  },
+                  {
+                    type: "rich-text",
+                    name: "rightColumn",
+                    label: "Right Column",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "rightButtons",
+                    label: "Right Column Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Label",
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
+                      },
+                    ],
+                  },
+                  blockStylingFields,
+                  sectionStylingFields,
+                ],
+              },
               // Text/Image Block
               {
                 name: "textImage",

@@ -3,6 +3,7 @@ import type { PageQuery, PageQueryVariables } from "../__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import HeroBlock from "../components/blocks/HeroBlock";
 import TextBlock from "../components/blocks/TextBlock";
+import TextDoubleBlock from "../components/blocks/TextDoubleBlock";
 import TextImageBlock from "../components/blocks/TextImageBlock";
 import GalleryBlock from "../components/blocks/GalleryBlock";
 import FAQBlock from "../components/blocks/FAQBlock";
@@ -57,6 +58,18 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   if (block.__typename === "PageBlocksText") {
     return (
       <TextBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
+    );
+  }
+
+  // Two Column Block
+  if (block.__typename === "PageBlocksTextDouble") {
+    return (
+      <TextDoubleBlock
         key={index}
         block={block}
         blockKey={index}
