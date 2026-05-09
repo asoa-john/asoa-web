@@ -542,6 +542,11 @@ export default defineConfig({
                         label: "Caption",
                       },
                       {
+                        type: "string",
+                        name: "imgClasses",
+                        label: "CSS Classes",
+                      },
+                      {
                         type: "number",
                         name: "focusX",
                         label: "Focus Point X (%)",
