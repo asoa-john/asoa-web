@@ -623,29 +623,53 @@ h1 .slidetext {
         max-width: 100%;
       }
     }
-    /* position every third image */
     > *:nth-child(3n + 1) {
-      z-index: 30;
-      animation-name: parallaxY3;
+      // z-index: 30;
+      // animation-name: parallaxY3;
     }
     > *:nth-child(3n + 2) {
       align-self: flex-start;
+      // z-index: 10;
+      // // animation-name: parallaxY1;
+      // margin: 0 -20px 0 20px;
+    }
+    > *:nth-child(3n + 3) {
+      align-self: flex-end;
+      // z-index: 20;
+      // animation-name: parallaxY2;
+      // margin: 0 20px 0 -20px;
+    }
+    > *:nth-child(5n + 1) {
+      z-index: 40;
+      animation-name: parallaxY4;
+    }
+    > *:nth-child(5n + 2) {
       z-index: 10;
       animation-name: parallaxY1;
       margin: 0 -20px 0 20px;
     }
-    > *:nth-child(3n + 3) {
-      align-self: flex-end;
+    > *:nth-child(5n + 3) {
+      z-index: 30;
+      animation-name: parallaxY3;
+      margin: 0 20px 0 -20px;
+    }
+    > *:nth-child(5n + 4) {
       z-index: 20;
       animation-name: parallaxY2;
-      margin: 0 20px 0 -20px;
+      margin: 0 40px 0 -40px;
+    }
+    > *:nth-child(5n + 5) {
+      z-index: 50;
+      animation-name: parallaxY5;
+      margin: 0 -40px 0 40px;
     }
   }
 }
 @supports (animation-timeline: scroll()) {
   .parallaxY1,
   .parallaxY2,
-  .parallaxY3 {
+  .parallaxY3,
+  .parallaxY4 {
     animation-timeline: scroll();
     animation-duration: 1ms;
     animation-timing-function: linear;
@@ -658,6 +682,12 @@ h1 .slidetext {
   }
   .parallaxY3 {
     animation-name: parallaxY3;
+  }
+  .parallaxY4 {
+    animation-name: parallaxY4;
+  }
+  .parallaxY5 {
+    animation-name: parallaxY5;
   }
 }
 
@@ -683,6 +713,22 @@ h1 .slidetext {
   }
   100% {
     transform: translateY(-30vh);
+  }
+}
+@keyframes parallaxY4 {
+  0% {
+    transform: translateY(80vh);
+  }
+  100% {
+    transform: translateY(-40vh);
+  }
+}
+@keyframes parallaxY5 {
+  0% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(-50vh);
   }
 }
 
