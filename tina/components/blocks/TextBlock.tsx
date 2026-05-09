@@ -34,7 +34,10 @@ export default function TextBlock({
           {block.heading}
         </h2>
       )}
-      <div data-tina-field={tinaField(block, "body")}>
+      <div
+        className="text-single__text"
+        data-tina-field={tinaField(block, "body")}
+      >
         <TinaMarkdown content={block.body} />
       </div>
       {block.buttons?.map((button: any, buttonIndex: number) => (
