@@ -600,7 +600,7 @@ h1 .slidetext {
 .gallery.collage {
   position: relative;
   z-index: 100;
-  margin: 0vw auto 8vw;
+  margin: 0 auto var(--padding-xl);
   .gallery-grid {
     display: flex;
     flex-wrap: wrap;
