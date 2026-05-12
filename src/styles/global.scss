@@ -600,7 +600,7 @@ h1 .slidetext {
 .gallery.collage {
   position: relative;
   z-index: 100;
-  margin: 0 auto var(--padding-xl);
+  margin: 0 auto var(--padding-lg);
   .gallery-grid {
     display: flex;
     flex-wrap: wrap;
@@ -855,6 +855,9 @@ section.gallery-text.max-width-wide .\:\: {
   max-width: 600px;
   .text-single__text {
     margin-bottom: 1rem;
+  }
+  p:has(img) {
+    text-align: center;
   }
 }
 // .text-single h3 {
