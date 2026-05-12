@@ -498,7 +498,7 @@ section.hero {
 }
 
 @media (width > 800px) {
-  .hero {
+  .hero:has(:nth-child(2)) {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: var(--gap); /* Space between columns */
@@ -858,6 +858,9 @@ section.gallery-text.max-width-wide .\:\: {
   }
   p:has(img) {
     text-align: center;
+  }
+  p img {
+    max-width: 100%;
   }
 }
 // .text-single h3 {
