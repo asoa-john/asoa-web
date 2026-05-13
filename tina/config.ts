@@ -1,5 +1,6 @@
 import { defineConfig } from "tinacms";
 import IconComponent from "./components/IconComponent";
+import { PiCoinsBold } from "react-icons/pi";
 
 // Helper: Block styling fields
 const blockStylingFields = {
@@ -24,10 +25,15 @@ const sectionStylingFields = {
     },
     {
       type: "string",
-      name: "groupClassName",
-      label: "Group CSS Classes",
-      description:
-        "CSS classes for the group wrapper (only used if this is the first block in a group)",
+      name: "sectionId",
+      label: "ID",
+      description: "For internal jumplinks",
+    },
+    {
+      type: "string",
+      name: "sectionClassName",
+      label: "Section CSS Classes",
+      description: "CSS classes for the section or group wrapper",
     },
     {
       type: "string",
@@ -63,8 +69,14 @@ const sectionStylingFields = {
     },
     {
       type: "string",
-      name: "paddingSize",
-      label: "Padding Size",
+      name: "paddingTop",
+      label: "Top Padding",
+      options: ["", "none", "small", "medium", "large", "xlarge"],
+    },
+    {
+      type: "string",
+      name: "paddingBot",
+      label: "Bottom Padding",
       options: ["", "none", "small", "medium", "large", "xlarge"],
     },
     {
@@ -87,26 +99,13 @@ export default defineConfig({
     publicFolder: "public",
   },
 
-  // Inject custom styles via cmsCallback when CMS loads
   cmsCallback: (cms) => {
-    if (!document.getElementById("tina-custom-styles")) {
-      const style = document.createElement("style");
-      style.id = "tina-custom-styles";
-      style.textContent = `
-      textarea[name*="html"],
-      textarea[name*="text"] {
-        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace !important;
-        background: #1e1e1e !important;
-        color: #ddd !important;
-        font-size: 14px !important;
-        line-height: 1.6 !important;
-      }
-      
-      label[for*="html"],
-      label[for*="text"] {
-      }
-    `;
-      document.head.appendChild(style);
+    if (!document.getElementById("tina-custom-styles-link")) {
+      const link = document.createElement("link");
+      link.id = "tina-custom-styles-link";
+      link.rel = "stylesheet";
+      link.href = "/tina/editor-styles.css"; // file in your public folder
+      document.head.appendChild(link);
     }
     return cms;
   },
@@ -127,12 +126,36 @@ export default defineConfig({
         label: "Pages",
         path: "src/content/page",
         format: "mdx",
+        defaultItem: () => ({
+          blocks: [
+            {
+              _template: "hero",
+              headline: "New Page Headline",
+              tagline: "Add your tagline here",
+              image: "",
+              imageAlt: "",
+            },
+          ],
+        }),
         ui: {
           router: ({ document }) => {
             if (document._sys.filename === "home") {
               return `/`;
             }
             return `/${document._sys.filename}`;
+          },
+          filename: {
+            slugify: (values) => {
+              if (!values?.title) return "untitled";
+              return values.title
+                .trim()
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "") // ñ → n, é → e, etc.
+                .replace(/[^a-z0-9\s-]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-");
+            },
           },
         },
         fields: [
@@ -147,6 +170,7 @@ export default defineConfig({
             type: "string",
             name: "description",
             label: "Meta Description",
+            required: true,
           },
           {
             type: "object",
@@ -155,18 +179,17 @@ export default defineConfig({
             label: "Page Sections",
             ui: {
               visualSelector: true,
+              defaultItem: [],
             },
             templates: [
               // Hero Block
               {
                 name: "hero",
-                label: "Hero Section",
+                label: "⊑⊒  Hero",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.headline
-                        ? `Hero: ${item.headline}`
-                        : "Hero Section",
+                      label: item?.headline ? `⊑⊒  ${item.headline}` : "⊑⊒",
                     };
                   },
                 },
@@ -196,18 +219,31 @@ export default defineConfig({
                   },
                   {
                     type: "object",
-                    name: "cta",
-                    label: "Call to Action",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
                     fields: [
                       {
                         type: "string",
-                        name: "text",
-                        label: "Button Text",
+                        name: "title",
+                        label: "Label",
                       },
                       {
                         type: "string",
-                        name: "url",
-                        label: "Button URL",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
                       },
                     ],
                   },
@@ -215,35 +251,230 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
-              // Content Block
+              // Text Block
               {
-                name: "content",
-                label: "Content Block",
+                name: "text",
+                label: "☰   Text",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading ? `☰   ${item.heading}` : `☰`,
+                    };
+                  },
+                },
                 fields: [
+                  {
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Heading",
+                  },
                   {
                     type: "rich-text",
                     name: "body",
                     label: "Content",
                     isBody: true,
                   },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Label",
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
+                      },
+                    ],
+                  },
                   blockStylingFields,
                   sectionStylingFields,
                 ],
               },
-              // Two Column Block
+              // Text Double Block
               {
-                name: "twoColumn",
-                label: "Two Column Layout",
+                name: "textDouble",
+                label: "☰☰  Text / Text",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading ? `☰☰  ${item.heading}` : `☰☰`,
+                    };
+                  },
+                },
                 fields: [
+                  {
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Heading",
+                  },
                   {
                     type: "rich-text",
                     name: "leftColumn",
                     label: "Left Column",
                   },
                   {
+                    type: "object",
+                    list: true,
+                    name: "leftButtons",
+                    label: "Left Column Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Label",
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
+                      },
+                    ],
+                  },
+                  {
                     type: "rich-text",
                     name: "rightColumn",
                     label: "Right Column",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "rightButtons",
+                    label: "Right Column Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Label",
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
+                      },
+                    ],
+                  },
+                  blockStylingFields,
+                  sectionStylingFields,
+                ],
+              },
+              // Text/Image Block
+              {
+                name: "textImage",
+                label: "☐☰  Text/Image",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading ? `☐☰  ${item.heading}` : `☐☰`,
+                    };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Heading",
+                  },
+                  {
+                    type: "image",
+                    name: "image",
+                    label: "Image",
+                  },
+                  {
+                    type: "string",
+                    name: "imageAlt",
+                    label: "Image Alt Text",
+                  },
+                  {
+                    type: "rich-text",
+                    name: "body",
+                    label: "Right Column",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Label",
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
+                      },
+                    ],
                   },
                   blockStylingFields,
                   sectionStylingFields,
@@ -252,13 +483,11 @@ export default defineConfig({
               // Image Gallery Block
               {
                 name: "gallery",
-                label: "Image Gallery",
+                label: "❏❏  Gallery",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.heading
-                        ? `Gallery: ${item.heading}`
-                        : "Image Gallery",
+                      label: item?.heading ? `❏❏  ${item.heading}` : "❏❏",
                     };
                   },
                 },
@@ -266,7 +495,7 @@ export default defineConfig({
                   {
                     type: "string",
                     name: "heading",
-                    label: "Gallery Heading",
+                    label: "Heading",
                   },
                   {
                     type: "boolean",
@@ -313,6 +542,11 @@ export default defineConfig({
                         label: "Caption",
                       },
                       {
+                        type: "string",
+                        name: "imgClasses",
+                        label: "CSS Classes",
+                      },
+                      {
                         type: "number",
                         name: "focusX",
                         label: "Focus Point X (%)",
@@ -349,13 +583,11 @@ export default defineConfig({
               // Features Block
               {
                 name: "features",
-                label: "Features Section",
+                label: "⊟⊟  Features",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.heading
-                        ? `Features: ${item.heading}`
-                        : "Features Section",
+                      label: item?.heading ? `⊟⊟  ${item.heading}` : "⊟⊟",
                     };
                   },
                 },
@@ -373,21 +605,34 @@ export default defineConfig({
                     fields: [
                       {
                         type: "string",
-                        name: "title",
-                        label: "Feature Title",
+                        name: "brow",
+                        label: "Brow",
                       },
                       {
                         type: "string",
-                        name: "description",
-                        label: "Description",
-                        ui: {
-                          component: "textarea",
-                        },
+                        name: "title",
+                        label: "Feature Title",
                       },
                       {
                         type: "image",
                         name: "icon",
                         label: "Icon/Image",
+                      },
+                      {
+                        type: "rich-text",
+                        name: "richText",
+                        label: "Rich Text",
+                        isBody: true,
+                      },
+                      {
+                        type: "string",
+                        name: "styledText",
+                        label: "Styled Text",
+                        ui: {
+                          component: "textarea",
+                        },
+                        description:
+                          "Use [.class#id@tabindex]text[] syntax. Example: [#main.pb-8]Hello[] [.highlight]world[]",
                       },
                     ],
                   },
@@ -395,16 +640,14 @@ export default defineConfig({
                   sectionStylingFields,
                 ],
               },
-              // Testimonial Block
+              // Quote Block
               {
-                name: "testimonial",
-                label: "Testimonial",
+                name: "quote",
+                label: "“”   Quote",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.author
-                        ? `Testimonial: ${item.author}`
-                        : "Testimonial",
+                      label: item?.author ? `“”   ${item.author}` : "“”",
                     };
                   },
                 },
@@ -439,17 +682,20 @@ export default defineConfig({
               // Call to Action Block
               {
                 name: "cta",
-                label: "Call to Action",
+                label: "☎!   Call to Action",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.heading
-                        ? `CTA: ${item.heading}`
-                        : "Call to Action",
+                      label: item?.heading ? `☎!   ${item.heading}` : "☎!",
                     };
                   },
                 },
                 fields: [
+                  {
+                    type: "string",
+                    name: "brow",
+                    label: "Brow",
+                  },
                   {
                     type: "string",
                     name: "heading",
@@ -464,14 +710,87 @@ export default defineConfig({
                     },
                   },
                   {
+                    type: "object",
+                    list: true,
+                    name: "buttons",
+                    label: "Buttons",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.title || "Button",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Label",
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "URL",
+                      },
+                      {
+                        type: "string",
+                        name: "classes",
+                        label: "CSS Classes",
+                      },
+                    ],
+                  },
+                  blockStylingFields,
+                  sectionStylingFields,
+                ],
+              },
+              // FAQ Block
+              {
+                name: "faq",
+                label: "⊕   FAQ",
+                ui: {
+                  itemProps: (item) => {
+                    return {
+                      label: item?.heading ? `⊕   ${item.heading}` : `⊕`,
+                    };
+                  },
+                },
+                fields: [
+                  {
                     type: "string",
-                    name: "buttonText",
-                    label: "Button Text",
+                    name: "brow",
+                    label: "Brow",
                   },
                   {
                     type: "string",
-                    name: "buttonUrl",
-                    label: "Button URL",
+                    name: "heading",
+                    label: "Section Heading",
+                  },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "items",
+                    label: "FAQ Items",
+                    ui: {
+                      itemProps: (item) => {
+                        return {
+                          label: item?.question || "FAQ",
+                        };
+                      },
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "question",
+                        label: "Question",
+                        required: true,
+                      },
+                      {
+                        type: "rich-text",
+                        name: "answer",
+                        label: "Answer",
+                        isBody: true,
+                      },
+                    ],
                   },
                   blockStylingFields,
                   sectionStylingFields,
@@ -479,14 +798,12 @@ export default defineConfig({
               },
               // Custom HTML Block
               {
-                name: "customHtml",
-                label: "Custom HTML",
+                name: "html",
+                label: "‹›   HTML",
                 ui: {
                   itemProps: (item) => {
                     return {
-                      label: item?.label
-                        ? `HTML: ${item.label}`
-                        : "Custom HTML",
+                      label: item?.label ? `‹›   ${item.label}` : "‹›",
                     };
                   },
                 },
@@ -515,13 +832,12 @@ export default defineConfig({
               // StyledText
               {
                 name: "styledText",
-                label: "Styled Text",
+                label: "[]   Styled Text",
                 ui: {
                   itemProps: (item) => {
                     // Show first 50 chars in the list
-                    const preview =
-                      item?.text?.substring(0, 50) || "Styled Text";
-                    return { label: `Styled Text: ${preview}...` };
+                    const preview = item?.text?.substring(0, 50) || "[]";
+                    return { label: `[]   ${preview}...` };
                   },
                 },
                 fields: [
@@ -555,6 +871,19 @@ export default defineConfig({
           router: ({ document }) => {
             return `/blog/${document._sys.filename}`;
           },
+          filename: {
+            slugify: (values) => {
+              if (!values?.title) return "untitled";
+              return values.title
+                .trim()
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9\s-]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-");
+            },
+          },
         },
         fields: [
           {
@@ -568,6 +897,7 @@ export default defineConfig({
             type: "string",
             name: "description",
             label: "Description",
+            required: true,
             ui: {
               component: "textarea",
             },
@@ -577,6 +907,11 @@ export default defineConfig({
             name: "pubDate",
             label: "Publication Date",
             required: true,
+          },
+          {
+            type: "datetime",
+            name: "updatedDate",
+            label: "Last updated on (if applicable)",
           },
           {
             type: "image",
@@ -699,6 +1034,44 @@ export default defineConfig({
                 label: "CSS Classes",
               },
             ],
+          },
+          {
+            type: "object",
+            name: "footerLinks",
+            label: "Footer Links",
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return {
+                  label: item?.title || "Link",
+                };
+              },
+            },
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Label",
+              },
+              {
+                type: "string",
+                name: "link",
+                label: "URL",
+              },
+              {
+                type: "string",
+                name: "classes",
+                label: "CSS Classes",
+              },
+            ],
+          },
+          {
+            type: "string",
+            name: "html",
+            label: "HTML",
+            ui: {
+              component: "textarea",
+            },
           },
           {
             type: "object",

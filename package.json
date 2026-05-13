@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@tinacms/cli": "^1.11.0",
-    "@types/node": "^22.18.12"
+    "@types/node": "^22.18.12",
+    "sass": "^1.97.3"
   }
 }

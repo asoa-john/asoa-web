@@ -39,7 +39,7 @@ export default function GalleryBlock({
   return (
     <BlockTag
       key={blockKey}
-      className={`gallery ${blockClassName} ${isSlideshow ? "slideshow" : ""}`}
+      className={`:: gallery ${blockClassName} ${isSlideshow ? "slideshow" : ""}`}
       data-slide-duration={isSlideshow ? slideDuration : undefined}
     >
       {block.heading && (
@@ -57,7 +57,9 @@ export default function GalleryBlock({
           return (
             <figure
               key={uniqueKey}
-              className={imgIndex === 0 ? "current" : ""}
+              className={
+                img.imgClasses + " " + (imgIndex === 0 ? "current" : "")
+              }
               data-tina-field={tinaField(block.images[imgIndex])}
             >
               {img.src && (

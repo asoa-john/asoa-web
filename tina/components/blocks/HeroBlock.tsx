@@ -17,29 +17,34 @@ export default function HeroBlock({
   return (
     <BlockTag
       key={blockKey}
-      className={`hero ${blockClassName}`}
+      className={`:: hero ${blockClassName}`}
       data-tina-field={tinaField(block)}
     >
-      <h1 data-tina-field={tinaField(block, "headline")}>{block.headline}</h1>
-      {block.tagline && (
-        <p data-tina-field={tinaField(block, "tagline")}>{block.tagline}</p>
-      )}
       {block.image && (
-        <img
-          src={block.image}
-          alt={block.imageAlt || ""}
-          data-tina-field={tinaField(block, "image")}
-        />
+        <div className="hero-image">
+          <img
+            src={block.image}
+            alt={block.imageAlt || ""}
+            data-tina-field={tinaField(block, "image")}
+          />
+        </div>
       )}
-      {block.cta && (
-        <a
-          href={block.cta.url}
-          className="button"
-          data-tina-field={tinaField(block.cta, "text")}
-        >
-          {block.cta.text}
-        </a>
-      )}
+      <div className="hero-content">
+        <h1 data-tina-field={tinaField(block, "headline")}>{block.headline}</h1>
+        {block.tagline && (
+          <p data-tina-field={tinaField(block, "tagline")}>{block.tagline}</p>
+        )}
+        {block.buttons?.map((button: any, buttonIndex: number) => (
+          <a
+            key={buttonIndex}
+            href={button.link}
+            className={`button ${button.classes}`}
+            data-tina-field={tinaField(button, "title")}
+          >
+            {button.title}
+          </a>
+        ))}
+      </div>
     </BlockTag>
   );
 }

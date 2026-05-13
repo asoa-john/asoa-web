@@ -5,15 +5,15 @@ import IconLink from "./react/IconLink";
 const today = new Date();
 ---
 <footer class="footer">
-	<div class="flex justify-between m-auto">
-		<div>
-			<a href="/" class="footer-group">
+	<div class="footer-content">
+		<div class="footer-branding">
+			<a href="/" class="footer-brand">
 				<img src=`${config.siteLogo}` 
 						alt=`${config.siteTitle} logo` 
 						width="72" 
 						height="72"
-						class="footer-group-logo" />
-				<div class="footer-group-text">
+						class="footer-brand-logo" />
+				<div class="footer-brand-text">
 					<h2>{config.siteTitle}</h2>
 					<h3>{config.siteTagline}</h3>
 				</div>
@@ -30,37 +30,39 @@ const today = new Date();
 		</div>
 		<div class="footer-links">
 			{
-				config.navigation.map((nav) => (
-					<HeaderLink href={nav.link} className={nav.classes}>
-						{nav.title}
+				config.footerLinks.map((link) => (
+					<HeaderLink href={link.link} className={link.classes}>
+						{link.title}
 					</HeaderLink>
 				))
 			}
 		</div>
+		<div class="footer-html" set:html={config.html} />
 	</div>
 	<section class="copyright-footer">
 		<div class="copyright">
 			&copy; {today.getFullYear()}
-			{config.seo.siteOwner}. All rights reserved.
+			{config.seo.siteOwner}. All&nbsp;rights&nbsp;reserved.
 		</div>
 		<div class="credit">
-			Website by <a href="https://joerhoney.com">joerhoney.com</a>
+			Website&nbsp;by <a href="https://joerhoney.com">joerhoney.com</a>
 		</div>
 	</section>
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initSlideshows() {
     const slideshows = document.querySelectorAll('.gallery.slideshow');
     
     slideshows.forEach((gallery) => {
+      if (gallery.dataset.slideshowInit) return; // prevent duplicate intervals
+      gallery.dataset.slideshowInit = 'true';
+      
       const figures = gallery.querySelectorAll('.gallery-grid figure');
       if (figures.length <= 1) return;
       
       const duration = parseInt(gallery.dataset.slideDuration || '5000');
       let currentIndex = 0;
-      
-      // First slide already has 'current' class from render
       
       setInterval(() => {
         figures[currentIndex].classList.remove('current');
@@ -68,10 +70,39 @@ const today = new Date();
         figures[currentIndex].classList.add('current');
       }, duration);
     });
-  });
+  }
+
+  function initSlidetexts() {
+    const slidetexts = document.querySelectorAll('.slidetext');
+    
+    slidetexts.forEach((gallery) => {
+      if (gallery.dataset.slidetextInit) return; // prevent duplicate intervals
+      gallery.dataset.slidetextInit = 'true';
+      
+      const words = gallery.querySelectorAll('i');
+      if (words.length <= 1) return;
+      
+      const duration = parseInt(gallery.dataset.slideDuration || '3333');
+      let revealIndex = 0;
+      
+      setInterval(() => {
+        words[revealIndex].classList.remove('reveal');
+        revealIndex = (revealIndex + 1) % words.length;
+        words[revealIndex].classList.add('reveal');
+      }, duration);
+    });
+  }
+
+  function init() {
+    initSlideshows();
+    initSlidetexts();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('astro:page-load', init);
 </script>
 
-<script>
+<!-- <script>
   document.addEventListener('DOMContentLoaded', () => {
     const slidetexts = document.querySelectorAll('.slidetext');
     slidetexts.forEach((span) => {
@@ -96,86 +127,120 @@ const today = new Date();
       }, '3333');
     });
   });
-</script>
+</script> -->
 
 <style>
 	.copyright-footer {
 		display: flex;
 		justify-content: space-between;
-		gap: 3rem;
+		gap: var(--gap);
 		margin: 0 auto;
-		padding: 2em 1em 2em 1em;
+		padding: var(--gap) 0;
 		max-width: 1000px;
-	}
+	  > *{
+		  flex: 1;
+	  }
+		.credit {
+			justify-self: flex-end;
+			text-align: right
+		}
+  }
 	.footer {
 		position: relative;
+		gap: var(--gap);
 		margin: 0;
 		padding: 3rem;
 		overflow: hidden;
+		&::before {
+			position: absolute;
+			opacity: 0.25;
+			z-index: -1;
+			filter: blur(100px);
+			inset: -50px 0 0 0;
+			background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
+			content: "";
+		}
+		> * {
+			width: 100%;
+			max-width: 1000px;
+		}
 	}
-	.footer:before {
-		position: absolute;
-		opacity: 0.25;
-		z-index: -1;
-		filter: blur(100px);
-		inset: -50px 0 0 0;
-		background-image: linear-gradient(130deg, var(--color-1), var(--color-5));
-		content: "";
+	.footer-content {
+		display: flex;
+		justify-content: space-between;
+		gap: var(--gap);
+		margin: 0 auto;
 	}
-	.footer > * {
-		width: 100%;
-		max-width: 1000px;
+	.footer-branding {
+		flex-grow: 0;
+    flex-shrink: 1;
+		flex-basis: 14rem;
 	}
-	.footer-group {
+	.footer-brand {
 		display: flex;
 		align-items: stretch;
 		margin: 0;
 		padding: 0;
+		color: var(--black);
+		text-decoration: none;
 	}
-	.footer-group-logo {
+	.footer-brand-logo {
 		margin-right: 1.2rem;
 		width: 3rem;
 		height: 4.3rem;
 	}
-	.footer-group-text {
+	.footer-brand-text {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-	}
-	.footer-group {
-		color: var(--black);
-		text-decoration: none;
-	}
-	.footer-group-text h2 {
-		width: 145px;
-		line-height: 1.1;
-		font-family: var(--font-serif);
-	}
-	.footer-group-text h3 {
-		width: 7rem;
-		font-size: 0.7rem;
-		font-family: var(--font-sans);
-	}
-	h3 {
-		margin: 0;
-		font-size: 0.8rem;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1rem;
+		h2 {
+			margin: 0 0 0.5rem;
+			width: 145px;
+			font: var(--font-serif-md);
+		}
+		h3 {
+			margin: 0;
+			width: 8rem;
+			font-size: 0.7rem;
+			font-size: 0.8rem;
+			font-family: var(--font-sans);
+		}
 	}
 	h2 a,
 	h2 a.active {
 		text-decoration: none;
 	}
-	.footer-links a {
-		border-bottom: 4px solid transparent;
-		padding: var(--button-padding);
-		color: var(--black);
+	.footer-links {
+		columns: 3;
+    text-wrap: balance;
+		@media (max-width: 800px) {
+			columns: 2;
+		}
+		@media (max-width: 600px) {
+			columns: 1;
+		}
+		a:not(.button) {
+			display: block;
+			border-bottom: 4px solid transparent;
+			padding: var(--button-padding);
+			color: var(--black);
+			font-size: .8rem;
+			text-transform: uppercase;
+		}
+		a.active {
+			background: -webkit-linear-gradient(318deg, var(--color-1), var(--color-4));
+			-webkit-text-fill-color: transparent;
+			-webkit-background-clip: text;
+		}
 	}
-	.footer-links a.active {
-    background: -webkit-linear-gradient(318deg, var(--color-1), var(--color-4));
-		-webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+	.footer-html {
+		flex-grow: 0;
+    flex-shrink: 1;
+		width: min-content;
+	}
+	@media (width <= 600px) {
+		.footer-content {
+			flex-direction: column;
+		}
 	}
 </style>

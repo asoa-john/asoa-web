@@ -15,20 +15,35 @@ export default function CtaBlock({
   const BlockTag = isGrouped ? "div" : "section";
 
   return (
-    <BlockTag key={blockKey} className={`cta ${blockClassName}`}>
-      <h2 data-tina-field={tinaField(block, "heading")}>{block.heading}</h2>
+    <BlockTag key={blockKey} className={`:: cta ${blockClassName}`}>
+      {block.brow && (
+        <h3 className="block-brow" data-tina-field={tinaField(block, "brow")}>
+          {block.brow}
+        </h3>
+      )}
+      {block.heading && (
+        <h2
+          className="block-heading"
+          data-tina-field={tinaField(block, "heading")}
+        >
+          {block.heading}
+        </h2>
+      )}
       {block.description && (
         <p data-tina-field={tinaField(block, "description")}>
           {block.description}
         </p>
       )}
-      <a
-        href={block.buttonUrl}
-        className="button"
-        data-tina-field={tinaField(block, "buttonText")}
-      >
-        {block.buttonText}
-      </a>
+      {block.buttons?.map((button: any, buttonIndex: number) => (
+        <a
+          key={buttonIndex}
+          href={button.link}
+          className={`button ${button.classes}`}
+          data-tina-field={tinaField(button, "title")}
+        >
+          {button.title}
+        </a>
+      ))}
     </BlockTag>
   );
 }

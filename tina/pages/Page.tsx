@@ -2,13 +2,15 @@ import { tinaField, useTina } from "tinacms/dist/react";
 import type { PageQuery, PageQueryVariables } from "../__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import HeroBlock from "../components/blocks/HeroBlock";
-import ContentBlock from "../components/blocks/ContentBlock";
-import TwoColumnBlock from "../components/blocks/TwoColumnBlock";
+import TextBlock from "../components/blocks/TextBlock";
+import TextDoubleBlock from "../components/blocks/TextDoubleBlock";
+import TextImageBlock from "../components/blocks/TextImageBlock";
 import GalleryBlock from "../components/blocks/GalleryBlock";
+import FAQBlock from "../components/blocks/FAQBlock";
 import FeaturesBlock from "../components/blocks/FeaturesBlock";
-import TestimonialBlock from "../components/blocks/TestimonialBlock";
+import QuoteBlock from "../components/blocks/QuoteBlock";
 import CtaBlock from "../components/blocks/CtaBlock";
-import CustomHtmlBlock from "../components/blocks/CustomHtmlBlock";
+import HtmlBlock from "../components/blocks/HtmlBlock";
 import StyledTextBlock from "../components/blocks/StyledTextBlock";
 
 type Props = {
@@ -52,10 +54,10 @@ function renderBlock(block: any, index: number, isGrouped = false) {
     );
   }
 
-  // Content Block
-  if (block.__typename === "PageBlocksContent") {
+  // Text Block
+  if (block.__typename === "PageBlocksText") {
     return (
-      <ContentBlock
+      <TextBlock
         key={index}
         block={block}
         blockKey={index}
@@ -65,9 +67,21 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   }
 
   // Two Column Block
-  if (block.__typename === "PageBlocksTwoColumn") {
+  if (block.__typename === "PageBlocksTextDouble") {
     return (
-      <TwoColumnBlock
+      <TextDoubleBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
+    );
+  }
+
+  // Two Column Block
+  if (block.__typename === "PageBlocksTextImage") {
+    return (
+      <TextImageBlock
         key={index}
         block={block}
         blockKey={index}
@@ -88,6 +102,18 @@ function renderBlock(block: any, index: number, isGrouped = false) {
     );
   }
 
+  // FAQs Block
+  if (block.__typename === "PageBlocksFaq") {
+    return (
+      <FAQBlock
+        key={index}
+        block={block}
+        blockKey={index}
+        isGrouped={isGrouped}
+      />
+    );
+  }
+
   // Features Block
   if (block.__typename === "PageBlocksFeatures") {
     return (
@@ -100,10 +126,10 @@ function renderBlock(block: any, index: number, isGrouped = false) {
     );
   }
 
-  // Testimonial Block
-  if (block.__typename === "PageBlocksTestimonial") {
+  // Quote Block
+  if (block.__typename === "PageBlocksQuote") {
     return (
-      <TestimonialBlock
+      <QuoteBlock
         key={index}
         block={block}
         blockKey={index}
@@ -125,9 +151,9 @@ function renderBlock(block: any, index: number, isGrouped = false) {
   }
 
   // Custom HTML Block
-  if (block.__typename === "PageBlocksCustomHtml") {
+  if (block.__typename === "PageBlocksHtml") {
     return (
-      <CustomHtmlBlock
+      <HtmlBlock
         key={index}
         block={block}
         blockKey={index}
@@ -186,9 +212,10 @@ const TinaPage = (props: Props) => {
             section.backgroundColor ||
             section.backgroundImage ||
             section.backgroundVideoUrl ||
-            section.paddingSize ||
+            section.paddingTop ||
+            section.paddingBot ||
             section.maxWidth ||
-            section.groupClassName;
+            section.sectionClassName;
 
           if (!hasSectionStyling) {
             return renderBlock(block, groupIndex, false);
@@ -202,35 +229,44 @@ const TinaPage = (props: Props) => {
             section.backgroundVideoUrl
           )
             classNames.push("has-background");
-          if (section.groupClassName) classNames.push(section.groupClassName);
+          if (section.sectionClassName)
+            classNames.push(section.sectionClassName);
           if (section.backgroundColor)
             classNames.push(`bg-${section.backgroundColor}`);
-          if (section.paddingSize)
-            classNames.push(`padding-${section.paddingSize}`);
+          if (section.paddingTop)
+            classNames.push(`padtop-${section.paddingTop}`);
+          if (section.paddingBot)
+            classNames.push(`padbot-${section.paddingBot}`);
           if (section.maxWidth)
             classNames.push(`max-width-${section.maxWidth}`);
 
-          const styles: React.CSSProperties = {};
-          if (section.backgroundImage) {
-            styles.backgroundImage = `url(${section.backgroundImage})`;
-            styles.backgroundSize = "cover";
-            styles.backgroundPosition = "center";
-          }
+          // const styles: React.CSSProperties = {};
+          // if (section.backgroundImage) {
+          //   styles.backgroundImage = `url(${section.backgroundImage})`;
+          // }
 
           return (
             <section
+              id={section.sectionId}
               key={groupIndex}
               className={classNames.join(" ")}
-              style={styles}
+              // style={styles}
               data-tina-field={tinaField(section)}
             >
+              {section.backgroundImage && (
+                <img
+                  src={section.backgroundImage}
+                  className="background-image"
+                />
+              )}
               {section.backgroundVideoUrl && (
                 <video
                   className="background-video"
                   autoPlay
+                  loop={section.videoLoop !== false}
                   muted
                   playsInline
-                  loop={section.videoLoop !== false}
+                  preload="metadata"
                 >
                   <source src={section.backgroundVideoUrl} type="video/mp4" />
                 </video>
@@ -245,7 +281,7 @@ const TinaPage = (props: Props) => {
         const firstBlock = group[0];
         const section = firstBlock.section || {};
 
-        // Build group className using groupClassName from first block
+        // Build group className using sectionClassName from first block
         const classNames = ["section-wrapper"];
         if (
           section.backgroundColor ||
@@ -253,11 +289,13 @@ const TinaPage = (props: Props) => {
           section.backgroundVideoUrl
         )
           classNames.push("has-background");
-        if (section.groupClassName) classNames.push(section.groupClassName);
+        if (section.sectionClassName) classNames.push(section.sectionClassName);
         if (section.backgroundColor)
           classNames.push(`bg-${section.backgroundColor}`);
-        if (section.paddingSize)
-          classNames.push(`padding-${section.paddingSize}`);
+        if (section.paddingTop)
+          classNames.push(`padding-${section.paddingTop}`);
+        if (section.paddingBot)
+          classNames.push(`padding-${section.paddingBot}`);
         if (section.maxWidth) classNames.push(`max-width-${section.maxWidth}`);
 
         // Build inline styles
@@ -270,6 +308,7 @@ const TinaPage = (props: Props) => {
 
         return (
           <section
+            id={section.sectionId}
             key={groupIndex}
             className={classNames.join(" ")}
             style={styles}
@@ -287,7 +326,7 @@ const TinaPage = (props: Props) => {
               </video>
             )}
             {group.map((block, blockIndex) =>
-              renderBlock(block, `${groupIndex}-${blockIndex}`, true)
+              renderBlock(block, `${groupIndex}-${blockIndex}`, true),
             )}
           </section>
         );

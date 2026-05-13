@@ -35,7 +35,7 @@
       "icon": "TbBrandGithub"
     }
   ],
-  "siteLogo": "/uploads/asoa.svg",
+  "siteLogo": "/uploads/graphics/asoa.svg",
   "siteTitle": "Applied Scholastics Online Academy",
   "siteTagline": "Accredited K-12 Online Private School",
   "siteDescription": "Accredited K-12 Online Private School",
@@ -55,7 +55,7 @@
     },
     {
       "title": "Bookstore",
-      "link": "https://store.apsonlineacademy.org"
+      "link": "https://bookstore.apsonlineacademy.org"
     },
     {
       "title": "About",
@@ -75,6 +75,33 @@
       "classes": "button"
     }
   ],
+  "footerLinks": [
+    {
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "title": "Bookstore",
+      "link": "https://store.apsonlineacademy.org"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    },
+    {
+      "title": "Blog",
+      "link": "/blog"
+    },
+    {
+      "title": "Contact",
+      "link": "/contact"
+    },
+    {
+      "title": "Trademarks",
+      "link": "/trademark-information"
+    }
+  ],
+  "html": "<a href=\"https://elearning.appliedscholasticsonline.com/\" class=\"button block\">Sign In</a>",
   "social": [
     {
       "title": "Facebook",
@@ -85,6 +112,11 @@
       "title": "Instagram",
       "link": "https://www.instagram.com/apsonlineacademy/",
       "icon": "TbBrandInstagram"
+    },
+    {
+      "title": "Vimeo",
+      "link": "https://vimeo.com/user189390892",
+      "icon": "TbBrandVimeo"
     }
   ]
 }
