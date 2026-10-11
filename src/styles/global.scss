@@ -163,6 +163,7 @@ blockquote {
   text-wrap: balance;
   -webkit-background-clip: text;
   margin: -1em;
+  background-clip: text;
   padding: 1em;
 }
 table {
@@ -234,12 +235,14 @@ section a:not(.button, .blog-link) {
   -webkit-text-fill-color: transparent;
   text-decoration: none;
   -webkit-background-clip: text;
+  background-clip: text;
 }
 section a:not(.button, .blog-link):focus,
 section a:not(.button, .blog-link):hover {
   background: -webkit-linear-gradient(130deg, var(--color-5), var(--color-1));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
 }
 section > *:not(.background-video, .background-image) {
   /* max-width: 800px; */
@@ -336,11 +339,13 @@ section > *:not(.background-video, .background-image) {
 .button:has(+ .button) {
   margin-right: 1rem;
 }
+button[type="submit"],
 .button {
   --border-width: 1px;
   --border-radius: 8px;
   display: inline-block;
   position: relative;
+  transition: all 0.1s ease;
   cursor: pointer;
   border: none;
   border-radius: var(--border-radius);
@@ -367,28 +372,41 @@ section > *:not(.background-video, .background-image) {
   --color-5: white;
   color: white;
 }
-.button:before,
-.button:after {
+button[type="submit"]::before,
+button[type="submit"]::after,
+.button::before,
+.button::after {
   display: block;
   position: absolute;
   top: 0;
   bottom: 0;
+  transition: all 0.1s ease;
   width: var(--border-radius);
   content: "";
 }
-.button:before {
+button[type="submit"]::before,
+.button::before {
   left: 0;
   border: var(--border-width) solid var(--color-1);
   border-right-color: transparent;
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
 }
-.button:after {
+button[type="submit"]::after,
+.button::after {
   right: 0;
   border: var(--border-width) solid var(--color-5);
   border-left-color: transparent;
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
+}
+button[type="submit"]:is(:hover, :focus),
+.button:is(:hover, :focus),
+button[type="submit"]::before:is(:hover, :focus),
+button[type="submit"]::after:is(:hover, :focus),
+.button::before:is(:hover, :focus),
+.button::after:is(:hover, :focus) {
+  --border-width: 3px;
 }
 .sr-only {
   position: absolute !important;
@@ -434,12 +452,14 @@ section > *:not(.background-video, .background-image) {
   -webkit-text-fill-color: transparent;
   font: var(--font-serif-xl);
   -webkit-background-clip: text;
+  background-clip: text;
 }
 .text-white .block-heading {
   background: none;
   -webkit-text-fill-color: initial;
   color: #fff;
   -webkit-background-clip: initial;
+  background-clip: initial;
 }
 
 /*
@@ -612,9 +632,9 @@ h1 .slidetext {
       flex-grow: 0;
       flex-basis: calc(160px + 4vw);
       scale: 1.5;
-      animation-timeline: scroll();
       animation-duration: 1ms;
       animation-timing-function: linear;
+      animation-timeline: scroll();
       min-width: 0;
       img {
         display: block;
@@ -670,9 +690,9 @@ h1 .slidetext {
   .parallaxY2,
   .parallaxY3,
   .parallaxY4 {
-    animation-timeline: scroll();
     animation-duration: 1ms;
     animation-timing-function: linear;
+    animation-timeline: scroll();
   }
   .parallaxY1 {
     animation-name: parallaxY1;
@@ -892,6 +912,7 @@ section.gallery-text.max-width-wide .\:\: {
   display: flex;
   align-items: center;
   gap: 1rem;
+  background-clip: text;
   text-wrap: balance;
 }
 .quote__left,
@@ -1004,6 +1025,60 @@ section.gallery-text.max-width-wide .\:\: {
   to {
     opacity: 1;
   }
+}
+
+/*   J O T F O R M
+ *   =============
+ */
+
+.form-section {
+  --border-radius: 8px;
+  list-style: none;
+}
+.form-section span.form-sub-label-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section textarea {
+  flex-basis: 100%;
+  border: 1px solid #000000;
+  border-radius: var(--border-radius);
+  padding: 1em;
+  width: 100% !important;
+}
+.form-section .form-input-wide {
+  width: 100% !important;
+}
+.form-section div[role="group"] {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+.form-section div[role="group"] > span {
+  flex: 1 1 0;
+}
+.form-section div[role="group"] > span > input {
+  width: 100%;
+}
+.form-section .form-sub-label {
+  position: absolute;
+  top: -0.4rem;
+  left: 1em;
+  border-radius: 0.25rem;
+  background: white;
+  padding: 0 0.5rem;
+  width: max-content;
+  max-width: 100%;
+  color: #00000099;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.form-label {
+  display: block;
+  margin-bottom: 0.3rem;
 }
 
 /*   L A Y O U T S
@@ -1125,9 +1200,9 @@ section.contain.max-width-full {
 }
 @supports (animation-timeline: view()) {
   .parallax-img-1 .text-image__image img {
-    animation-timeline: view();
     animation-timing-function: linear;
     animation-name: parallax-y-1;
+    animation-timeline: view();
   }
 }
 
@@ -1186,6 +1261,7 @@ section.contain.max-width-full {
   -webkit-text-fill-color: initial !important;
   color: #fff;
   -webkit-background-clip: initial !important;
+  background-clip: initial !important;
 }
 .heading-center h2,
 .heading-center h3,
